@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>De laatste avond op Kasteel Ter Ooste — Onderzoek te Ter Ooste</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+<body>
+  <header class="site-kop">
+    <div class="binnen">
+      <a class="merk" href="index.html">Ter Ooste · 1947</a>
+      <nav aria-label="Dossiers">
+        <ul>
+          <li><a href="akte-1/index.html">Akte I</a></li>
+          <li><a href="akte-2/index.html">Akte II</a></li>
+          <li><a href="akte-3/index.html">Akte III</a></li>
+          <li><a href="akte-4/index.html">Akte IV</a></li>
+          <li><a href="hints/index.html">Hints</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhoud">
+    <p class="kopregel">Notariskantoor R. Callewaert, Oostrozebeke</p>
+    <h1>De laatste avond op Kasteel Ter Ooste</h1>
+    <p><em>Zaterdag 15 november 1947</em></p>
+
+    <section class="vel" aria-labelledby="s0">
+      <h2 id="s0">Onderzoek te Ter Ooste</h2>
+      <p>Baron Edmond de Vlieghere overleed op zaterdag 15 november 1947 om 23:40.</p>
+      <p>Onderzoek vier dossiers. Overleggen mag; antwoorden en eindbeschuldigingen worden individueel ingeleverd.</p>
+      <h3>Regels</h3>
+      <ol>
+        <li>Alleen de living met eettafel en het toilet beneden behoren tot het speelgebied.</li>
+        <li>Andere vertrekken bestaan uitsluitend binnen het verhaal. Ga er niet naar zoeken.</li>
+        <li>Doorzoek niets zonder een vrijgegeven aanwijzing die het toegestane spelvoorwerp precies beschrijft.</li>
+        <li>Verplaats geen meubels en open geen persoonlijke kasten, tassen of laden.</li>
+        <li>Officiële registers, onafhankelijke verklaringen en onderzoeksrapporten zijn betrouwbaar. Geruchten en uitspraken van verdachten zijn dat niet noodzakelijk.</li>
+        <li>Er is één dader onder de zes genoemde verdachten. Er zijn geen medeplichtigen, geheime doorgangen, persoonsverwisselingen of uitgestelde mechanismen.</li>
+        <li>De dader voerde zelf de beslissende manipulatie van de drank uit. Gewone bediening achteraf betekent geen medeplichtigheid.</li>
+        <li>Niemand hoeft iets te proeven, ruiken of mengen.</li>
+      </ol>
+      <p>Noteer bij iedere conclusie de bewijsstukken waarop zij berust. Een verdachte nog niet kunnen uitsluiten is niet hetzelfde als diens schuld bewijzen.</p>
+    </section>
+
+    <section aria-labelledby="rollen">
+      <h2 id="rollen">De onderzoekers</h2>
+      <ul class="rollen">
+        <li><span class="speler">Wessel</span><br><span class="rol">Oscar Lannoo</span><br>Rentmeester, verantwoordelijk voor gebouwen</li>
+        <li><span class="speler">Céline</span><br><span class="rol">Germaine Lannoo-Debrabandere</span><br>Kasboek-auditor</li>
+        <li><span class="speler">Manu</span><br><span class="rol">Meester Albert Vanhoutte</span><br>Onderwijzer met belangstelling voor cryptografie</li>
+        <li><span class="speler">Febe</span><br><span class="rol">Yvonne Vanhoutte-Desmet</span><br>Journaliste</li>
+        <li><span class="speler">Bram</span><br><span class="rol">Georges Tanghe</span><br>Transporteur, bekend met leveringen en bediening</li>
+        <li><span class="speler">Michèle</span><br><span class="rol">Simonne Tanghe-Verhaeghe</span><br>Apotheekmedewerker binnen het verhaal</li>
+      </ul>
+      <p><strong>Julien:</strong> notaris Remi Callewaert. <strong>Elke:</strong> barones Clothilde de Vlieghere.</p>
+    </section>
+
+    <section aria-labelledby="aktes">
+      <h2 id="aktes">De vier aktes</h2>
+      <p>Iedere akte wordt door de notaris aangekondigd en geopend met een aktecode.</p>
+      <ul class="akte-lijst">
+        <li><a href="akte-1/index.html">Akte I<small>Dossier I — Het ontregelde archief</small><span class="status" data-status="1"></span></a></li>
+        <li><a href="akte-2/index.html">Akte II<small>Dossier II — Het dagregister</small><span class="status" data-status="2"></span></a></li>
+        <li><a href="akte-3/index.html">Akte III<small>Dossier NACHT</small><span class="status" data-status="3"></span></a></li>
+        <li><a href="akte-4/index.html">Akte IV<small>Dossier IV — De notariskist</small><span class="status" data-status="4"></span></a></li>
+      </ul>
+      <p><a href="hints/index.html">Hints van de notaris</a> — vergrendeld tot de notaris een hintcode voorleest.</p>
+    </section>
+  </main>
+
+  <footer class="site-voet">Alle personen en gebeurtenissen zijn fictief. Oostrozebeke, november 1947.</footer>
+
+  <script src="config.js"></script>
+  <script src="assets/app.js"></script>
+  <script>
+    document.querySelectorAll(".status").forEach(function (el) {
+      el.textContent = TerOoste.opslag.is("akte" + el.dataset.status) ? "Vrijgegeven" : "Verzegeld";
+    });
+  </script>
+</body>
+</html>

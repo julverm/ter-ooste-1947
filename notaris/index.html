@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Notaris · Ter Ooste 1947</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+</head>
+<body>
+  <header class="site-kop">
+    <div class="binnen">
+      <a class="merk" href="../index.html">Ter Ooste · 1947</a>
+      <nav aria-label="Dossiers">
+        <ul>
+          <li><a href="../akte-1/index.html">Akte I</a></li>
+          <li><a href="../akte-2/index.html">Akte II</a></li>
+          <li><a href="../akte-3/index.html">Akte III</a></li>
+          <li><a href="../akte-4/index.html">Akte IV</a></li>
+          <li><a href="../hints/index.html">Hints</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhoud">
+    <p class="kopregel">Uitsluitend voor de spelleiders</p>
+    <h1>Kantoor van notaris Callewaert</h1>
+
+    <section id="host-poort" class="poort vel" aria-labelledby="poort-kop">
+      <div class="zegel" aria-hidden="true">R.C.<small>privé</small></div>
+      <h2 id="poort-kop">Hostpagina</h2>
+      <p>Deze pagina bevat oplossingen en hintcodes. Niet delen met spelers.</p>
+      <form id="host-form">
+        <label for="hostwachtwoord">Hostwachtwoord</label>
+        <input id="hostwachtwoord" class="code" type="password" autocomplete="off" required>
+        <button type="submit">Kantoor openen</button>
+        <p class="melding" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <div id="host-inhoud" class="verborgen">
+
+      <section class="vel host-sectie" aria-labelledby="codes-kop">
+        <h2 id="codes-kop">Alle codes</h2>
+        <h3>Aktecodes (voorlezen bij de aankondiging van elke akte)</h3>
+        <dl class="codelijst" id="aktecodes"></dl>
+        <h3>Puzzelcodes</h3>
+        <dl class="codelijst">
+          <dt>P1 — toegangscode (akte I)</dt><dd id="code-p1"></dd>
+          <dt>P2 — sleutelwoord (fysiek briefje, p. 47)</dt><dd>LINNEN</dd>
+          <dt>P3 — dossierwoord (akte III)</dt><dd id="code-p3"></dd>
+          <dt>P4 — kluiscode (akte IV)</dt><dd id="code-p4"></dd>
+        </dl>
+        <h3>Boekkenmerk in P2-A</h3>
+        <p>Regel 3 van het raadsel luidt nu: <em>“Ik sta in het gelid met mijn soortgenoten, <span id="boek-kenmerk"></span>.”</em> Pas <code>boekKenmerk</code> aan in <code>config.js</code>.</p>
+      </section>
+
+      <section class="vel host-sectie" aria-labelledby="hints-kop">
+        <h2 id="hints-kop">Hints en hintcodes</h2>
+        <p>Lees de hintcode voor; spelers typen ze in op de hintpagina. Open dezelfde hint op het gedeelde scherm.</p>
+        <ul>
+          <li>Geen automatische hints.</li>
+          <li>Hint 1 op verzoek of na circa twaalf minuten zonder voortgang.</li>
+          <li>Hint 2 na nog circa vijf minuten stilstand.</li>
+          <li>Bij problemen met het boek of de digitale kluis onmiddellijk praktisch helpen.</li>
+          <li>Beoordeel individuele antwoorden voordat de volgende gezamenlijke ronde begint.</li>
+          <li>Geef bij een fout aan welk document opnieuw bekeken moet worden, zonder meteen de uitkomst te verklappen.</li>
+        </ul>
+        <dl class="codelijst" id="hintlijst"></dl>
+      </section>
+
+      <section class="vel host-sectie" aria-labelledby="draai-kop">
+        <h2 id="draai-kop">Draaiboek</h2>
+        <div class="tabel-scroll">
+          <table>
+            <thead><tr><th>Verstreken tijd</th><th>Onderdeel</th></tr></thead>
+            <tbody>
+              <tr><td>00:00–00:15</td><td>Ontvangst, rollen en regels</td></tr>
+              <tr><td>00:15–00:35</td><td>Gang 1 en introductie</td></tr>
+              <tr><td>00:35–01:00</td><td>P1</td></tr>
+              <tr><td>01:00–01:20</td><td>Gang 2</td></tr>
+              <tr><td>01:20–01:45</td><td>P2</td></tr>
+              <tr><td>01:45–02:10</td><td>Gang 3</td></tr>
+              <tr><td>02:10–02:35</td><td>P3</td></tr>
+              <tr><td>02:35–02:55</td><td>Gang 4</td></tr>
+              <tr><td>02:55–03:25</td><td>P4</td></tr>
+              <tr><td>03:25–03:40</td><td>Individuele beschuldigingen en ontknoping</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Gefaseerde documentverdeling</h3>
+        <div class="tabel-scroll">
+          <table>
+            <thead><tr><th>Moment</th><th>Vrijgeven</th><th>Nog verborgen</th></tr></thead>
+            <tbody>
+              <tr><td>Start</td><td>Profielkaarten (papier); startpagina met S0 en rollen (web)</td><td>Alle aktes</td></tr>
+              <tr><td>Akte I</td><td>akte-1: P1-A t/m C; P1-D en P1-E verschijnen na code 6431</td><td>Alibi’s, gifidentificatie en persoonsbewijs</td></tr>
+              <tr><td>Akte II</td><td>akte-2: P2-A, C, D, E; sleutel P2-B fysiek in het boek op p. 47</td><td>Akte III en finale</td></tr>
+              <tr><td>Akte III</td><td>akte-3 achter NACHT: P3-A t/m I, audio en transcript</td><td>Persoonsvergelijking, aanvullend alibi, brief en bekentenis</td></tr>
+              <tr><td>Akte IV</td><td>akte-4: P4-A en gesloten digitale kluis</td><td>Finale-inhoud</td></tr>
+              <tr><td>Kluis open (6427)</td><td>P4-B t/m F op scherm, voor iedereen tegelijk</td><td>Niets</td></tr>
+              <tr><td>Beschuldiging</td><td>Papieren formulier per speler, ingeleverd bij de notaris</td><td>Ontknoping</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>De notaris kondigt elke akte aan en toont de link of aktecode op het gedeelde scherm. Vooruitbladeren is sociaal, niet technisch, uitgesloten.</p>
+      </section>
+
+      <section class="vel host-sectie" aria-labelledby="voorlees-kop">
+        <h2 id="voorlees-kop">Korte voorleesteksten</h2>
+        <h3>Akte 1 — Verklaringen aan tafel</h3>
+        <blockquote>
+          <p>Welkom op Kasteel Ter Ooste. Het is zaterdag 15 november 1947. Een deftige avond eindigde om 23:40 in de bibliotheek, waar baron Edmond de Vlieghere dood werd aangetroffen.</p>
+          <p>Bij de eerste waarneming waren geen zichtbare uitwendige verwondingen te zien. Naast de baron lag een omgevallen glas dat volgens de aanwezigen picon had bevat. De doodsoorzaak is nog niet vastgesteld. Later onderzoek en andere stukken komen tijdens het diner aan bod.</p>
+          <p>Alles wat jullie nodig hebben, komt naar deze tafel. Jullie mogen samenwerken en informatie delen, maar iedereen schrijft straks een eigen beschuldiging.</p>
+          <p>Begin met zes mappen uit het archief. Herstel hun volgorde en gebruik de gevonden code om twee verzegelde stukken uit mijn notarisarchief te openen.</p>
+        </blockquote>
+        <h3>Akte 2 — Het gecodeerde dagregister</h3>
+        <blockquote>
+          <p>Het testament en de dreigbrief vertellen wie iets te winnen of te vrezen had. Ze vertellen ons nog niet waardoor de baron stierf, noch wie bij zijn glas kon komen.</p>
+          <p>De volgende akte bevat twee gecodeerde aantekeningen. Een raadsel wijst naar een gewoon voorwerp hier in de kamer. Wie het doorheeft, mag opstaan en het nemen. Lees de gevonden sleutel hardop voor, zodat iedereen ze heeft.</p>
+          <p>Ontcijfer beide regels. Ze vertellen iets over de piconfles en wijzen jullie naar het volgende dossier.</p>
+        </blockquote>
+        <h3>Akte 3 — Wat bereikte glas 7?</h3>
+        <blockquote>
+          <p>Het dagregister heeft een controlepunt voor de piconfles opgeleverd. Nu onderzoeken we wat daarna met de uitgeschonken drank gebeurde.</p>
+          <p>Vergelijk het dienstrooster, de voorraad, het monsterregister en het onderzoeksbericht. Niemand hoeft iets te proeven.</p>
+          <p>Bepaal de stof, het betrokken glas en het kleinst mogelijke manipulatievenster. Maak onderscheid tussen iemand die gelegenheid had en iemand wiens schuld bewezen is.</p>
+        </blockquote>
+        <h3>Akte 4 — De notariskist</h3>
+        <blockquote>
+          <p>Jullie hebben het testament en de dreigbrief gelezen, het dagregister ontcijferd en vastgesteld wat er met de picon gebeurde. De geverifieerde waarnemingen hebben vier verdachten uitgesloten, maar Marie en Victor bleven mogelijk.</p>
+          <p>Gebruik de controlecijfers op het slotbriefje om de combinatie te bepalen en draai de wielen van de kluis op het scherm. Het openen van de kluis is niet de eindoplossing: lees de inhoud en controleer wat die bewijst.</p>
+          <p>Daarna vult iedereen een eigen beschuldiging in.</p>
+        </blockquote>
+      </section>
+
+      <section class="vel host-sectie" aria-labelledby="opl1-kop">
+        <h2 id="opl1-kop">Hostoplossing P1 — Het ontregelde archief</h2>
+        <h3>Raadselantwoorden</h3>
+        <div class="tabel-scroll">
+          <table>
+            <thead><tr><th>Map</th><th>Symbool</th><th class="num">Foliocijfer</th></tr></thead>
+            <tbody>
+              <tr><td>A</td><td>BEL</td><td class="num">8</td></tr>
+              <tr><td>B</td><td>KROON</td><td class="num">1</td></tr>
+              <tr><td>C</td><td>LANTAARN</td><td class="num">9</td></tr>
+              <tr><td>D</td><td>SLEUTEL</td><td class="num">3</td></tr>
+              <tr><td>E</td><td>ANKER</td><td class="num">6</td></tr>
+              <tr><td>F</td><td>ROOS</td><td class="num">4</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Enige volgorde</h3>
+        <div class="tabel-scroll">
+          <table>
+            <thead><tr><th class="num">Positie</th><th>Symbool</th><th class="num">Foliocijfer</th></tr></thead>
+            <tbody>
+              <tr><td class="num">1</td><td>LANTAARN</td><td class="num">9</td></tr>
+              <tr><td class="num">2</td><td>ANKER</td><td class="num">6</td></tr>
+              <tr><td class="num">3</td><td>ROOS</td><td class="num">4</td></tr>
+              <tr><td class="num">4</td><td>BEL</td><td class="num">8</td></tr>
+              <tr><td class="num">5</td><td>SLEUTEL</td><td class="num">3</td></tr>
+              <tr><td class="num">6</td><td>KROON</td><td class="num">1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Extractie van posities 2, 3, 5 en 6: <strong>6 — 4 — 3 — 1 → 6431</strong></p>
+        <h3>Bewijs van uniciteit</h3>
+        <p>Noem de positie van het ANKER <strong>a</strong>.</p>
+        <ol>
+          <li>De ROOS staat op <strong>a + 1</strong>.</li>
+          <li>De LANTAARN moet vóór de ROOS staan, maar niet direct ervoor. Daarom kan het ANKER niet op 1 staan.</li>
+          <li>Het ANKER kan evenmin op 6 staan, omdat rechts ervan de ROOS moet passen.</li>
+          <li>Er blijven vier gevallen over:</li>
+        </ol>
+        <div class="tabel-scroll">
+          <table>
+            <thead><tr><th class="num">ANKER</th><th>Gevolg</th><th>Beoordeling</th></tr></thead>
+            <tbody>
+              <tr><td class="num">2</td><td>SLEUTEL 5; BEL 4; ROOS 3</td><td>KROON moet 6; LANTAARN 1. Geldig</td></tr>
+              <tr><td class="num">3</td><td>SLEUTEL 6; BEL 5</td><td>Rechts van BEL resteert alleen de al bezette positie 6 voor KROON. Onmogelijk</td></tr>
+              <tr><td class="num">4</td><td>SLEUTEL 1</td><td>BEL zou op positie 0 moeten staan. Onmogelijk</td></tr>
+              <tr><td class="num">5</td><td>SLEUTEL 2; BEL 1; ROOS 6</td><td>KROON en LANTAARN moeten posities 3 en 4 bezetten en staan dan naast elkaar. Onmogelijk</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Daarom is de volgorde uniek.</p>
+        <p><strong>P1 levert geen alibi’s, geen persoonsuitsluiting en geen stofidentificatie op.</strong></p>
+      </section>
+
+      <section class="vel host-sectie" aria-labelledby="opl2-kop">
+        <h2 id="opl2-kop">Hostoplossing P2 — Het versleutelde dagregister</h2>
+        <h3>Ontcijferde teksten</h3>
+        <p><strong>Regel A</strong></p>
+        <blockquote><p>DE PICONFLES WAS OM DRIE MINUTEN VOOR ELF NOG VERZEGELD</p></blockquote>
+        <p><strong>Regel B</strong></p>
+        <blockquote><p>OPEN DOSSIER NACHT BIJ DE NOTARIS</p></blockquote>
+        <h3>Stap voor stap</h3>
+        <ol>
+          <li>De zoekaanwijzing leidt uitsluitend naar het gekozen boek, pagina 47.</li>
+          <li>Het sleutelbriefje in het boek geeft <strong>LINNEN</strong>.</li>
+          <li>Trek de herhaalde sleutelletters af van de codeletters.</li>
+          <li>Drie minuten vóór elf ’s avonds betekent <strong>22:57</strong>.</li>
+          <li>Het vervolgwoord is <strong>NACHT</strong>.</li>
+          <li>Na de individuele antwoorden kondigt Julien akte III aan; het woord NACHT opent het dossier op de website. Het wachtwoord is een speleffect, geen afzonderlijke puzzel.</li>
+        </ol>
+        <h3>Validatie</h3>
+        <ul>
+          <li>Regel A: <strong>46 letters</strong>.</li>
+          <li>Regel B: <strong>28 letters</strong>.</li>
+          <li>Sleutel: LINNEN.</li>
+          <li>Sleutelherstart per regel.</li>
+        </ul>
+        <p>De tekst identificeert geen verdachte en zegt niets over wat na het openen met de drank gebeurde.</p>
+      </section>
+
+      <section class="vel host-sectie" aria-labelledby="opl3-kop">
+        <h2 id="opl3-kop">Hostoplossing P3 — Wat bereikte glas 7?</h2>
+        <h3>Toegang</h3>
+        <ul>
+          <li>Accepteer <strong>NACHT</strong>, ongeacht hoofdletters en na verwijdering van spaties vóór en achter de invoer.</li>
+          <li>Toon na correcte invoer P3-A t/m P3-I als tabbladen of accordeon, de audiospeler en het transcript. Publiceer geen hostoplossingen of P4-documenten op deze pagina.</li>
+          <li>Laat audio niet automatisch afspelen. Gewone afspeel-, pauze- en volumebediening. Vraag geen naam, account of persoonlijke gegevens.</li>
+          <li>Geen poginglimiet of tijdstraf. Bij internetuitval: lokale kopie op de laptop als gedeeld scherm.</li>
+        </ul>
+        <h3>Stap voor stap</h3>
+        <ol>
+          <li>Monster B bevat <strong>digitalis-specifieke hartglycosiden</strong>.</li>
+          <li>De legenda koppelt die aan <strong>L23: digitalis</strong>.</li>
+          <li>Het monsterregister koppelt B aan <strong>glas 7</strong>.</li>
+          <li>Het bedieningsschema koppelt glas 7 aan de baron en zijn <strong>picon</strong>.</li>
+          <li>Monster A uit de fles bevat de onderzochte verontreiniging niet.</li>
+          <li>De gecontroleerde bediening sluit ook een eerdere toevoeging aan glas 7 uit: het was schoon bij de sluitcontrole om <strong>23:02</strong>.</li>
+          <li>Vanaf <strong>23:06</strong> is verdere manipulatie uitgesloten door het ononderbroken toezicht.</li>
+          <li>De toevoeging gebeurde dus <strong>na de controle van 23:02 en vóór het toezicht vanaf 23:06</strong>.</li>
+          <li>Het verdwenen preparaat en het lege omhulsel ondersteunen de stofidentificatie.</li>
+          <li>P3-I sluit nu Gaston, Cyriel, Achiel en Deman uit: hun doorlopende alibi’s dekken het hele relevante tijdvak.</li>
+          <li>Marie en Victor hadden beiden toegang tot voorraadkast en dienstoffice; P3 maakt nog geen keuze tussen hen.</li>
+        </ol>
+        <h3>Vereist antwoord</h3>
+        <blockquote><p>Digitalis werd toegevoegd aan de picon in glas 7, na de controle van 23:02 en vóór het toezicht vanaf 23:06. Marie en Victor hadden gelegenheid. P3 bewijst nog niet wie de dader is.</p></blockquote>
+        <p>Tot en met P3 zijn zowel een scenario met Marie als een scenario met Victor verenigbaar met alle vrijgegeven stukken.</p>
+      </section>
+
+      <section class="vel host-sectie" aria-labelledby="opl4-kop">
+        <h2 id="opl4-kop">Hostoplossing P4 — De notariskist</h2>
+        <h3>Code</h3>
+        <div class="tabel-scroll">
+          <table>
+            <thead><tr><th class="num">Positie</th><th>Bron</th><th class="num">Cijfer</th></tr></thead>
+            <tbody>
+              <tr><td class="num">1</td><td>Eerste cijfer P1-code 6431</td><td class="num">6</td></tr>
+              <tr><td class="num">2</td><td>Tweede cijfer P1-code 6431</td><td class="num">4</td></tr>
+              <tr><td class="num">3</td><td>Controle 23:02: eenhedencijfer van de minuut</td><td class="num">2</td></tr>
+              <tr><td class="num">4</td><td>Piconglas van de baron</td><td class="num">7</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Code: 6427.</strong> P1-code 6431 levert de eerste twee cijfers; de controleminuut en het glasnummer de laatste twee.</p>
+        <h3>Bewijs zonder bekentenis</h3>
+        <ol>
+          <li>P3 bewijst <strong>digitalis in de picon van glas 7</strong>.</li>
+          <li>De manipulatie gebeurde tussen 23:02 en 23:06.</li>
+          <li>P3-I sluit Gaston, Cyriel, Achiel en Deman uit voor het manipulatievenster.</li>
+          <li>P4-D sluit Victor gedurende het volledige manipulatievenster uit.</li>
+          <li>Marie blijft als enige verdachte met gelegenheid over.</li>
+          <li>P4-E koppelt haar bovendien positief aan het opnieuw sluiten van het gemanipuleerde glas.</li>
+          <li>Een gewone eerdere aanraking verklaart haar afdruk in later aangebrachte lak niet.</li>
+          <li>De authentieke brief bewijst Edmonds verraad en de reden daarvoor.</li>
+          <li>Het familieregister koppelt Jozef aan Marie.</li>
+          <li>De verklaring over oktober verklaart wanneer zij de waarheid ontdekte.</li>
+        </ol>
+        <h3>Correcte eindbeschuldiging</h3>
+        <blockquote>
+          <p>Marie Vandenbussche vergiftigde Edmond de Vliegheres picon met digitalis. Zij manipuleerde glas 7 tussen 23:02 en 23:06. Edmond overleed om 23:40.</p>
+          <p>Zij handelde uit wraak voor haar broer Jozef. Edmond had hem in 1943 aan de Feldgendarmerie verraden om zijn zwarte vlaszwendel en het gestolen schilderij <em>De Vlasoogst</em> te verbergen. Jozef stierf in Breendonk. Marie ontdekte de waarheid door de brief die zij in oktober 1947 vond.</p>
+        </blockquote>
+        <p><strong>Verwijdertest:</strong> zonder P4-F blijft Marie op basis van de onafhankelijke stukken aanwijsbaar.</p>
+      </section>
+
+      <section class="vel host-sectie" aria-labelledby="onthulling-kop">
+        <h2 id="onthulling-kop">Onthulling</h2>
+        <p class="meta">Lees dit pas voor nadat alle formulieren zijn ingeleverd.</p>
+        <blockquote>
+          <p>De dader was <strong>Marie Vandenbussche</strong>, al achtentwintig jaar huishoudster en kokkin op Kasteel Ter Ooste.</p>
+          <p>De picon werd om 23:01 onder toezicht uitgeschonken. Tegelijk werd monster A uit dezelfde fles genomen. Om 23:02 was glas 7 nog vrij van de onderzochte verontreiniging en was de oorspronkelijke sluitband intact.</p>
+          <p>Daarna bleef het dienblad zonder doorlopend toezicht in de dienstoffice. <strong>Tussen 23:02 en 23:06 manipuleerde Marie glas 7.</strong> Zij vergiftigde de picon met digitalis en zette de losgemaakte sluitband opnieuw vast.</p>
+          <p>Om 23:06 nam de barones het dienblad over. Vanaf dat moment werd de inhoud niet meer aangeraakt of aangevuld. De baron dronk om 23:08 uit glas 7 en nam zijn picon om 23:15 mee naar de bibliotheek. Marie bezocht hem daar niet. Om 23:40 werd hij dood aangetroffen.</p>
+          <p>P3 bewees digitalis in de picon van glas 7. Het flesmonster en glas 2 bevatten die verontreiniging niet. Marie en Victor bleven toen beiden mogelijk.</p>
+          <p>De kist bracht de doorslag. Victor was gedurende het volledige manipulatievenster bij de barones in de keuken. De afdruk in de vervangende lak was van Marie. Een eerdere gewone aanraking van het glas kon die afdruk niet verklaren.</p>
+          <p>Haar motief lag in 1943. De baron had haar broer Jozef, een verzetsstrijder, aan de Feldgendarmerie verraden om zijn zwarte vlaszwendel en het gestolen schilderij <em>De Vlasoogst</em> te beschermen. Jozef stierf in Breendonk. Toen Marie op 9 oktober 1947 de brief vond, ontdekte zij de waarheid.</p>
+          <p>Gaston, Cyriel, Achiel en pastoor Deman hadden doorlopende alibi’s van 22:50 tot 23:10. Victor werd door de aanvullende verklaring uitgesloten. De onafhankelijke stukken wezen naar Marie — ook zonder haar bekentenis.</p>
+          <p>Kasteel Ter Ooste hield zijn geheim jarenlang achter gesloten deuren. Vanavond lag het antwoord op tafel.</p>
+        </blockquote>
+      </section>
+
+      <section class="vel host-sectie" aria-labelledby="test-kop">
+        <h2 id="test-kop">Testen</h2>
+        <p>Wist alle opgeslagen voortgang op dit toestel (ontgrendelde aktes, codepoorten, hints, P1-volgorde, Vigenère-invoer en deze hostsessie).</p>
+        <button type="button" id="reset" class="klein">Alles resetten</button>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-voet">Alle personen en gebeurtenissen zijn fictief.</footer>
+
+  <script src="../config.js"></script>
+  <script src="../assets/app.js"></script>
+  <script>
+    (function () {
+      var T = window.TerOoste;
+      var C = T.CFG;
+
+      function vul() {
+        var dl = document.getElementById("aktecodes");
+        [1, 2, 3, 4].forEach(function (n) {
+          var dt = document.createElement("dt"); dt.textContent = "Akte " + ["I", "II", "III", "IV"][n - 1];
+          var dd = document.createElement("dd"); dd.textContent = (C.aktecodes || {})[n] || "—";
+          dl.appendChild(dt); dl.appendChild(dd);
+        });
+        document.getElementById("code-p1").textContent = C.codeP1;
+        document.getElementById("code-p3").textContent = C.wachtwoordP3;
+        document.getElementById("code-p4").textContent = C.codeKluis;
+        document.getElementById("boek-kenmerk").textContent = C.boekKenmerk;
+
+        var hl = document.getElementById("hintlijst");
+        T.HINTS.forEach(function (h) {
+          var dt = document.createElement("dt");
+          dt.textContent = h.puzzel + " — hint " + h.nr + " · code " + ((C.hintcodes || {})[h.id] || "—");
+          var dd = document.createElement("dd");
+          h.tekst.forEach(function (t) { var p = document.createElement("p"); p.textContent = "“" + t + "”"; dd.appendChild(p); });
+          if (h.alternatief) { var p2 = document.createElement("p"); p2.className = "meta"; p2.textContent = h.alternatief; dd.appendChild(p2); }
+          hl.appendChild(dt); hl.appendChild(dd);
+        });
+      }
+
+      T.codepoort({
+        formId: "host-form",
+        doelId: "host-inhoud",
+        verbergId: "host-poort",
+        code: C.hostwachtwoord,
+        opslag: "host.open",
+        stempel: "Notaris",
+        weigering: "Dit kantoor blijft gesloten.",
+        naOpen: function () { vul(); }
+      });
+
+      document.getElementById("reset").addEventListener("click", function () {
+        if (window.confirm("Alle opgeslagen voortgang op dit toestel wissen?")) {
+          T.opslag.wisAlles();
+          location.reload();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

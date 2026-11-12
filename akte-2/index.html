@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Akte II — Het dagregister · Ter Ooste 1947</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+</head>
+<body>
+  <header class="site-kop">
+    <div class="binnen">
+      <a class="merk" href="../index.html">Ter Ooste · 1947</a>
+      <nav aria-label="Dossiers">
+        <ul>
+          <li><a href="../akte-1/index.html">Akte I</a></li>
+          <li><a href="../akte-2/index.html">Akte II</a></li>
+          <li><a href="../akte-3/index.html">Akte III</a></li>
+          <li><a href="../akte-4/index.html">Akte IV</a></li>
+          <li><a href="../hints/index.html">Hints</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhoud">
+    <p class="kopregel">Akte II</p>
+    <h1>Het gecodeerde dagregister</h1>
+
+    <section id="poort" class="poort vel" aria-labelledby="poort-kop">
+      <div class="zegel" aria-hidden="true">R.C.<small>notaris</small></div>
+      <h2 id="poort-kop">Deze akte is verzegeld</h2>
+      <p>Wacht tot de notaris de akte aankondigt en de aktecode voorleest.</p>
+      <form>
+        <label for="aktecode">Aktecode</label>
+        <input id="aktecode" class="code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
+        <button type="submit">Zegel verbreken</button>
+        <p class="melding" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <div id="akte-inhoud" class="verborgen">
+
+      <section class="vel" aria-labelledby="lees-kop">
+        <h2 id="lees-kop">Leesversie</h2>
+        <p>Een huishouden als dat van Kasteel Ter Ooste draait op gewoontes. Een glas verschijnt op het juiste ogenblik en een verzoek bereikt het personeel zonder dat de gasten merken hoe. Juist omdat zulke handelingen gewoon zijn, worden ze achteraf niet altijd nauwkeurig herinnerd.</p>
+        <p>De eerste puzzel herstelde de volgorde van zes archiefmappen. De toegangscode gaf een testamentsnota en een dreigbrief vrij. Die stukken tonen motieven en verklaren de sluitbanden op de glazen; ze geven geen oorzaak of verdachte.</p>
+        <p>Een archiefbeheerder noteerde twee bijzonderheden in een gecodeerd dagregister. De aantekeningen hoeven geen bekentenis te zijn om belangrijk te worden. Een betrouwbaar tijdstip kan een latere reconstructie begrenzen; een dossiernaam kan aangeven waar verder gezocht moet worden.</p>
+        <p>De sleutel is niet in een onbekende kamer verstopt. Het raadsel beschrijft één gewoon voorwerp in deze living. Niemand hoeft meubels te verplaatsen of laden te openen. Wie het doorheeft, staat op en neemt het; zodra het briefje gevonden is, leest iemand de sleutel hardop voor en blijft het briefje open op tafel liggen.</p>
+        <p>De code-instructie legt de methode uit. Je hoeft geen specialist te zijn: werk zorgvuldig, vergelijk letters en controleer waar de sleutel opnieuw begint. Ook wie niet zelf elke letter berekent, kan de ontcijferde tekst beoordelen.</p>
+        <p><strong>Puzzelintro:</strong> volg de zoekaanwijzing in de living en ontcijfer beide regels met de Vigenère-uitleg. Noteer het tijdstip en het dossierwoord. Vraag daarna het genoemde dossier bij de notaris op.</p>
+      </section>
+
+      <section class="vel" aria-labelledby="d2-kop">
+        <h2 id="d2-kop">Dossier II — Het dagregister</h2>
+        <p>De archiefbeheerder versleutelde twee korte aantekeningen.</p>
+        <p>Vind de archiefsleutel met de zoekaanwijzing. Ontcijfer daarna beide regels volgens de exacte code-instructie.</p>
+        <p>Lever individueel in:</p>
+        <ul>
+          <li>het sleutelwoord;</li>
+          <li>beide ontcijferde teksten;</li>
+          <li>het tijdstip uit regel A;</li>
+          <li>de naam van het op te vragen dossier.</li>
+        </ul>
+        <p>Het dossierwoord uit regel B opent dossier III (akte III) op de website.</p>
+      </section>
+
+      <section class="vel" aria-labelledby="p2a-kop">
+        <p class="meta">P2-A — Zoekaanwijzing</p>
+        <h2 id="p2a-kop">Waar de sleutel wacht</h2>
+        <p>Ik heb een rug, maar geen botten.<br>
+        Ik heb bladen, maar geen takken.<br>
+        Ik sta in het gelid met mijn soortgenoten, <span id="boek-kenmerk"></span>.<br>
+        Sla mij open op het jaar van de baron: zijn laatste twee cijfers.</p>
+        <p>Wat je daar vindt, lees je hardop voor, zodat iedereen de sleutel heeft.</p>
+        <p>Verplaats geen meubels, kruip nergens onder en open geen andere voorwerpen of vertrekken.</p>
+      </section>
+
+      <section class="vel" aria-labelledby="p2c-kop">
+        <p class="meta">P2-C — Code-instructie</p>
+        <h2 id="p2c-kop">Vigenère</h2>
+        <p>Gebruik het alfabet A–Z met deze waarden:</p>
+<pre>A=0   B=1   C=2   D=3   E=4   F=5   G=6
+H=7   I=8   J=9   K=10  L=11  M=12  N=13
+O=14  P=15  Q=16  R=17  S=18  T=19  U=20
+V=21  W=22  X=23  Y=24  Z=25</pre>
+        <ul>
+          <li>IJ zijn twee afzonderlijke letters.</li>
+          <li>Spaties blijven staan maar verbruiken geen sleutelletter.</li>
+          <li>Herhaal LINNEN onder de letters.</li>
+          <li>Ontcijfer met <strong>codeletter min sleutelletter</strong>.</li>
+          <li>Bij een negatieve uitkomst tel je 26 op.</li>
+          <li>Begin regel B opnieuw bij de L.</li>
+        </ul>
+        <p><strong>Controlevoorbeeld</strong></p>
+<pre>Code:      O  M
+Sleutel:   L  I
+Getallen: 14 12
+Min:      11  8
+Uitkomst:  3  4
+Tekst:     D  E</pre>
+        <p>Wie midden in een regel begint, telt eerst de voorafgaande letters. Spaties tellen niet mee.</p>
+      </section>
+
+      <section class="vel" aria-labelledby="p2d-kop">
+        <p class="meta">P2-D — Gecodeerd dagregister</p>
+        <h2 id="p2d-kop">Twee aantekeningen</h2>
+        <p><strong>Regel A — avondwaarneming op zaterdag 15 november 1947</strong></p>
+<pre>OM CVGBYNYRW JLA BZ HETM ZVRHEMA ISBC MYS RBR DREDRRMYQ</pre>
+        <p><strong>Regel B — vervolgarchief</strong></p>
+<pre>ZXRA HBDAVRV ALKUG FVU LR ASGLZVF</pre>
+      </section>
+
+      <section class="vel" aria-labelledby="hulp-kop">
+        <h2 id="hulp-kop">Hulptabel (optioneel)</h2>
+        <p>Vul zelf onder iedere codeletter de sleutelletter en daaronder de ontcijferde letter in. De tabel rekent niets voor je uit; ze helpt alleen om netjes te werken. Je invoer wordt op dit toestel bewaard.</p>
+        <p class="vig-legenda">Rij 1 = codeletter · rij 2 = sleutelletter (rood) · rij 3 = ontcijferde letter</p>
+        <div id="vig-A" class="vig-regel" data-code="OM CVGBYNYRW JLA BZ HETM ZVRHEMA ISBC MYS RBR DREDRRMYQ">
+          <h3>Regel A</h3>
+          <div class="vig-woorden"></div>
+        </div>
+        <div id="vig-B" class="vig-regel" data-code="ZXRA HBDAVRV ALKUG FVU LR ASGLZVF">
+          <h3>Regel B</h3>
+          <div class="vig-woorden"></div>
+        </div>
+        <button type="button" class="stil klein" id="vig-wis">Hulptabel leegmaken</button>
+      </section>
+
+      <section class="vel" aria-labelledby="p2e-kop">
+        <p class="meta">P2-E — Krantenknipsel</p>
+        <h2 id="p2e-kop">De Mandelbode — 14 november 1947</h2>
+        <h3>Onderzoek naar oorlogshandel heropend</h3>
+        <p>Bij een onderzoek naar illegale vlastransporten tijdens de bezetting zijn opnieuw namen van tussenpersonen genoemd.</p>
+        <p>Ook de herkomst van het schilderij <em>De Vlasoogst</em> wordt onderzocht. Het werk verdween tijdens de oorlog uit een particuliere verzameling.</p>
+        <p>De redactie beschikt nog niet over voldoende stukken om individuele betrokkenen aan te wijzen.</p>
+        <p>Dit bericht bewijst niet wie bij deze zaken betrokken was en evenmin wie de baron vermoordde.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-voet">Alle personen en gebeurtenissen zijn fictief.</footer>
+
+  <script src="../config.js"></script>
+  <script src="../assets/app.js"></script>
+  <script>
+    (function () {
+      var T = window.TerOoste;
+      T.aktepoort(2);
+
+      document.getElementById("boek-kenmerk").textContent = T.CFG.boekKenmerk || "{{BOEK_KENMERK}}";
+
+      /* Vigenère-hulptabel: alleen invoervelden, geen berekening */
+      function bouw(regel) {
+        var code = regel.dataset.code;
+        var houder = regel.querySelector(".vig-woorden");
+        var id = regel.id;
+        var n = 0;
+        code.split(" ").forEach(function (woord, wi) {
+          var w = document.createElement("div");
+          w.className = "vig-woord";
+          woord.split("").forEach(function (letter) {
+            n += 1;
+            var cel = document.createElement("div");
+            cel.className = "vig-letter";
+            var c = document.createElement("div"); c.className = "c"; c.textContent = letter; c.setAttribute("aria-hidden", "true");
+            var k = document.createElement("input");
+            k.type = "text"; k.maxLength = 1; k.className = "k"; k.autocomplete = "off";
+            k.setAttribute("aria-label", "Sleutelletter onder codeletter " + letter + ", letter " + n + " van regel " + id.slice(-1));
+            k.dataset.sleutel = id + ".k." + n;
+            var p = document.createElement("input");
+            p.type = "text"; p.maxLength = 1; p.className = "p"; p.autocomplete = "off";
+            p.setAttribute("aria-label", "Ontcijferde letter onder codeletter " + letter + ", letter " + n + " van regel " + id.slice(-1));
+            p.dataset.sleutel = id + ".p." + n;
+            [k, p].forEach(function (inp) {
+              var bewaard = T.opslag.get("p2." + inp.dataset.sleutel);
+              if (bewaard) inp.value = bewaard;
+              inp.addEventListener("input", function () {
+                inp.value = inp.value.toUpperCase().replace(/[^A-Z]/g, "");
+                T.opslag.set("p2." + inp.dataset.sleutel, inp.value);
+                if (inp.value) {
+                  var volgende = volgendeInput(inp);
+                  if (volgende) volgende.focus();
+                }
+              });
+            });
+            cel.appendChild(c); cel.appendChild(k); cel.appendChild(p);
+            w.appendChild(cel);
+          });
+          houder.appendChild(w);
+        });
+      }
+      function volgendeInput(inp) {
+        var regel = inp.closest(".vig-regel");
+        var alle = Array.prototype.slice.call(regel.querySelectorAll("input." + inp.className));
+        var i = alle.indexOf(inp);
+        return alle[i + 1] || null;
+      }
+      document.querySelectorAll(".vig-regel").forEach(bouw);
+      document.getElementById("vig-wis").addEventListener("click", function () {
+        document.querySelectorAll(".vig-regel input").forEach(function (inp) {
+          inp.value = "";
+          T.opslag.set("p2." + inp.dataset.sleutel, "");
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

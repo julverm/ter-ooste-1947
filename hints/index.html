@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Hints · Ter Ooste 1947</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+</head>
+<body>
+  <header class="site-kop">
+    <div class="binnen">
+      <a class="merk" href="../index.html">Ter Ooste · 1947</a>
+      <nav aria-label="Dossiers">
+        <ul>
+          <li><a href="../akte-1/index.html">Akte I</a></li>
+          <li><a href="../akte-2/index.html">Akte II</a></li>
+          <li><a href="../akte-3/index.html">Akte III</a></li>
+          <li><a href="../akte-4/index.html">Akte IV</a></li>
+          <li><a href="../hints/index.html">Hints</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhoud">
+    <p class="kopregel">Verzegelde enveloppen</p>
+    <h1>Hints</h1>
+
+    <section class="vel" aria-labelledby="hint-kop">
+      <h2 id="hint-kop">Hintcode invoeren</h2>
+      <p>De notaris beslist wanneer een hint vrijkomt en leest de bijbehorende hintcode voor. Typ die code hier in; de hint verschijnt en blijft op dit toestel zichtbaar.</p>
+      <form id="hint-form">
+        <label for="hintcode">Hintcode</label>
+        <input id="hintcode" class="code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
+        <button type="submit">Envelop openen</button>
+        <p class="melding" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section aria-labelledby="rooster-kop">
+      <h2 id="rooster-kop">Acht enveloppen</h2>
+      <div class="hintrooster" id="hintrooster"></div>
+    </section>
+  </main>
+
+  <footer class="site-voet">Alle personen en gebeurtenissen zijn fictief.</footer>
+
+  <script src="../config.js"></script>
+  <script src="../assets/app.js"></script>
+  <script>
+    (function () {
+      var T = window.TerOoste;
+      var rooster = document.getElementById("hintrooster");
+      var form = document.getElementById("hint-form");
+      var veld = document.getElementById("hintcode");
+      var melding = form.querySelector(".melding");
+
+      function render() {
+        rooster.innerHTML = "";
+        T.HINTS.forEach(function (h) {
+          var open = T.opslag.is("hint." + h.id);
+          var vak = document.createElement("article");
+          vak.className = "hintvak" + (open ? "" : " dicht");
+          vak.id = "hint-" + h.id;
+          var kop = document.createElement("h3");
+          kop.textContent = h.puzzel + " — hint " + h.nr;
+          vak.appendChild(kop);
+          var inhoud = document.createElement("div");
+          inhoud.className = "inhoud";
+          if (open) {
+            h.tekst.forEach(function (t) {
+              var p = document.createElement("p"); p.textContent = t; inhoud.appendChild(p);
+            });
+            if (h.alternatief) {
+              var alt = document.createElement("p"); alt.className = "meta"; alt.textContent = h.alternatief; inhoud.appendChild(alt);
+            }
+          } else {
+            var z = document.createElement("div"); z.className = "zegel"; z.setAttribute("aria-hidden", "true"); z.innerHTML = "R.C.<small>verzegeld</small>";
+            var p2 = document.createElement("p"); p2.textContent = "Verzegeld. Wacht op de hintcode van de notaris.";
+            inhoud.appendChild(z); inhoud.appendChild(p2);
+          }
+          vak.appendChild(inhoud);
+          rooster.appendChild(vak);
+        });
+      }
+      render();
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var ingevoerd = veld.value;
+        var codes = T.CFG.hintcodes || {};
+        var gevonden = null;
+        Object.keys(codes).forEach(function (id) { if (T.gelijk(ingevoerd, codes[id])) gevonden = id; });
+        if (gevonden) {
+          var alOpen = T.opslag.is("hint." + gevonden);
+          T.opslag.zet("hint." + gevonden);
+          render();
+          veld.value = "";
+          var vak = document.getElementById("hint-" + gevonden);
+          T.meld(melding, alOpen ? "Deze envelop was al geopend." : "Envelop geopend.", true);
+          if (vak) {
+            if (!alOpen) T.stempel(vak, "Geopend");
+            vak.scrollIntoView({ behavior: T.reducedMotion ? "auto" : "smooth", block: "center" });
+            vak.setAttribute("tabindex", "-1"); vak.focus({ preventScroll: true });
+          }
+        } else {
+          T.schud(form);
+          T.meld(melding, "De notaris herkent deze code niet.", false);
+          veld.select();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
