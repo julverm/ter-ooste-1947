@@ -196,6 +196,21 @@ input.code {
 }
 .rij { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; }
 
+/* Cijfervakjes: één cijfer per vak */
+.cijfervakken { border: 0; padding: 0; margin: 0; display: flex; gap: 0.5rem; align-items: flex-end; }
+.cijfervakken legend { font-family: var(--font-type); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0; margin-bottom: 0.35rem; }
+.cijfervakken input {
+  width: 2.8rem;
+  height: 3.4rem;
+  max-width: none;
+  padding: 0;
+  text-align: center;
+  font-size: 1.8rem;
+  font-family: var(--font-type);
+  caret-color: transparent;
+}
+.cijfervakken input:focus { caret-color: auto; }
+
 button, .knop {
   font-family: var(--font-type);
   font-size: 0.95rem;

@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-13T14:16:01+01:00",
+  "title": "Design System: Kasteel Ter Ooste",
+  "extensions": {
+    "colorMeta": {
+      "game-paper": {
+        "role": "neutral",
+        "displayName": "Game Paper",
+        "canonical": "#efe3c3"
+      },
+      "game-lacquer": {
+        "role": "primary",
+        "displayName": "Game Lacquer",
+        "canonical": "#8b1a1a"
+      },
+      "invitation-wine": {
+        "role": "primary",
+        "displayName": "Invitation Wine",
+        "canonical": "#360f19"
+      },
+      "invitation-gold": {
+        "role": "secondary",
+        "displayName": "Invitation Gold",
+        "canonical": "#d4b77b"
+      },
+      "invitation-paper": {
+        "role": "neutral",
+        "displayName": "Invitation Paper",
+        "canonical": "#f0d5aa"
+      }
+    },
+    "typographyMeta": {
+      "game-body": {
+        "displayName": "Game body",
+        "purpose": "Readable game-page text; do not replace with invitation-specific styling."
+      },
+      "game-label": {
+        "displayName": "Game label",
+        "purpose": "Typewriter label stack used by the game stylesheet."
+      },
+      "invitation-body": {
+        "displayName": "Invitation body",
+        "purpose": "Body copy within the separately scoped menu invitation."
+      }
+    },
+    "shadows": [
+      {
+        "name": "invitation-cover",
+        "value": "0 16px 28px #16060c80",
+        "purpose": "Structural depth for the closed folio cover."
+      },
+      {
+        "name": "invitation-paper",
+        "value": "8px 22px 45px #16060c80",
+        "purpose": "Lift the invitation menu paper from its backdrop."
+      }
+    ],
+    "motion": [
+      {
+        "name": "invitation-hinge",
+        "value": "1.6s cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Opening and closing the folio doors; disabled for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "invitation-mobile",
+        "value": "480px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Invitation reveal button",
+      "kind": "button",
+      "refersTo": "invitation-reveal",
+      "description": "Invitation-only native action that opens the menu folio.",
+      "html": "<button class=\"ds-invitation-reveal\" type=\"button\"><span>Wil je het raadsel onthullen?</span><span class=\"ds-invitation-detail\">Open de menukaart</span></button>",
+      "css": ".ds-invitation-reveal { display: block; min-height: 60px; padding: 0.5rem; border: 0; background: transparent; color: #d4b77b; font: 400 clamp(1.4rem, 3.7vw, 2rem)/1.25 \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif; cursor: pointer; } .ds-invitation-detail { display: block; margin-top: 0.8rem; font-size: 0.875rem; } .ds-invitation-reveal:hover { color: #ffe1a5; } .ds-invitation-reveal:focus-visible { outline: 2px solid #ffe0a4; outline-offset: 6px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The archival gamebook and its sealed invitation",
+    "overview": "The incumbent game identity is a readable, period-inflected paper archive: warm document surfaces, dark ink, typewriter labels, and restrained lacquer and copper accents. The menu invitation is a separate, explicitly scoped extension: wine-colored bookcloth, antique-gold details, textured paper, castle engraving, and an opening folio. Its typography and composition belong to menu/; they are not defaults for game pages.\n\nThe static site uses local assets and relative paths, including when opened through file://. Preserve the supplied menu wording and original artwork; raster calligraphy is paired with accessible HTML copy.",
+    "keyCharacteristics": [
+      "Warm archival paper and ink for the game.",
+      "A distinct, sealed-paper invitation extension.",
+      "Readable text, native controls, and local-first implementation."
+    ],
+    "rules": [
+      {
+        "name": "The Separate Invitation Palette Rule",
+        "body": "Keep menu/menu.css colors scoped to the invitation; do not apply them to game pages.",
+        "section": "colors"
+      },
+      {
+        "name": "The Accessible Calligraphy Rule",
+        "body": "Keep meaningful calligraphy paired with equivalent accessible HTML text; do not make a raster image the only source of copy.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do retain the game palette, body face, and typewriter label stack on game pages.",
+      "Do keep invitation-only typography, folio geometry, textures, and wine-and-gold colors within menu/.",
+      "Do preserve the confirmed menu date, 21 November 1947, and the guest name Michèle.",
+      "Do keep original local raster artwork and provide accessible HTML copy for calligraphy.",
+      "Do preserve relative asset paths, native button semantics, visible focus, and reduced-motion behavior."
+    ],
+    "donts": [
+      "Don't impose invitation typography, layout, palette, or folio animation on game pages.",
+      "Don't replace the supplied historical menu copy or rebrand the site.",
+      "Don't make remote assets, a build step, or a framework a requirement for these static pages."
+    ]
+  }
+}

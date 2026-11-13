@@ -136,12 +136,42 @@
     });
   }
 
+  /* Losse cijfervakjes (één cijfer per vak, zoals een authenticator):
+     automatisch doorspringen, backspace terug, plakken van een volledige code. */
+  function cijfervakken(fieldset) {
+    var vakken = Array.prototype.slice.call(fieldset.querySelectorAll("input"));
+    vakken.forEach(function (vak, i) {
+      vak.addEventListener("input", function () {
+        var cijfers = vak.value.replace(/\D/g, "");
+        if (cijfers.length > 1) {
+          cijfers.split("").forEach(function (c, j) { if (vakken[i + j]) vakken[i + j].value = c; });
+          var laatste = vakken[Math.min(i + cijfers.length, vakken.length - 1)];
+          laatste.focus(); laatste.select();
+          return;
+        }
+        vak.value = cijfers;
+        if (cijfers && vakken[i + 1]) { vakken[i + 1].focus(); vakken[i + 1].select(); }
+      });
+      vak.addEventListener("keydown", function (e) {
+        if (e.key === "Backspace" && !vak.value && vakken[i - 1]) { vakken[i - 1].focus(); vakken[i - 1].value = ""; e.preventDefault(); }
+        else if (e.key === "ArrowLeft" && vakken[i - 1]) { vakken[i - 1].focus(); e.preventDefault(); }
+        else if (e.key === "ArrowRight" && vakken[i + 1]) { vakken[i + 1].focus(); e.preventDefault(); }
+      });
+      vak.addEventListener("focus", function () { vak.select(); });
+    });
+    return {
+      waarde: function () { return vakken.map(function (v) { return v.value; }).join(""); },
+      select: function () { vakken.forEach(function (v) { v.value = ""; }); vakken[0].focus(); }
+    };
+  }
+
   /* Codepoort binnen een akte (P1-code, NACHT, host) */
   function codepoort(opties) {
     var form = document.getElementById(opties.formId);
     var doel = document.getElementById(opties.doelId);
     if (!form || !doel) return;
-    var veld = form.querySelector("input");
+    var vakken = form.querySelector(".cijfervakken");
+    var veld = vakken ? cijfervakken(vakken) : form.querySelector("input");
     var melding = form.querySelector(".melding");
     var houder = document.getElementById(opties.verbergId) || form;
 
@@ -156,7 +186,8 @@
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      if (gelijk(veld.value, opties.code)) {
+      var ingevoerd = vakken ? veld.waarde() : veld.value;
+      if (gelijk(ingevoerd, opties.code)) {
         if (opties.opslag) opslag.zet(opties.opslag);
         meld(melding, "", true);
         open(true);
