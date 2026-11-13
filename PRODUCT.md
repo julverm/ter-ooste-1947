@@ -22,6 +22,10 @@ De door de gebruiker aangeleverde menukaart is de bron voor tekst, gasten, gerec
 
 De uitnodiging straalt klasse en mysterie uit en opent met de vraag "Wil je het raadsel onthullen?". Het openen ontvouwt de menukaart via een vloeiende beweging.
 
+De gebruiker vroeg vervolgens dezelfde stijl en look-and-feel voor de volledige spelwebsite. De spelpagina's delen de materialen en typografie van de uitnodiging, maar houden hun eigen taakgerichte bediening en afzonderlijke routes. Verhaalteksten, codes en oplossingen veranderen niet door een UI-herontwerp.
+
+De zes kaarten van puzzel I staan op ieder scherm daadwerkelijk van links naar rechts. Slepen, links/rechts-knoppen en toetsenbordbediening werken op dezelfde volgorde. Een telefoon toont een horizontaal scrollbare rij met zes positieknoppen; de website lost de puzzel niet automatisch op.
+
 ## Accessibility
 
 Mobiele leesbaarheid, native toetsenbordbediening, zichtbare focus, browserzoom en reduced motion. Gericht op recente iPhones en Samsung S24/S25; emulatie is geen fysieke toesteltest.

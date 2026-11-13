@@ -65,6 +65,12 @@
     el.classList.toggle("ok", !!ok);
   }
 
+  function focusOp(container) {
+    var kop = container.querySelector("h2") || container.querySelector("summary") || container;
+    kop.setAttribute("tabindex", "-1");
+    kop.focus({ preventScroll: true });
+  }
+
   /* Tabbladen: container .tabs met [role=tablist] > button[role=tab][aria-controls] en panelen */
   function tabs(container) {
     if (!container) return;
@@ -76,7 +82,7 @@
         var actief = i === j;
         k.setAttribute("aria-selected", actief ? "true" : "false");
         k.tabIndex = actief ? 0 : -1;
-        if (panelen[j]) panelen[j].hidden = !actief;
+        if (panelen[j]) panelen[j].hidden = !actief && !container.classList.contains("alles");
       });
       if (focus) knoppen[i].focus();
     }
@@ -97,6 +103,8 @@
         var aan = container.classList.toggle("alles");
         toonAlles.setAttribute("aria-pressed", aan ? "true" : "false");
         toonAlles.textContent = aan ? "Toon als tabbladen" : "Toon alles";
+        var actief = knoppen.findIndex(function (k) { return k.getAttribute("aria-selected") === "true"; });
+        kies(Math.max(0, actief), false);
       });
     }
     kies(0, false);
@@ -114,6 +122,7 @@
       inhoud.classList.remove("verborgen");
       if (animatie) stempel(inhoud, "Vrijgegeven");
       document.dispatchEvent(new CustomEvent("akte-open", { detail: { nr: nr } }));
+      if (animatie) focusOp(inhoud);
     }
 
     if (opslag.is(sleutel)) { open(false); return; }
@@ -141,6 +150,15 @@
   function cijfervakken(fieldset) {
     var vakken = Array.prototype.slice.call(fieldset.querySelectorAll("input"));
     vakken.forEach(function (vak, i) {
+      vak.addEventListener("paste", function (e) {
+        var cijfers = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, vakken.length - i);
+        if (!cijfers) return;
+        e.preventDefault();
+        cijfers.split("").forEach(function (c, j) { vakken[i + j].value = c; });
+        var volgende = vakken[Math.min(i + cijfers.length, vakken.length - 1)];
+        volgende.focus();
+        volgende.select();
+      });
       vak.addEventListener("input", function () {
         var cijfers = vak.value.replace(/\D/g, "");
         if (cijfers.length > 1) {
@@ -179,6 +197,8 @@
       if (opties.verbergId) houder.classList.add("verborgen");
       doel.classList.remove("verborgen");
       if (animatie) stempel(doel, opties.stempel || "Geopend");
+      document.dispatchEvent(new CustomEvent("dossier-open"));
+      if (animatie) focusOp(doel);
       if (opties.naOpen) opties.naOpen(animatie);
     }
 
@@ -328,22 +348,306 @@
     { id: "p4-2", puzzel: "Dossier IV", nr: 2, tekst: ["De toegangscode was 6431. Gebruik alleen de eerste twee cijfers; voor de overige cijfers heb je de controleminuut en het glasnummer nodig."] }
   ];
 
+  function archiefRij(lijst, status, overzicht) {
+    var sleep = null;
+    var frame = null;
+    var animaties = new Map();
+    var positieInfo = document.getElementById("archief-bekeken");
+
+    function kaarten() { return Array.prototype.slice.call(lijst.children); }
+    function markeerZichtbaar() {
+      var rand = lijst.getBoundingClientRect();
+      var items = kaarten();
+      var gekozen = -1;
+      var breedste = 0;
+      if (lijst.scrollWidth > lijst.clientWidth + 2) {
+        items.forEach(function (li, i) {
+          var r = li.getBoundingClientRect();
+          var breedte = Math.max(0, Math.min(r.right, rand.right) - Math.max(r.left, rand.left));
+          if (breedte > breedste) { breedste = breedte; gekozen = i; }
+        });
+      }
+      overzicht.querySelectorAll("button").forEach(function (knop, i) {
+        if (i === gekozen) knop.setAttribute("aria-current", "true");
+        else knop.removeAttribute("aria-current");
+      });
+      var tekst = gekozen < 0 ? "Alle zes kaarten in beeld" : "In beeld: positie " + (gekozen + 1) + " van 6 · mapkaart " + items[gekozen].dataset.kaart;
+      if (positieInfo.textContent !== tekst) positieInfo.textContent = tekst;
+    }
+    function zichtbaar(li) {
+      var links = li.getBoundingClientRect().left - lijst.getBoundingClientRect().left + lijst.scrollLeft - 4;
+      lijst.scrollTo({ left: links, behavior: reducedMotion ? "auto" : "smooth" });
+    }
+    function nummer(bewaar) {
+      var items = kaarten();
+      items.forEach(function (li, i) {
+        li.dataset.positie = i + 1;
+        li.querySelector(".positie").textContent = "Positie " + (i + 1);
+        li.setAttribute("aria-label", "Positie " + (i + 1) + ": Mapkaart " + li.dataset.kaart);
+        li.querySelector("[data-omhoog]").disabled = i === 0;
+        li.querySelector("[data-omlaag]").disabled = i === items.length - 1;
+      });
+      if (bewaar !== false) opslag.set("p1.volgorde", items.map(function (li) { return li.dataset.kaart; }).join(""));
+      overzicht.replaceChildren();
+      items.forEach(function (li, i) {
+        var item = document.createElement("li");
+        var knop = document.createElement("button");
+        knop.type = "button";
+        knop.textContent = i + 1;
+        var naam = document.createElement("small");
+        naam.textContent = "Map " + li.dataset.kaart;
+        knop.appendChild(naam);
+        var symbool = li.querySelector("select").value;
+        knop.setAttribute("aria-label", "Ga naar positie " + (i + 1) + ", mapkaart " + li.dataset.kaart + (symbool ? ", " + symbool : ""));
+        knop.addEventListener("click", function () {
+          zichtbaar(li);
+          li.querySelector(".sleepgreep").focus({ preventScroll: true });
+        });
+        item.appendChild(knop);
+        overzicht.appendChild(item);
+      });
+      markeerZichtbaar();
+    }
+    function bericht(li) {
+      status.textContent = "Mapkaart " + li.dataset.kaart + " staat nu op positie " + (kaarten().indexOf(li) + 1) + " van 6.";
+    }
+    function verplaats(li, delta, focusKnop) {
+      var items = kaarten();
+      var i = items.indexOf(li);
+      var j = i + delta;
+      if (j < 0 || j >= items.length) return;
+      if (delta < 0) lijst.insertBefore(li, items[j]);
+      else lijst.insertBefore(items[j], li);
+      nummer();
+      bericht(li);
+      zichtbaar(li);
+      var knop = li.querySelector(focusKnop);
+      if (knop.disabled) knop = li.querySelector(".sleepgreep");
+      knop.focus({ preventScroll: true });
+    }
+    kaarten().forEach(function (li) {
+      li.draggable = false;
+      var links = li.querySelector("[data-omhoog]");
+      var rechts = li.querySelector("[data-omlaag]");
+      links.textContent = "← Links";
+      rechts.textContent = "Rechts →";
+      links.setAttribute("aria-label", "Mapkaart " + li.dataset.kaart + " naar links");
+      rechts.setAttribute("aria-label", "Mapkaart " + li.dataset.kaart + " naar rechts");
+      var greep = document.createElement("button");
+      greep.type = "button";
+      greep.className = "sleepgreep";
+      greep.textContent = "⠿ Versleep";
+      greep.setAttribute("aria-label", "Versleep mapkaart " + li.dataset.kaart + "; gebruik met het toetsenbord de pijlen links en rechts");
+      li.insertBefore(greep, li.firstChild);
+      li.querySelector("select").addEventListener("change", nummer);
+    });
+    var bewaard = opslag.get("p1.volgorde");
+    if (bewaard && /^[A-F]{6}$/.test(bewaard) && new Set(bewaard).size === 6) {
+      var items = kaarten();
+      bewaard.split("").forEach(function (k) {
+        lijst.appendChild(items.find(function (li) { return li.dataset.kaart === k; }));
+      });
+    }
+    nummer();
+    lijst.addEventListener("scroll", markeerZichtbaar, { passive: true });
+    new ResizeObserver(markeerZichtbaar).observe(lijst);
+    lijst.addEventListener("click", function (e) {
+      var knop = e.target.closest("button");
+      if (!knop) return;
+      var li = knop.closest(".mapkaart");
+      if (knop.hasAttribute("data-omhoog")) verplaats(li, -1, "[data-omhoog]");
+      if (knop.hasAttribute("data-omlaag")) verplaats(li, 1, "[data-omlaag]");
+    });
+    lijst.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && sleep) { e.preventDefault(); einde(true); return; }
+      if (!e.target.classList.contains("sleepgreep")) return;
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        e.preventDefault();
+        verplaats(e.target.closest(".mapkaart"), e.key === "ArrowLeft" ? -1 : 1, ".sleepgreep");
+      }
+    });
+    function herschik(wijzig) {
+      var ervoor = new Map();
+      kaarten().forEach(function (li) {
+        ervoor.set(li, li.getBoundingClientRect());
+        var animatie = animaties.get(li);
+        if (animatie) animatie.cancel();
+      });
+      wijzig();
+      if (!reducedMotion) kaarten().forEach(function (li) {
+        if (li === sleep.li) return;
+        var na = li.getBoundingClientRect();
+        var dx = ervoor.get(li).left - na.left;
+        var dy = ervoor.get(li).top - na.top;
+        if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+        animaties.set(li, li.animate([
+          { transform: "translate(" + dx + "px, " + dy + "px)" },
+          { transform: "translate(0, 0)" }
+        ], { duration: 160, easing: "cubic-bezier(0.16, 1, 0.3, 1)" }));
+      });
+    }
+    function toonSleepkaart() {
+      var rand = sleep.li.getBoundingClientRect();
+      var laag = document.createElement("div");
+      laag.className = "archief-sleeplaag";
+      laag.setAttribute("aria-hidden", "true");
+      laag.inert = true;
+      var kaart = sleep.li.cloneNode(true);
+      kaart.classList.add("sleepkaart");
+      kaart.querySelectorAll("[id]").forEach(function (el) { el.removeAttribute("id"); });
+      kaart.querySelectorAll("label[for]").forEach(function (el) { el.removeAttribute("for"); });
+      kaart.querySelector("select").value = sleep.li.querySelector("select").value;
+      kaart.style.width = rand.width + "px";
+      kaart.style.height = rand.height + "px";
+      laag.appendChild(kaart);
+      document.body.appendChild(laag);
+      sleep.laag = laag;
+      sleep.kaart = kaart;
+      sleep.grijpX = sleep.beginX - rand.left;
+      sleep.grijpY = sleep.beginY - rand.top;
+      sleep.breedte = rand.width;
+      sleep.hoogte = rand.height;
+      sleep.li.classList.add("sleept");
+      lijst.classList.add("sorteert");
+      sleep.li.querySelector(".sleepgreep").focus({ preventScroll: true });
+      plaatsSleepkaart();
+    }
+    function plaatsSleepkaart() {
+      var maxX = Math.max(8, document.documentElement.clientWidth - sleep.breedte - 8);
+      var maxY = Math.max(8, document.documentElement.clientHeight - sleep.hoogte - 8);
+      var x = Math.min(maxX, Math.max(8, sleep.x - sleep.grijpX));
+      var y = Math.min(maxY, Math.max(8, sleep.y - sleep.grijpY));
+      sleep.kaart.style.transform = "translate3d(" + Math.round(x) + "px, " + Math.round(y) + "px, 0)";
+    }
+    function beweeg(tijd) {
+      if (!sleep || !sleep.bewogen) return;
+      var rand = lijst.getBoundingClientRect();
+      plaatsSleepkaart();
+      var stap = sleep.tijd == null ? 1 : Math.min((tijd - sleep.tijd) / (1000 / 60), 2);
+      sleep.tijd = tijd;
+      if (sleep.x < rand.left + 48) lijst.scrollLeft -= 10 * stap;
+      else if (sleep.x > rand.right - 48) lijst.scrollLeft += 10 * stap;
+      // Hit-test layout positions, not the animated positions of neighbouring cards.
+      var over = kaarten().find(function (li) {
+        var links = rand.left + li.offsetLeft - lijst.scrollLeft;
+        return li !== sleep.li && sleep.x >= links && sleep.x <= links + li.offsetWidth;
+      });
+      if (over) {
+        var links = rand.left + over.offsetLeft - lijst.scrollLeft;
+        var volgende = sleep.x > links + over.offsetWidth / 2 ? over.nextSibling : over;
+        if (volgende !== sleep.li && volgende !== sleep.li.nextSibling) {
+          herschik(function () { lijst.insertBefore(sleep.li, volgende); });
+          nummer(false);
+        }
+      }
+      var positie = kaarten().indexOf(sleep.li) + 1;
+      var tekst = "Laat mapkaart " + sleep.li.dataset.kaart + " los op positie " + positie + " van 6.";
+      if (status.textContent !== tekst) status.textContent = tekst;
+      sleep.kaart.querySelector(".positie").textContent = "Naar positie " + positie;
+      frame = requestAnimationFrame(beweeg);
+    }
+    function einde(annuleer) {
+      if (!sleep) return;
+      var huidig = sleep;
+      sleep = null;
+      cancelAnimationFrame(frame);
+      animaties.forEach(function (animatie) { animatie.cancel(); });
+      animaties.clear();
+      if (!huidig.bewogen) {
+        if (lijst.hasPointerCapture(huidig.id)) lijst.releasePointerCapture(huidig.id);
+        return;
+      }
+      if (annuleer) huidig.volgorde.forEach(function (li) { lijst.appendChild(li); });
+      huidig.laag.remove();
+      huidig.li.classList.remove("sleept");
+      lijst.classList.remove("sorteert");
+      if (lijst.hasPointerCapture(huidig.id)) lijst.releasePointerCapture(huidig.id);
+      nummer();
+      if (annuleer) status.textContent = "Verslepen geannuleerd. De vorige volgorde is hersteld.";
+      else bericht(huidig.li);
+      huidig.li.querySelector(".sleepgreep").focus({ preventScroll: true });
+    }
+    lijst.addEventListener("pointerdown", function (e) {
+      var li = e.target.closest(".mapkaart");
+      if (!li || !e.isPrimary || e.button !== 0 || sleep) return;
+      if (e.target.closest("input, select, textarea, label, a, button:not(.sleepgreep), [contenteditable]")) return;
+      if (e.pointerType === "mouse") e.preventDefault();
+      sleep = { li: li, id: e.pointerId, x: e.clientX, y: e.clientY, beginX: e.clientX, beginY: e.clientY, vrij: e.pointerType !== "touch" || !!e.target.closest(".sleepgreep"), bewogen: false, volgorde: kaarten() };
+      lijst.setPointerCapture(e.pointerId);
+    });
+    lijst.addEventListener("pointermove", function (e) {
+      if (!sleep || e.pointerId !== sleep.id) return;
+      sleep.x = e.clientX;
+      sleep.y = e.clientY;
+      var dx = Math.abs(sleep.x - sleep.beginX);
+      var dy = Math.abs(sleep.y - sleep.beginY);
+      if (!sleep.bewogen && (sleep.vrij ? Math.max(dx, dy) > 8 : dx > 8 && dx >= dy)) {
+        sleep.bewogen = true;
+        toonSleepkaart();
+        frame = requestAnimationFrame(beweeg);
+      }
+      if (sleep.bewogen && e.cancelable) e.preventDefault();
+    });
+    lijst.addEventListener("pointerup", function (e) { if (sleep && e.pointerId === sleep.id) einde(false); });
+    lijst.addEventListener("pointercancel", function (e) { if (sleep && e.pointerId === sleep.id) einde(true); });
+    lijst.addEventListener("lostpointercapture", function () { if (sleep) einde(true); });
+    window.addEventListener("blur", function () { if (sleep) einde(true); });
+    document.addEventListener("visibilitychange", function () { if (document.hidden && sleep) einde(true); });
+  }
+
   function markeerNav() {
     var links = document.querySelectorAll(".site-kop nav a");
     var pad = location.pathname.replace(/index\.html$/, "");
     links.forEach(function (a) {
-      var doel = a.getAttribute("href").replace(/index\.html$/, "").replace(/^\.\.\//, "").replace(/^\.\//, "");
-      var hier = pad.split("/").filter(Boolean).pop() || "";
-      var daar = doel.split("/").filter(Boolean).pop() || "";
-      if (hier === daar) a.setAttribute("aria-current", "page");
+      var doel = new URL(a.href).pathname.replace(/index\.html$/, "");
+      if (pad === doel) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+      var akte = doel.match(/akte-(\d)\/$/);
+      if (akte) a.setAttribute("aria-label", a.textContent + (opslag.is("akte" + akte[1]) ? ", vrijgegeven" : ", verzegeld"));
+    });
+    document.querySelectorAll(".akte-lijst [data-status]").forEach(function (el) {
+      var vrij = opslag.is("akte" + el.dataset.status);
+      el.textContent = vrij ? "Vrijgegeven · dossier openen" : "Verzegeld · wacht op de notaris";
+      el.closest("a").dataset.vrijgegeven = String(vrij);
     });
   }
-  document.addEventListener("DOMContentLoaded", markeerNav);
+  function wegwijzer() {
+    var inhoud = document.getElementById("akte-inhoud") || document.getElementById("host-inhoud");
+    if (!inhoud) return;
+    var bestaand = inhoud.querySelector(".wegwijzer");
+    if (bestaand) bestaand.remove();
+    var koppen = Array.prototype.slice.call(inhoud.querySelectorAll("section > h2[id]")).filter(function (kop) {
+      return !kop.closest(".verborgen, [hidden], [role='tabpanel']");
+    });
+    if (koppen.length < 2) return;
+    var details = document.createElement("details");
+    details.className = "wegwijzer";
+    var summary = document.createElement("summary");
+    summary.textContent = "Ga naar een onderdeel";
+    details.appendChild(summary);
+    var nav = document.createElement("nav");
+    nav.setAttribute("aria-label", "Onderdelen van dit dossier");
+    koppen.forEach(function (kop) {
+      var link = document.createElement("a");
+      link.href = "#" + kop.id;
+      link.textContent = kop.textContent;
+      link.addEventListener("click", function () {
+        kop.setAttribute("tabindex", "-1");
+        kop.focus({ preventScroll: true });
+      });
+      nav.appendChild(link);
+    });
+    details.appendChild(nav);
+    inhoud.insertBefore(details, inhoud.firstChild);
+  }
+  document.addEventListener("DOMContentLoaded", function () { markeerNav(); wegwijzer(); });
+  document.addEventListener("akte-open", function () { markeerNav(); wegwijzer(); });
+  document.addEventListener("dossier-open", wegwijzer);
 
   window.TerOoste = {
     CFG: CFG, norm: norm, gelijk: gelijk, opslag: opslag,
     stempel: stempel, schud: schud, meld: meld, tabs: tabs,
-    aktepoort: aktepoort, codepoort: codepoort,
+    aktepoort: aktepoort, codepoort: codepoort, archiefRij: archiefRij,
     kluisGeluid: kluisGeluid, radioEffect: radioEffect, audioCtx: ctx,
     HINTS: HINTS, reducedMotion: reducedMotion
   };

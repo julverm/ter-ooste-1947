@@ -1,148 +1,178 @@
 ---
 name: Kasteel Ter Ooste
-description: An archival mystery game with a separately scoped dinner invitation.
+description: A sealed invitation and parchment investigation desk in one material world.
 colors:
-  game-paper: "#efe3c3"
-  game-paper-dark: "#e2d2a6"
-  game-paper-light: "#f6edd6"
-  game-ink: "#2b2318"
-  game-soft-ink: "#5a4a33"
-  game-lacquer: "#8b1a1a"
-  game-dark-lacquer: "#5e0f0f"
-  game-copper: "#a67c2e"
-  game-stamp: "#9b2a1f"
-  game-focus: "#1f4e79"
-  invitation-wine: "#360f19"
-  invitation-gold: "#d4b77b"
-  invitation-paper: "#f0d5aa"
-  invitation-ink: "#3a2518"
-  invitation-red: "#651e1c"
+  wine: "#360f19"
+  gold: "#d4b77b"
+  paper: "#f0d5aa"
+  paper-dark: "#e6c698"
+  paper-light: "#f7e4c4"
+  ink: "#3a2518"
+  soft-ink: "#65452f"
+  lacquer: "#651e1c"
+  lacquer-hover: "#7a2b2d"
+  copper: "#9b7339"
+  paper-rule: "#99643d"
+  frame: "#793b26"
+  frame-light: "#b78d57"
+  cream: "#fff8e3"
+  button-text: "#fff2d7"
+  light-focus: "#ffe0a4"
+  success: "#315528"
 typography:
-  game-body:
-    fontFamily: '"Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif'
+  body:
+    fontFamily: '"Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif'
     fontSize: "1.0625rem"
-    lineHeight: 1.55
-  game-label:
-    fontFamily: '"Courier Prime", "Courier New", "Nimbus Mono PS", Courier, monospace'
-  invitation-body:
+    lineHeight: 1.65
+  heading:
     fontFamily: '"Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif'
-    fontSize: "1rem"
-    lineHeight: 1.5
-  invitation-display:
-    fontFamily: '"Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif'
-    fontSize: "clamp(2rem, 5vw, 3.5rem)"
+    fontSize: "2.8rem"
     fontWeight: 400
     lineHeight: 1.15
+  mobile-heading:
+    fontFamily: '"Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif'
+    fontSize: "2.05rem"
+    fontWeight: 400
+    lineHeight: 1.15
+  section-heading:
+    fontFamily: '"Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif'
+    fontSize: "1.65rem"
+    fontWeight: 400
+    lineHeight: 1.2
+  control:
+    fontFamily: '"Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif'
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.3
+  archival-code:
+    fontFamily: '"Courier New", Courier, monospace'
+    fontSize: "0.9rem"
+  caption:
+    fontSize: "0.75rem"
+  metadata:
+    fontSize: "0.85rem"
+  secondary-label:
+    fontSize: "0.95rem"
+  small-heading:
+    fontSize: "1.1rem"
+  card-title:
+    fontSize: "1.15rem"
+  mobile-subheading:
+    fontSize: "1.2rem"
+  subheading:
+    fontSize: "1.25rem"
+  document-title:
+    fontSize: "1.35rem"
+  mobile-section:
+    fontSize: "1.45rem"
+  code-digit:
+    fontSize: "1.75rem"
+  vault-digit:
+    fontSize: "2rem"
 rounded:
-  square: "0"
+  control: "2px"
 spacing:
-  invitation-inset: "1.25rem"
-  invitation-paper-padding: "2rem 2.5rem 2.25rem"
+  page: "2.5rem 3rem 3.5rem"
+  mobile-page: "1.75rem 1.5rem 2.5rem"
 components:
+  primary-action:
+    backgroundColor: "{colors.lacquer}"
+    textColor: "{colors.button-text}"
+    typography: "{typography.control}"
+    rounded: "{rounded.control}"
+    padding: "0.7rem 1rem"
   invitation-reveal:
     backgroundColor: "transparent"
-    textColor: "{colors.invitation-gold}"
-    typography: "{typography.invitation-body}"
-    rounded: "{rounded.square}"
+    textColor: "{colors.gold}"
+    typography: "{typography.control}"
+    rounded: "{rounded.control}"
     padding: "0.5rem"
-    height: "60px"
 ---
 
-# Design System: Kasteel Ter Ooste
+# Design system: Kasteel Ter Ooste
 
 ## Overview
 
-**Creative North Star: "The archival gamebook and its sealed invitation"**
-
-The incumbent game identity is a readable, period-inflected paper archive: warm document surfaces, dark ink, typewriter labels, and restrained lacquer and copper accents. The menu invitation is a separate, explicitly scoped extension: wine-colored bookcloth, antique-gold details, textured paper, castle engraving, and an opening folio. Its typography and composition belong to `menu/`; they are not defaults for game pages.
-
-The static site uses local assets and relative paths, including when opened through `file://`. Preserve the supplied menu wording and original artwork; raster calligraphy is paired with accessible HTML copy.
-
-**Key Characteristics:**
-- Warm archival paper and ink for the game.
-- A distinct, sealed-paper invitation extension.
-- Readable text, native controls, and local-first implementation.
+The user-approved invitation is the visual authority for the whole website:
+bordeaux cloth, antique gold, warm parchment, engraved castle and wax seal.
+The game translates those same materials into an investigation desk, not a
+second typewriter-styled product. `assets/experience.css` is the shared game
+theme layered over the existing functional styles. `menu/menu.css` retains
+the invitation's separate presentation and reveal behavior.
 
 ## Colors
 
-The game palette centers on aged paper, dark brown ink, lacquer red, and copper; the invitation uses its own wine, gold, paper, ink, and red tokens.
-
-### Primary
-- **Lacquer Red** (`#8b1a1a`): Game accent, with darker lacquer for depth.
-- **Invitation Wine** (`#360f19`): Invitation backdrop and bookcloth.
-- **Invitation Gold** (`#d4b77b`): Invitation text and accents against wine.
-
-### Secondary
-- **Game Copper** (`#a67c2e`): Aged-metal game accent.
-- **Invitation Red** (`#651e1c`): Menu headings and decorative details on paper.
-
-### Neutral
-- **Game Paper** (`#efe3c3`), **Dark Paper** (`#e2d2a6`), **Light Paper** (`#f6edd6`): Game document surfaces.
-- **Game Ink** (`#2b2318`) and **Soft Ink** (`#5a4a33`): Game text.
-- **Invitation Paper** (`#f0d5aa`) and **Invitation Ink** (`#3a2518`): Menu folio surface and text.
-- **Game Focus Blue** (`#1f4e79`): Focus token in the game stylesheet.
-
-### Named Rules
-**The Separate Invitation Palette Rule.** Keep `menu/menu.css` colors scoped to the invitation; do not apply them to game pages.
+Wine owns the outer page and navigation. Gold belongs on wine; dark ink and
+lacquer belong on paper. Lacquer marks actions and selection. Native focus
+is lacquer on paper and light gold on wine. Success is green, with text
+explaining the state rather than color alone.
 
 ## Typography
 
-**Game Body Font:** `"Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif`  
-**Game Label Font:** `"Courier Prime", "Courier New", "Nimbus Mono PS", Courier, monospace`  
-**Invitation Font:** `"Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif`
-
-**Character:** The game pairs a book-like reading face with a typewriter label stack. The invitation uses the book face throughout; its original raster calligraphy remains decorative and is accompanied by screen-reader-accessible HTML text.
-
-### Hierarchy
-- **Game body** (17px, line-height 1.55): Main reading text.
-- **Game labels** (typewriter stack): Labels where the existing game styles use them; no unobserved size is prescribed.
-- **Invitation display** (400, `clamp(2rem, 5vw, 3.5rem)`, line-height 1.15): Invitation title.
-- **Invitation body** (16px, line-height 1.5): Menu copy and supporting text.
-
-### Named Rules
-**The Accessible Calligraphy Rule.** Keep meaningful calligraphy paired with equivalent accessible HTML text; do not make a raster image the only source of copy.
+Use the Palatino/Georgia reading stack for headings, prose and controls.
+Normal-weight serif headings replace all-caps typewriter titles. Keep
+monospace for literal cipher text, archival codes and block-letter evidence.
+Body copy remains live HTML, measured around 70 characters. The invitation
+may use original raster calligraphy paired with equivalent accessible copy;
+game controls must remain ordinary readable text.
 
 ## Layout
 
-The game stylesheet defines a `56rem` maximum-width token. Do not copy the invitation's composition into game layouts. In `menu/`, the outer area is capped at `64rem` and the folio at `43rem`; narrow screens reflow the menu as one paper column. At `480px` and below, the invitation reduces side padding and paper insets and removes desktop-only line breaks. Body text remains readable and can reflow without relying on fixed-width page content.
+A bordered parchment sheet sits on bordeaux cloth with gold navigation.
+The castle introduces each page. Titles and task controls follow it; act
+identifiers sit below the title. A clear first-dossier action and rules link
+lead the start page.
 
-Keep assets and links relative so the static pages continue to work under a hosted subpath and when opened with `file://`.
+Ordinary game pages are capped at 64rem; the archiving puzzle uses up to
+88rem to fit six cards. At 760px the page insets, navigation and document
+groups adapt to a single reading column. The P1 card row is the deliberate
+exception: all six positions stay horizontally ordered, with contained
+scrolling on smaller screens and a six-position overview. At 1280px the
+six cards share the available width.
+
+Vigenere words stay aligned in separately scrollable lines; table overflow
+stays within each table region. Text zoom must not create page-wide overflow.
 
 ## Elevation & Depth
 
-The invitation uses structural shadows to lift the closed cover and paper from the cloth backdrop. Its paper texture and engraved artwork add material depth; the game tokens establish paper and ink colors without prescribing the invitation's shadow treatment.
-
-### Shadow Vocabulary
-- **Closed invitation cover** (`0 16px 28px #16060c80`): Cover doors at rest.
-- **Menu folio** (`8px 22px 45px #16060c80`): Paper above the invitation backdrop.
+The page shadow is `8px 22px 45px #16060c80`. Actual paper texture, castle
+engraving and wax artwork provide material detail. Document sections mostly
+use rules rather than stacks of generic cards; individual files and sealed
+envelopes can carry double borders and offset shadows.
 
 ## Shapes
 
-Paper and folio surfaces are rectangular with fine, double-line borders; no rounded-corner scale is established beyond square invitation controls. The invitation is a two-door hinged cover, not a game-page container pattern.
+Fine rules, rectangular sheets and double-line borders define the grammar.
+Controls have a restrained 2px radius. The archive row has six actual positions;
+never reflow it into an ambiguous top-to-bottom list.
 
 ## Components
 
-### Invitation folio (invitation only)
-- **Shape:** A paper rectangle with a double border, inside a `43rem`-maximum folio.
-- **Surface:** Textured warm paper, dark brown text, and engraved local artwork.
-- **Motion:** The two cover doors hinge open over `1.6s` using `cubic-bezier(.16, 1, .3, 1)`; the paper unfolds over `1.65s`. `prefers-reduced-motion: reduce` disables animation and transitions.
+Use native buttons, form inputs, selects, tabs and audio controls. Primary
+controls are at least 48px high; secondary touch actions are at least 44px.
+Use explicit wrong-code feedback without revealing an answer.
 
-### Buttons and focus
-- Use native HTML buttons for actions and preserve their keyboard behavior.
-- Clicking or tapping anywhere on the closed invitation opens it; the native reveal button remains the keyboard action. Closing must not immediately reopen it.
-- Keep the invitation's visible `:focus-visible` outline (`2px solid #ffe0a4`, offset `6px`) and equivalent visible focus for links.
-- The invitation reveal button has a minimum height of `60px`; secondary menu controls have at least `44px`.
+Act gates preserve the existing codes and saved progress. Introductory
+narrative is an openable details element, and the dossier wayfinder lists
+only currently visible sections. Focus moves to newly unlocked material.
+Tabs retain keyboard navigation; Show all makes every panel accessible.
+
+Archive handles support pointer/touch drag and Left/Right keyboard movement.
+The paired movement buttons name the actual horizontal direction. Edge
+scrolling assists dragging; cancellation restores the previous order.
+The overview reflects the player's arrangement, not a solved arrangement.
+
+The invitation opens through any click on its closed screen or its native
+button. Its doors hinge over 1.6s and its paper unfolds over 1.65s. Game
+feedback is shorter; there is no theatrical page-load delay. Reduced motion
+disables nonessential movement. No autoplay sound.
 
 ## Do's and Don'ts
 
-### Do:
-- **Do** retain the game palette, body face, and typewriter label stack on game pages.
-- **Do** keep invitation-only typography, folio geometry, textures, and wine-and-gold colors within `menu/`.
-- **Do** preserve the confirmed menu date, **21 November 1947**, and the guest name **Michèle**.
-- **Do** keep original local raster artwork and provide accessible HTML copy for calligraphy.
-- **Do** preserve relative asset paths, native button semantics, visible focus, and reduced-motion behavior.
-
-### Don't:
-- **Don't** impose invitation typography, layout, palette, or folio animation on game pages.
-- **Don't** replace the supplied historical menu copy or rebrand the site.
-- **Don't** make remote assets, a build step, or a framework a requirement for these static pages.
+- Keep the invitation and game visually coherent but behaviorally separate.
+- Preserve the game's 15 November 1947 canon and the menu's confirmed 21 November 1947 date.
+- Preserve all evidence, puzzle answers, saved-progress keys and existing URLs.
+- Keep images and paths local and relative for Pages subpaths and file://.
+- Do not use the invitation's whole-screen click gesture on game pages.
+- Do not reveal solutions through navigation, summaries or automatic ordering.
+- Do not trade readable text or native affordances for ornament.

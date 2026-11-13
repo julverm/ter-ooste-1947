@@ -2,13 +2,16 @@
 <html lang="nl-BE">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#360f19">
   <meta name="robots" content="noindex,nofollow">
   <title>Akte II — Het dagregister · Ter Ooste 1947</title>
   <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/experience.css">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 </head>
 <body>
+  <a class="springlink" href="#inhoud">Ga naar de inhoud</a>
   <header class="site-kop">
     <div class="binnen">
       <a class="merk" href="../index.html">Ter Ooste · 1947</a>
@@ -25,8 +28,11 @@
   </header>
 
   <main id="inhoud">
-    <p class="kopregel">Akte II</p>
-    <h1>Het gecodeerde dagregister</h1>
+    <header class="pagina-kop">
+      <img class="kasteel" src="../menu/castle.webp" alt="" width="900" height="250">
+      <h1>Het gecodeerde dagregister</h1>
+      <p class="kopregel">Akte II · Het dagregister</p>
+    </header>
 
     <section id="poort" class="poort vel" aria-labelledby="poort-kop">
       <div class="zegel" aria-hidden="true">R.C.<small>notaris</small></div>
@@ -42,15 +48,15 @@
 
     <div id="akte-inhoud" class="verborgen">
 
-      <section class="vel" aria-labelledby="lees-kop">
-        <h2 id="lees-kop">Leesversie</h2>
+      <details class="vel leesversie" aria-labelledby="lees-kop">
+        <summary id="lees-kop">Lees de introductie<small>Het verhaal en de opdracht van deze akte</small></summary>
         <p>Een huishouden als dat van Kasteel Ter Ooste draait op gewoontes. Een glas verschijnt op het juiste ogenblik en een verzoek bereikt het personeel zonder dat de gasten merken hoe. Juist omdat zulke handelingen gewoon zijn, worden ze achteraf niet altijd nauwkeurig herinnerd.</p>
         <p>De eerste puzzel herstelde de volgorde van zes archiefmappen. De toegangscode gaf een testamentsnota en een dreigbrief vrij. Die stukken tonen motieven en verklaren de sluitbanden op de glazen; ze geven geen oorzaak of verdachte.</p>
         <p>Een archiefbeheerder noteerde twee bijzonderheden in een gecodeerd dagregister. De aantekeningen hoeven geen bekentenis te zijn om belangrijk te worden. Een betrouwbaar tijdstip kan een latere reconstructie begrenzen; een dossiernaam kan aangeven waar verder gezocht moet worden.</p>
         <p>De sleutel is niet in een onbekende kamer verstopt. Het raadsel beschrijft één gewoon voorwerp in deze living. Niemand hoeft meubels te verplaatsen of laden te openen. Wie het doorheeft, staat op en neemt het; zodra het briefje gevonden is, leest iemand de sleutel hardop voor en blijft het briefje open op tafel liggen.</p>
         <p>De code-instructie legt de methode uit. Je hoeft geen specialist te zijn: werk zorgvuldig, vergelijk letters en controleer waar de sleutel opnieuw begint. Ook wie niet zelf elke letter berekent, kan de ontcijferde tekst beoordelen.</p>
         <p><strong>Puzzelintro:</strong> volg de zoekaanwijzing in de living en ontcijfer beide regels met de Vigenère-uitleg. Noteer het tijdstip en het dossierwoord. Vraag daarna het genoemde dossier bij de notaris op.</p>
-      </section>
+      </details>
 
       <section class="vel" aria-labelledby="d2-kop">
         <h2 id="d2-kop">Dossier II — Het dagregister</h2>
@@ -116,6 +122,7 @@ Tekst:     D  E</pre>
         <h2 id="hulp-kop">Hulptabel (optioneel)</h2>
         <p>Vul zelf onder iedere codeletter de sleutelletter en daaronder de ontcijferde letter in. De tabel rekent niets voor je uit; ze helpt alleen om netjes te werken. Je invoer wordt op dit toestel bewaard.</p>
         <p class="vig-legenda">Rij 1 = codeletter · rij 2 = sleutelletter (rood) · rij 3 = ontcijferde letter</p>
+        <p class="vig-uitleg">Veeg horizontaal door iedere regel. De letters blijven naast elkaar staan, zodat de sleutel en de tekst netjes uitgelijnd blijven.</p>
         <div id="vig-A" class="vig-regel" data-code="OM CVGBYNYRW JLA BZ HETM ZVRHEMA ISBC MYS RBR DREDRRMYQ">
           <h3>Regel A</h3>
           <div class="vig-woorden"></div>

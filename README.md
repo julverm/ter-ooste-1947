@@ -15,6 +15,7 @@ hints/index.html      Acht verzegelde hints, te openen met hintcodes
 notaris/index.html    Hostpagina (wachtwoord): oplossingen, codes, draaiboek, reset
 config.js             ALLE codes en invulwaarden
 assets/               style.css, app.js, favicon.svg
+assets/experience.css Gedeelde bordeaux/perkamentstijl en mobiele spelbediening
 audio/achiel.mp3      Verhoor van Achiel (gegenereerd met edge-tts)
 tools/maak-audio.py   Script om de audio opnieuw te genereren
 docs/                 Canon-documenten (alleen-lezen referentie)
@@ -47,10 +48,36 @@ bij reduced motion verschijnt de kaart direct.
 Zonder JavaScript is de volledige menutekst meteen leesbaar. De oorspronkelijke
 kaart blijft bereikbaar via de link onderaan.
 
-Na een afzonderlijk goedgekeurde publicatie is de deelbare route
-`https://julverm.github.io/ter-ooste-1947/menu/`. Lokale wijzigingen zijn niet automatisch live.
+De gepubliceerde uitnodiging staat op
+`https://julverm.github.io/ter-ooste-1947/menu/`. Nieuwe lokale wijzigingen zijn niet automatisch live.
 De datum op de aangeleverde kaart blijft **21 november 1947**, zoals bevestigd;
 de bestaande spelcanon van 15 november 1947 verandert niet.
+
+## Spelbediening
+
+De spelpagina's gebruiken dezelfde bordeaux, gouden en perkamenten materialen als
+de uitnodiging. De startpagina geeft direct toegang tot het eerste dossier en de
+spelregels. De introductie van iedere akte is openklapbaar; een wegwijzer springt
+naar de vrijgegeven onderdelen zonder verzegelde stukken te verklappen.
+
+Puzzel I heeft altijd zes posities van links naar rechts. Pak een kaart vast
+buiten het keuzevak en de knoppen: een zichtbare kaart volgt direct de muis of
+vinger, een gemarkeerde plek toont de bestemming en de andere kaarten schuiven
+opzij. De zwevende kaart blijft aan de schermrand in beeld. Op mobiel blijft
+verticaal scrollen over de kaart mogelijk. Tik op
+Links/Rechts of gebruik de pijltjestoetsen wanneer de sleepgreep focus heeft;
+de positieknoppen bovenaan brengen je direct naar een kaart. De kaartvolgorde
+en zelf gekozen symbolen blijven op het toestel bewaard. Slepen naar de rand
+schuift de rij mee; Escape of een geannuleerde sleepactie herstelt de vorige
+volgorde. Reduced motion behoudt de directe sleepfeedback zonder schuifanimaties.
+
+De Vigenere-hulptabel houdt de letters horizontaal uitgelijnd in afzonderlijk
+scrollbare regels. Invoervakken, tabs en kluiswielen hebben ruime aanraakvlakken.
+De vier P1-cijfervakken ondersteunen het plakken van de volledige code.
+
+`assets\style.css` blijft de functionele basis; `assets\experience.css` wordt
+daarna geladen voor de gedeelde stijl. De aparte menupagina laadt geen van beide
+spelbestanden. Het herontwerp wijzigt geen verhaaltekst of puzzeloplossing.
 
 ## Codes en teksten aanpassen — `config.js`
 
