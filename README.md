@@ -16,8 +16,8 @@ notaris/index.html    Hostpagina (wachtwoord): oplossingen, codes, draaiboek, re
 config.js             ALLE codes en invulwaarden
 assets/               style.css, app.js, favicon.svg
 assets/experience.css Gedeelde bordeaux/perkamentstijl en mobiele spelbediening
-audio/achiel.mp3      Verhoor van Achiel (gegenereerd met edge-tts)
-tools/maak-audio.py   Script om de audio opnieuw te genereren
+audio/achiel.mp3      Verhoor van Achiel (opname van het transcript op Akte III; vervangbaar door een eigen TTS-opname)
+tools/maak-audio.py   Gratis noodscript (edge-tts) om die opname opnieuw te genereren
 docs/                 Canon-documenten (alleen-lezen referentie)
 screenshots/          Testscreenshots
 TESTLOG.md            Resultaat van de acceptatietests
@@ -96,9 +96,11 @@ Alle vergelijkingen zijn hoofdletterongevoelig; spaties vooraan/achteraan worden
 
 `/notaris` is bewust **niet** gelinkt vanaf de spelerpagina's: typ het adres zelf in.
 
-## Audio opnieuw genereren
+## Audio opnieuw genereren of vervangen
 
-De tekst van het verhoor staat woordelijk in `tools\maak-audio.py` (gelijk aan het transcript op Akte III). Stemmen: `nl-BE-ArnaudNeural` (notaris) en `nl-NL-MaartenNeural` (Achiel).
+Het verhoor van Achiel (circa 1 minuut) mag met elke TTS-stem worden opgenomen, bij voorkeur een Vlaamse. Zet het resultaat als `audio\achiel.mp3` in de projectmap; de enige voorwaarde is dat de opname woordelijk gelijk is aan het transcript op Akte III. Wijzigt er een woord, pas dan ook het transcript in `akte-3\index.html` en `tools\maak-audio.py` aan.
+
+Gratis noodoplossing: de tekst staat woordelijk in `tools\maak-audio.py`. Stemmen: `nl-BE-ArnaudNeural` (notaris) en `nl-NL-MaartenNeural` (Achiel).
 
 ```powershell
 pip install --user edge-tts

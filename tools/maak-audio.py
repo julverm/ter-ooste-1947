@@ -5,6 +5,8 @@ Vereist:  pip install --user edge-tts   (en een internetverbinding)
 
 De tekst hieronder is woordelijk overgenomen uit
 docs/moorddiner-puzzelontwerp.md §4.10 en staat identiek als transcript op /akte-3.
+Dit script is de gratis noodoplossing: een opname van exact dezelfde tekst met een
+andere (bij voorkeur Vlaamse) TTS-stem mag audio/achiel.mp3 vervangen.
 Het oude-radio-effect wordt NIET hier toegepast (geen ffmpeg nodig), maar in de
 browser met Web Audio (zie assets/app.js, radioEffect).
 """
@@ -18,14 +20,12 @@ STEM_NOTARIS = "nl-BE-ArnaudNeural"
 STEM_ACHIEL = "nl-NL-MaartenNeural"
 
 REGELS = [
-    ("N", "Mijnheer Achiel, de gasten zeggen dat u twintig minuten uit het zicht was. Waar bevond u zich?"),
-    ("A", "In de wijnkelder, van 22:50 tot 23:10. De kelderknecht bleef al die tijd bij mij. Hij kan bevestigen dat ik de kelder niet heb verlaten."),
-    ("N", "U had een kurkentrekker bij u?"),
-    ("A", "Ja. Ik had die bij me voor de wijncontrole. Maar mijn bezoek aan de wijnkelder had niets te maken met het glas van de baron."),
-    ("N", "Wat kunt u zeggen over zijn picon?"),
-    ("A", "Niet wie die heeft aangeraakt. Ik was niet in de dienstoffice en zag de bediening niet. Als ik daarover een naam noemde, zou ik gokken."),
-    ("N", "Waarom meldde u uw vertrek niet aan de anderen?"),
-    ("A", "Ik dacht dat het maar even zou duren. Dat was onhandig, maar geen bewijs van moord. Ik kan zeggen waar ik zelf was. Voor wat elders gebeurde, moet u de registers en de andere verklaringen vergelijken."),
+    ("N", "Mijnheer Achiel, de gasten zeggen dat u twintig minuten spoorloos was. Waar zat u?"),
+    ("A", "In de wijnkelder, mijnheer de notaris, van tien voor elf tot tien na elf. Ik had wijn na te kijken, met mijn kurkentrekker en een lamp. Ik heb niemand verwittigd. Ik dacht dat het maar even zou duren. Dat was onhandig van mij. Maar de kelderknecht was er de hele tijd bij. Vraag het hem gerust."),
+    ("N", "Wat kunt u zeggen over de picon van de baron?"),
+    ("A", "Niet veel. Beneden in de kelder hoor je niets van wat er boven gebeurt, en in de dienstoffice was ik niet. Een naam noemen zou gokken zijn, en dat doe ik niet."),
+    ("N", "Hoe was de baron de laatste weken?"),
+    ("A", "Stiller dan anders. Sinds eind oktober sloot hij zich op in zijn bibliotheek, en hij liet zijn glas verzegelen, alsof hij iets voelde aankomen. Twaalf jaar heb ik die man gediend… Ik weet alleen waar ik zelf was. De rest moet u uitzoeken, mijnheer de notaris."),
 ]
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
