@@ -6,6 +6,7 @@ Statische website voor het Vlaamse moorddiner. Vanilla HTML/CSS/JS, geen build-s
 
 ```
 index.html            Startpagina (uitgangssituatie S0, rollen, aktes)
+menu/index.html       Deelbare uitnodiging en uitvouwende menukaart (zonder spelinformatie)
 akte-1/index.html     Akte I  — Het ontregelde archief (P1)
 akte-2/index.html     Akte II — Het dagregister (P2, Vigenère-hulptabel)
 akte-3/index.html     Akte III — Dossier NACHT (P3, audio Achiel + transcript)
@@ -35,6 +36,21 @@ python -m http.server 8000
 Open daarna `http://localhost:8000/` (of `http://<ip-van-laptop>:8000/` op de telefoons).
 
 Voortgang (ontgrendelde aktes, kluis, hints) wordt per toestel in `localStorage` bewaard. Wissen: `/notaris` → "Alles resetten".
+
+## Uitnodiging en menukaart
+
+Open lokaal `http://localhost:8000/menu/` of dubbelklik op `menu\index.html`.
+De aparte uitnodiging laadt geen spelconfiguratie en linkt niet naar de puzzels.
+Klik of tik ergens op het gesloten scherm om de kaart te openen. De knop blijft
+ook met het toetsenbord bedienbaar. De scharnieranimatie duurt ongeveer 1,65 seconden;
+bij reduced motion verschijnt de kaart direct.
+Zonder JavaScript is de volledige menutekst meteen leesbaar. De oorspronkelijke
+kaart blijft bereikbaar via de link onderaan.
+
+Na een afzonderlijk goedgekeurde publicatie is de deelbare route
+`https://julverm.github.io/ter-ooste-1947/menu/`. Lokale wijzigingen zijn niet automatisch live.
+De datum op de aangeleverde kaart blijft **21 november 1947**, zoals bevestigd;
+de bestaande spelcanon van 15 november 1947 verandert niet.
 
 ## Codes en teksten aanpassen — `config.js`
 
