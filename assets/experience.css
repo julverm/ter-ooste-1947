@@ -455,8 +455,9 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 .p3-vrijgave { margin-block: 1.75rem; padding: 1rem clamp(.8rem, 3vw, 1.5rem); background: #f7e4c4; border: 3px double #99643d; }
 .p3-slotprofiel { margin: 0 0 1.25rem; padding: .6rem .9rem; width: min(100%, 16rem); border: 1px solid #99643d; background: #f7e4c4; }
 .p3-slotprofiel figcaption { font-size: .95rem; font-weight: 700; }
-.p3-sleutellegenda { margin: 0 0 1.15rem; padding-inline-start: 1.2rem; }
 .p3-sleutelblad { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.25rem), 1fr)); gap: .5rem; }
+.p3-afdrukkaart { display: grid; min-width: 0; gap: .3rem; }
+.p3-afdrukkaart select { width: 100%; min-width: 0; min-height: 44px; padding: .35rem .25rem; font-size: .9rem; }
 .p3-sleutelblad button {
   position: relative;
   display: grid;
@@ -479,10 +480,8 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 .p3-maatstreep { fill: none; stroke: var(--inkt-zacht); }
 .p3-was { fill: #823e32; stroke: #53231f; stroke-width: 1.5; }
 .p3-washolte { fill: #f0c497; stroke: #53231f; stroke-width: 1.5; }
+.p3-wasraster { fill: none; stroke: #fff2d7; stroke-width: .8; stroke-dasharray: 2 3; }
 .p3-sleutelnaam { font-size: .95rem; font-weight: 700; padding-inline: .5rem; }
-.p3-sleutelvorm { font-size: .8rem; color: var(--lak-donker); }
-.p3-sleutelrichting { font-size: .75rem; color: var(--inkt-zacht); }
-.p3-sleutelmaten { font: 700 .85rem/1.3 "Courier New", monospace; white-space: nowrap; }
 .p3-sleutelvink { display: none; position: absolute; top: .15rem; right: .3rem; color: var(--lak-donker); font-weight: 700; }
 .p3-sleutelblad [aria-pressed="true"] .p3-sleutelvink { display: block; }
 .p3-sleutelactie { margin-top: .9rem; }
