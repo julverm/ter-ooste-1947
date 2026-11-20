@@ -342,8 +342,8 @@
     { id: "p1-2", puzzel: "Dossier I", nr: 2, tekst: ["Test het ANKER op 2, 3, 4 en 5. Op 3 raakt de KROON geblokkeerd; op 4 past de BEL niet; op 5 botsen KROON en LANTAARN met regel 6."] },
     { id: "p2-1", puzzel: "Dossier II", nr: 1, tekst: ["Kijk naar de boekenkast. 1947 is meer dan een jaartal: het is ook een bladzijde."], alternatief: "Wie het briefje al heeft, krijgt in de plaats: “De sleutel heeft zes letters. Spaties onderbreken de herhaling niet.”" },
     { id: "p2-2", puzzel: "Dossier II", nr: 2, tekst: ["De eerste twee woorden van regel A worden DE PICONFLES. Controleer daarmee de uitlijning."] },
-    { id: "p3-1", puzzel: "Dossier III", nr: 1, tekst: ["Verbind monsterletter → glasnummer → drank → onderzoekskenmerk. Gebruik geen smaakveronderstellingen."] },
-    { id: "p3-2", puzzel: "Dossier III", nr: 2, tekst: ["Zoek het laatste bewezen schone moment en het eerste moment waarna verdere manipulatie uitgesloten is."] },
+    { id: "p3-1", puzzel: "Dossier III", nr: 1, tekst: ["Schrap eerst in monster B alles wat ook in zuivere picon staat. Vergelijk daarna hoogte én symbool."] },
+    { id: "p3-2", puzzel: "Dossier III", nr: 2, tekst: ["Lees elke sleutel vanaf de kop, ook als de foto omgedraaid is. Er passen twee sleutels, van twee verschillende personen."] },
     { id: "p4-1", puzzel: "Dossier IV", nr: 1, tekst: ["Het begin van de kistcode komt uit de eerder gevonden toegangscode, niet uit de foliocijfers van willekeurige losse kaarten."] },
     { id: "p4-2", puzzel: "Dossier IV", nr: 2, tekst: ["De toegangscode was 6431. Gebruik alleen de eerste twee cijfers; voor de overige cijfers heb je de controleminuut en het glasnummer nodig."] }
   ];
@@ -644,11 +644,231 @@
   document.addEventListener("akte-open", function () { markeerNav(); wegwijzer(); });
   document.addEventListener("dossier-open", wegwijzer);
 
+  function onderzoekP3() {
+    var picon = { 2: "●", 5: "▲", 7: "■" };
+    var monsterB = { 1: "◆", 2: "●", 4: "★", 5: "▲", 6: "◆", 7: "■" };
+    var referenties = [
+      ["M14", "", { 1: "◆", 5: "▲", 6: "◆" }],
+      ["N08", "", { 3: "◆", 4: "★", 6: "◆" }],
+      ["L23", "", { 1: "◆", 4: "★", 6: "◆" }],
+      ["P31", "", { 1: "◆", 4: "✚", 6: "◆" }]
+    ];
+    var profiel = "31423";
+    var sleutels = [
+      ["Marie", "31423"], ["Marie", "22141"],
+      ["Victor", "32413", true], ["Victor", "13324"],
+      ["Achiel", "32413"], ["Achiel", "44213", true],
+      ["Gaston", "31422"], ["Gaston", "11332", true],
+      ["Cyriel", "21423"], ["Cyriel", "43211"],
+      ["Deman", "31323", true], ["Deman", "24134"]
+    ];
+    var namen = { "●": "cirkel", "▲": "driehoek", "■": "vierkant", "◆": "ruit", "★": "ster", "✚": "kruis" };
+    var $ = function (id) { return document.getElementById(id); };
+    var strookForm = $("p3-strook-form");
+    var sleutelForm = $("p3-sleutel-form");
+    var stofBekend = opslag.is("p3.stroken");
+    var slotOpen = stofBekend && opslag.is("p3.sleutels");
+    var gemarkeerd = new Set((opslag.get("p3.markeringen") || "").split(",").filter(function (h) {
+      return Object.hasOwn(monsterB, h);
+    }));
+    var selectie = new Set();
+    var rest = Object.keys(monsterB).filter(function (h) { return monsterB[h] !== picon[h]; });
+    var juisteStrook = referenties.find(function (ref) {
+      return Object.keys(ref[2]).length === rest.length && rest.every(function (h) { return ref[2][h] === monsterB[h]; });
+    })[0];
+    var juisteSleutels = sleutels.map(function (sleutel, i) {
+      var vanafKop = sleutel[2] ? sleutel[1].split("").reverse().join("") : sleutel[1];
+      return vanafKop === profiel ? i : -1;
+    }).filter(function (i) { return i !== -1; });
+
+    function element(tag, tekst) {
+      var el = document.createElement(tag);
+      if (tekst) el.textContent = tekst;
+      return el;
+    }
+
+    function stroken(tabelhouder, titel, kolommen) {
+      var tabel = element("table");
+      var caption = tabel.createCaption();
+      caption.className = "p3-visueel-verborgen";
+      caption.textContent = titel;
+      var kop = tabel.createTHead().insertRow();
+      var as = element("th", "Hoogte");
+      as.scope = "col";
+      as.innerHTML = '<abbr title="Hoogte">H</abbr>';
+      kop.appendChild(as);
+      kolommen.forEach(function (kolom) {
+        var th = element("th", kolom[0]);
+        th.scope = "col";
+        if (kolom[1]) th.appendChild(element("small", kolom[1]));
+        kop.appendChild(th);
+      });
+      var rijen = tabel.createTBody();
+      for (var hoogte = 8; hoogte >= 1; hoogte--) {
+        var rij = rijen.insertRow();
+        var maat = element("th", String(hoogte));
+        maat.scope = "row";
+        rij.appendChild(maat);
+        kolommen.forEach(function (kolom) {
+          var cel = rij.insertCell();
+          var symbool = kolom[2][hoogte];
+          if (!symbool) return;
+          var band = element("span", symbool);
+          band.className = "p3-band";
+          band.setAttribute("aria-hidden", "true");
+          var label = "Hoogte " + hoogte + ": " + namen[symbool];
+          if (!kolom[3]) {
+            var beschrijving = element("span", namen[symbool]);
+            beschrijving.className = "p3-visueel-verborgen";
+            cel.append(band, beschrijving);
+            return;
+          }
+          var h = String(hoogte);
+          var knop = element("button");
+          knop.type = "button";
+          knop.className = "p3-bandknop";
+          knop.setAttribute("aria-label", "Monster B, " + label.toLowerCase() + " doorstrepen");
+          knop.setAttribute("aria-pressed", String(gemarkeerd.has(h)));
+          knop.appendChild(band);
+          knop.addEventListener("click", function () {
+            if (gemarkeerd.has(h)) gemarkeerd.delete(h);
+            else gemarkeerd.add(h);
+            knop.setAttribute("aria-pressed", String(gemarkeerd.has(h)));
+            opslag.set("p3.markeringen", Array.from(gemarkeerd).join(","));
+          });
+          cel.appendChild(knop);
+        });
+      }
+      tabelhouder.appendChild(tabel);
+    }
+
+    function sleuteltekening(tanden, kopRechts) {
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 202 68");
+      svg.setAttribute("aria-hidden", "true");
+      var links = kopRechts ? 18 : 54;
+      var kop = kopRechts ? 174 : 28;
+      var eind = links + 130;
+      var trap = tanden.split("").map(function (h, i) {
+        return "V" + (29 + 7 * Number(h)) + "H" + (links + 26 * (i + 1));
+      }).join("");
+      var raster = [36, 43, 50, 57].map(function (y) { return "M" + links + " " + y + "H" + eind; }).join("");
+      var maatstrepen = [1, 2, 3, 4].map(function (i) { return "M" + (links + 26 * i) + " 19v8"; }).join("");
+      svg.innerHTML = '<path class="p3-meetlijn" d="' + raster + '"/>' +
+        '<path class="p3-metaal" d="M' + (kopRechts ? eind : kop) + ' 19H' + (kopRechts ? kop : links) + 'V29H' +
+        (kopRechts ? eind : links) + 'Z"/><path class="p3-metaal" d="M' + links + ' 19' + trap + 'V19Z"/>' +
+        '<path class="p3-maatstreep" d="' + maatstrepen + '"/>' +
+        '<circle class="p3-metaal" cx="' + kop + '" cy="24" r="18"/><circle class="p3-kopgat" cx="' + kop + '" cy="24" r="9"/>';
+      return svg;
+    }
+
+    function gaNaar(vrijgave) {
+      var kop = vrijgave.querySelector("h3");
+      kop.tabIndex = -1;
+      kop.focus();
+    }
+
+    function toonStatus() {
+      $("p3-register").hidden = !stofBekend;
+      $("p3-sleutels").hidden = !stofBekend;
+      $("p3-waarnemingen").hidden = !slotOpen;
+      strookForm.hidden = stofBekend;
+      $("p3-sleutelactie").hidden = slotOpen;
+      var eerste = $("p3-stap-stroken");
+      var tweede = $("p3-stap-sleutels");
+      eerste.textContent = stofBekend ? "1. Strookonderzoek — voltooid" : "1. Strookonderzoek";
+      tweede.textContent = slotOpen ? "2. Sleutelregister — voltooid" : stofBekend ? "2. Sleutelregister" : "2. Sleutelregister — verzegeld";
+      eerste.setAttribute("aria-current", stofBekend ? "false" : "step");
+      tweede.setAttribute("aria-current", stofBekend && !slotOpen ? "step" : "false");
+    }
+
+    stroken($("p3-monsters"), "Monsters en zuivere picon", [
+      ["Zuivere", "picon", picon], ["A", "Fles", picon],
+      ["B", "Glas 7", monsterB, true], ["C", "Glas 2", picon]
+    ]);
+    stroken($("p3-referenties"), "Gecodeerde referentiestroken", referenties);
+    strookForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (stofBekend) return;
+      var code = norm($("p3-strook-code").value);
+      if (code !== juisteStrook) {
+        meld(strookForm.querySelector(".melding"), referenties.some(function (ref) { return ref[0] === code; })
+          ? "Minstens één band komt niet overeen. Controleer hoogte, symbool en welke banden je hebt geschrapt."
+          : "Deze code staat niet op het referentieblad. Neem een code over van een van de vier stroken.");
+        $("p3-strook-code").select();
+        return;
+      }
+      stofBekend = true;
+      opslag.zet("p3.stroken");
+      toonStatus();
+      gaNaar($("p3-register"));
+    });
+
+    $("p3-slotprofiel").appendChild(sleuteltekening(profiel, false));
+    var profielTekst = element("span", "Van links naar rechts: tandhoogtes " + profiel.split("").join(", ") + ".");
+    profielTekst.className = "p3-visueel-verborgen";
+    $("p3-slotprofiel").appendChild(profielTekst);
+    if (slotOpen) juisteSleutels.forEach(function (i) { selectie.add(i); });
+    else (opslag.get("p3.selectie") || "").split(",").forEach(function (i) {
+      if (/^(?:[0-9]|1[01])$/.test(i)) selectie.add(Number(i));
+    });
+
+    function telSleutels() {
+      $("p3-sleutelteller").textContent = selectie.size === 1 ? "1 sleutel gekozen" : selectie.size + " sleutels gekozen";
+    }
+
+    var sleutelknoppen = sleutels.map(function (sleutel, i) {
+      var nummer = String(i + 1).padStart(2, "0");
+      var knop = element("button");
+      var naam = element("span", nummer + " · " + sleutel[0]);
+      naam.className = "p3-sleutelnaam";
+      var beschrijving = element("span", "Kop " + (sleutel[2] ? "rechts" : "links") +
+        ". Tandhoogtes van links naar rechts: " + sleutel[1].split("").join(", ") + ".");
+      beschrijving.className = "p3-visueel-verborgen";
+      knop.type = "button";
+      knop.disabled = slotOpen;
+      knop.setAttribute("aria-pressed", String(selectie.has(i)));
+      var vink = element("span", "✓");
+      vink.className = "p3-sleutelvink";
+      vink.setAttribute("aria-hidden", "true");
+      knop.append(sleuteltekening(sleutel[1], sleutel[2]), naam, beschrijving, vink);
+      knop.addEventListener("click", function () {
+        if (selectie.has(i)) selectie.delete(i);
+        else selectie.add(i);
+        knop.setAttribute("aria-pressed", String(selectie.has(i)));
+        opslag.set("p3.selectie", Array.from(selectie).join(","));
+        meld(sleutelForm.querySelector(".melding"), "");
+        telSleutels();
+      });
+      $("p3-sleutelblad").appendChild(knop);
+      return knop;
+    });
+    sleutelForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!stofBekend || slotOpen) return;
+      if (selectie.size !== juisteSleutels.length || !juisteSleutels.every(function (i) { return selectie.has(i); })) {
+        meld(sleutelForm.querySelector(".melding"), selectie.size ? "Het slot blijft dicht. Controleer of alle gekozen profielen passen en of je alle passende sleutels hebt gekozen." : "Kies eerst de sleutels die op het slotprofiel passen.");
+        return;
+      }
+      slotOpen = true;
+      opslag.zet("p3.sleutels");
+      sleutelknoppen.forEach(function (knop) { knop.disabled = true; });
+      toonStatus();
+      gaNaar($("p3-waarnemingen"));
+    });
+    $("p3-naar-tijdlijn").addEventListener("click", function () {
+      $("tab-e").click();
+      $("tab-e").focus();
+    });
+    telSleutels();
+    toonStatus();
+  }
+
   window.TerOoste = {
     CFG: CFG, norm: norm, gelijk: gelijk, opslag: opslag,
     stempel: stempel, schud: schud, meld: meld, tabs: tabs,
     aktepoort: aktepoort, codepoort: codepoort, archiefRij: archiefRij,
-    kluisGeluid: kluisGeluid, radioEffect: radioEffect, audioCtx: ctx,
+    kluisGeluid: kluisGeluid, radioEffect: radioEffect, audioCtx: ctx, onderzoekP3: onderzoekP3,
     HINTS: HINTS, reducedMotion: reducedMotion
   };
 })();

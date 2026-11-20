@@ -55,8 +55,7 @@
         <p>De baron vroeg om pure picon. De eigen bitterheid van die drank is geen bewijs van vergiftiging. Niemand hoeft iets te proeven, ruiken of mengen. Het onderzoeksrapport geeft de relevante vaststellingen.</p>
         <p>Ook de voorraad moet zorgvuldig worden gelezen. Een ontbrekende verpakking kan iets over een middel vertellen, maar niet automatisch over de persoon die ze meenam. Toegang tot een kast is gelegenheid, geen bekentenis.</p>
         <p>Tot nu toe is de doodsoorzaak niet vastgesteld. Het dossier bevat daarom onderzoeksgegevens die pas na de avond zelf beschikbaar kwamen.</p>
-        <p>Verbind de verschillende soorten informatie: welk monster hoort bij welk glas, wie dronk daaruit en wat werd erin aangetoond? Vergelijk daarna de tijdlijn met de geverifieerde waarnemingen in het dossier. Vier verdachten krijgen nu een doorlopend alibi; Marie en Victor blijven mogelijk. Alle noodzakelijke informatie staat in de leesbare dossierstukken; de audio bevat dezelfde gegevens.</p>
-        <p><strong>Puzzelintro:</strong> verbind monsterletter, glasnummer, drank en onderzoekskenmerk. Bepaal tussen welke twee controlemomenten de manipulatie plaatsvond. Lees ook de geverifieerde waarnemingen: welke verdachten sluiten die uit, en welk bewijs ontbreekt nog om tussen Marie en Victor te kiezen?</p>
+        <p>Verbind de monsters met de glazen. Vergelijk de onderzoeksstroken en ga daarna na wie toegang had tot de voorraadkast. Gebruik de tijdlijn en de vrijgegeven waarnemingen om te bepalen wie gelegenheid had. Welk bewijs ontbreekt nog?</p>
       </details>
 
       <section class="vel poort" id="p3-poort" aria-labelledby="p3g-kop">
@@ -69,7 +68,7 @@
           <button type="submit">Dossier openen</button>
           <p class="melding" role="status" aria-live="polite"></p>
         </form>
-        <p>Na opening vind je de stukken A tot en met I, het audio-interview met Achiel en het volledige transcript. Audio is niet verplicht: het transcript bevat woordelijk dezelfde informatie.</p>
+        <p>Na opening vind je het onderzoeksblad, de dossierstukken en het interview met Achiel. Luisteren is optioneel: het transcript bevat woordelijk dezelfde tekst.</p>
       </section>
 
       <div id="p3-dossier" class="verborgen">
@@ -90,6 +89,63 @@
           <p><strong>Audio-interview:</strong> in dit dossier staat ook een opname van het verhoor van Achiel. Luisteren is optioneel; het volledige transcript staat ernaast.</p>
         </section>
 
+        <section class="vel p3-werkblad" id="p3-werkblad" aria-labelledby="p3-werk-kop">
+          <h2 id="p3-werk-kop">Onderzoeksblad</h2>
+          <ol class="p3-voortgang" aria-label="Onderzoeksvoortgang">
+            <li id="p3-stap-stroken" aria-current="step">1. Strookonderzoek</li>
+            <li id="p3-stap-sleutels">2. Sleutelregister — verzegeld</li>
+          </ol>
+          <div class="p3-station">
+            <h3>Vergelijk de stroken</h3>
+            <p>Schrap in elk monster de banden die ook in zuivere picon staan. Een band telt alleen als <strong>hoogte én symbool</strong> gelijk zijn. Welke referentiestrook komt precies overeen met wat in B overblijft?</p>
+            <div class="p3-stroken" id="p3-monsters"></div>
+            <p class="p3-notitie">Tik op een band in B om die door te strepen. Tik opnieuw om ze terug te zetten. Markeren is optioneel.</p>
+            <h4>Referentiestroken</h4>
+            <div class="p3-stroken" id="p3-referenties"></div>
+            <form class="p3-invoer" id="p3-strook-form">
+              <label for="p3-strook-code">Referentiecode</label>
+              <div>
+                <input id="p3-strook-code" class="code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Letter + cijfers" required>
+                <button type="submit">Controleer de strook</button>
+              </div>
+              <p class="melding" role="status"></p>
+            </form>
+          </div>
+          <div class="p3-vrijgave" id="p3-register" hidden>
+            <h3>Apothekersregister geopend <small>P3-F</small></h3>
+            <p><strong>L23 — digitalispreparaat.</strong> Bewaard in de afgesloten voorraadkast. Alleen in monster B (glas 7) blijven deze banden over; in het flesmonster A en in glas 2 (C) niet.</p>
+            <p>Volgens de arts verklaart de aangetroffen verontreiniging het overlijden van Edmond de Vlieghere.</p>
+          </div>
+          <div class="p3-station" id="p3-sleutels" hidden>
+            <h3>Sleutelregister van de voorraadkast</h3>
+            <p>Het slot vertoont geen braaksporen. Vergelijk de vijf tandhoogtes met het slotprofiel. Begin steeds <strong>bij de ronde kop</strong>: die staat niet op elke foto aan dezelfde kant. Kies alle sleutels die passen.</p>
+            <figure class="p3-slotprofiel" id="p3-slotprofiel">
+              <figcaption>Slotprofiel · vanaf de kop</figcaption>
+            </figure>
+            <form id="p3-sleutel-form">
+              <div class="p3-sleutelblad" id="p3-sleutelblad" role="group" aria-label="Sleutelfoto’s"></div>
+              <div class="p3-sleutelactie" id="p3-sleutelactie">
+                <p id="p3-sleutelteller" aria-live="polite"></p>
+                <button type="submit">Beproef de sleutels</button>
+              </div>
+              <p class="melding" role="status"></p>
+            </form>
+          </div>
+          <div class="p3-vrijgave" id="p3-waarnemingen" hidden>
+            <h3>Geverifieerde waarnemingen vrijgegeven <small>P3-I</small></h3>
+            <p><strong>Sleutel 01 (Marie) en sleutel 03 (Victor) passen.</strong> Dat toont toegang tot de kast, niet wie ze opende. De volgende onafhankelijke waarnemingen sluiten vier verdachten uit.</p>
+            <p>De vier alibi’s dekken telkens de volledige periode van <strong>22:50 tot 23:10</strong>.</p>
+            <dl class="p3-alibis">
+              <div><dt>Gaston</dt><dd>In de biljartkamer bij de biljartmarker.</dd></div>
+              <div><dt>Cyriel</dt><dd>In de bibliotheek bij twee leden van de leeskring.</dd></div>
+              <div><dt>Achiel</dt><dd>In de wijnkelder bij de kelderknecht. Hij was uit het zicht van de gasten, niet zonder getuige.</dd></div>
+              <div><dt>Pastoor Deman</dt><dd>In de kapel bij de koster.</dd></div>
+            </dl>
+            <p>Marie en Victor blijven mogelijk. Geen van beiden heeft in dit dossier een doorlopend persoonsalibi voor het manipulatievenster. De afdruk in de vervangende lak is nog niet vergeleken.</p>
+            <a href="#tab-e" id="p3-naar-tijdlijn">Raadpleeg de tijdlijn (P3-E)</a>
+          </div>
+        </section>
+
         <section class="tabs" id="p3-tabs" aria-labelledby="stukken-kop">
           <h2 id="stukken-kop">Dossierstukken</h2>
           <div role="tablist" aria-label="Dossierstukken III">
@@ -98,17 +154,15 @@
             <button role="tab" id="tab-c" aria-controls="paneel-c" aria-selected="false">P3-C · Monsters</button>
             <button role="tab" id="tab-d" aria-controls="paneel-d" aria-selected="false">P3-D · Onderzoek</button>
             <button role="tab" id="tab-e" aria-controls="paneel-e" aria-selected="false">P3-E · Bediening</button>
-            <button role="tab" id="tab-f" aria-controls="paneel-f" aria-selected="false">P3-F · Legenda</button>
-            <button role="tab" id="tab-i" aria-controls="paneel-i" aria-selected="false">P3-I · Waarnemingen</button>
+            <button role="tab" id="tab-i" aria-controls="paneel-i" aria-selected="false">P3-I · Achtergrond</button>
           </div>
 
           <div role="tabpanel" id="paneel-a" aria-labelledby="tab-a">
             <article class="vel">
               <h3>Rentmeestersnota — uitsluitend een verhaalplattegrond</h3>
               <p>De keuken en de dienstoffice zijn verbonden door een gewone binnendeur.</p>
-              <p>Marie en Victor mochten tijdens de bediening tussen beide vertrekken bewegen. De registratie van 22:50 bewijst niet waar zij later stonden.</p>
-              <p>De picon werd uitgeschonken in de dienstoffice. Marie en Victor hadden beiden toegang tot de voorraadkast met de geregistreerde preparaten.</p>
-              <p>De doorlopende waarnemingen van de overige aanwezigen staan in document P3-I. De genoemde vertrekken bestaan uitsluitend binnen het verhaal en zijn geen zoeklocaties voor spelers.</p>
+              <p>De picon werd uitgeschonken in de dienstoffice. De geregistreerde preparaten lagen in een afgesloten voorraadkast. Aan het slot werden geen braaksporen vastgesteld.</p>
+              <p>De genoemde vertrekken bestaan uitsluitend binnen het verhaal en zijn geen zoeklocaties voor spelers.</p>
               <p>De notaris en de barones zijn onafhankelijke getuigen en geen verdachten binnen dit onderzoek.</p>
             </article>
           </div>
@@ -116,15 +170,12 @@
           <div role="tabpanel" id="paneel-b" aria-labelledby="tab-b" hidden>
             <article class="vel">
               <h3>Voorraadcontrole, 15 november 1947</h3>
-              <p>Een afgesloten voorraadkast bevat vier geregistreerde preparaten. Marie en Victor hebben beiden toegang.</p>
               <div class="tabel-scroll">
                 <table>
-                  <thead><tr><th>Voorraadcode</th><th class="num">Verpakkingen om 22:50</th><th class="num">Verpakkingen om 23:10</th></tr></thead>
+                  <thead><tr><th>Tijd</th><th>Afgesloten voorraadkast</th></tr></thead>
                   <tbody>
-                    <tr><td>L23</td><td class="num">1</td><td class="num">0</td></tr>
-                    <tr><td>M14</td><td class="num">1</td><td class="num">1</td></tr>
-                    <tr><td>N08</td><td class="num">1</td><td class="num">1</td></tr>
-                    <tr><td>P31</td><td class="num">1</td><td class="num">1</td></tr>
+                    <tr><td>22:50</td><td>Alle vier vakken gevuld.</td></tr>
+                    <tr><td>23:10</td><td>Eén vak leeg. Het ontbrekende vak is niet genoteerd.</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -158,21 +209,9 @@
             <article class="vel">
               <h3>Samenvatting van het drankonderzoek</h3>
               <p>De onderzoeker hield rekening met de normale samenstelling van picon, waaronder de eigen plantaardige bitterstoffen. Die normale bestanddelen zijn geen bewijs van vergiftiging.</p>
-              <p>Onderstaande aanduidingen zijn vereenvoudigde spelcategorieën, geen uitvoerbare laboratoriumproeven.</p>
-              <div class="tabel-scroll">
-                <table>
-                  <thead><tr><th>Monster</th><th>Digitalis-specifieke hartglycosiden</th><th>Muntkenmerk</th><th>Jodiumkenmerk</th><th>Reinigingskenmerk</th></tr></thead>
-                  <tbody>
-                    <tr><td>A</td><td>Niet aangetoond</td><td>Niet aangetoond</td><td>Niet aangetoond</td><td>Niet aangetoond</td></tr>
-                    <tr><td>B</td><td>Aangetoond</td><td>Niet aangetoond</td><td>Niet aangetoond</td><td>Niet aangetoond</td></tr>
-                    <tr><td>C</td><td>Niet aangetoond</td><td>Niet aangetoond</td><td>Niet aangetoond</td><td>Niet aangetoond</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <p>De onderzochte digitalisverbindingen behoren niet tot de normale bestanddelen van deze picon.</p>
-              <p>De arts stelt vast dat de aangetroffen verontreiniging in monster B de vergiftiging en het overlijden van Edmond de Vlieghere verklaart.</p>
+              <p>De chromatografiestroken van de monsters en de gecodeerde referenties liggen op het <a href="#p3-werk-kop">onderzoeksblad</a>.</p>
               <p>Bij glas 7 werd een losgemaakte sluitband aangetroffen, opnieuw vastgezet met vervangende lak. In die lak is een vingerafdruk veiliggesteld. De persoonsvergelijking ontbreekt nog in dit dossier.</p>
-              <p>Een leeg voorraadomhulsel <strong>L23</strong> werd bij de afvalcontrole teruggevonden.</p>
+              <p>Bij de afvalcontrole werd een leeg voorraadomhulsel zonder opschrift teruggevonden.</p>
             </article>
           </div>
 
@@ -202,44 +241,23 @@
             </article>
           </div>
 
-          <div role="tabpanel" id="paneel-f" aria-labelledby="tab-f" hidden>
-            <article class="vel">
-              <h3>Register van preparaatcodes</h3>
-              <div class="tabel-scroll">
-                <table>
-                  <thead><tr><th>Code</th><th>Geregistreerde inhoud</th><th>Onderscheidend onderzoekskenmerk</th></tr></thead>
-                  <tbody>
-                    <tr><td>L23</td><td>Digitalispreparaat</td><td>Digitalis-specifieke hartglycosiden</td></tr>
-                    <tr><td>M14</td><td>Muntpreparaat</td><td>Muntkenmerk</td></tr>
-                    <tr><td>N08</td><td>Jodiumpreparaat voor uitwendig gebruik</td><td>Jodiumkenmerk</td></tr>
-                    <tr><td>P31</td><td>Reinigingsmiddel</td><td>Reinigingskenmerk</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <p>Binnen deze vier geregistreerde preparaten komt elk genoemd kenmerk slechts bij één code voor.</p>
-              <p>De normale bitterstoffen van picon moeten worden onderscheiden van deze onderzochte verontreinigingen.</p>
-              <p>Deze legenda geeft geen doseringen, bereidingswijzen of gebruiksinstructies.</p>
-            </article>
-          </div>
-
           <div role="tabpanel" id="paneel-i" aria-labelledby="tab-i" hidden>
             <article class="vel">
-              <h3>Geverifieerde waarnemingen en achtergrond</h3>
-              <p>Een mogelijk motief is geen bewijs van gelegenheid. De onderstaande doorlopende waarnemingen zijn onafhankelijk gecontroleerd.</p>
+              <h3>Achtergrond van de aanwezigen</h3>
+              <p>Een mogelijk motief is geen bewijs van gelegenheid. De geverifieerde waarnemingen worden pas vrijgegeven na de sleutelvergelijking.</p>
               <div class="tabel-scroll">
                 <table>
-                  <thead><tr><th>Persoon</th><th>Achtergrond</th><th>Geverifieerde aanwezigheid</th></tr></thead>
+                  <thead><tr><th>Persoon</th><th>Achtergrond</th></tr></thead>
                   <tbody>
-                    <tr><td>Gaston</td><td>Gokschulden; de baron dreigde hem publiekelijk te onteren en financieel af te snijden</td><td>Van 22:50 tot 23:10 onafgebroken in de biljartkamer bij de biljartmarker</td></tr>
-                    <tr><td>Cyriel</td><td>Oud-verzetsstrijder; had die avond ruzie met de baron</td><td>Van 22:50 tot 23:10 onafgebroken in de bibliotheek bij twee leden van de leeskring</td></tr>
-                    <tr><td>Achiel</td><td>Volgens de gasten twintig minuten spoorloos; verklaarde wijn te bekijken</td><td>Van 22:50 tot 23:10 onafgebroken in de wijnkelder bij de kelderknecht</td></tr>
-                    <tr><td>Pastoor Deman</td><td>Verwachtte een kerklegaat dat mogelijk werd ingetrokken</td><td>Van 22:50 tot 23:10 onafgebroken in de kapel bij de koster</td></tr>
-                    <tr><td>Marie Vandenbussche</td><td>Huishoudster en kokkin sinds 15 november 1919</td><td>Werkzaam in het dienstgedeelte; geen doorlopend persoonsalibi voor 23:02–23:06</td></tr>
-                    <tr><td>Victor</td><td>Butler, verantwoordelijk voor bediening</td><td>Werkzaam in het dienstgedeelte; geen doorlopend persoonsalibi voor 23:02–23:06</td></tr>
+                    <tr><td>Gaston</td><td>Gokschulden; de baron dreigde hem publiekelijk te onteren en financieel af te snijden</td></tr>
+                    <tr><td>Cyriel</td><td>Oud-verzetsstrijder; had die avond ruzie met de baron</td></tr>
+                    <tr><td>Achiel</td><td>Volgens de gasten twintig minuten spoorloos; verklaarde wijn te bekijken</td></tr>
+                    <tr><td>Pastoor Deman</td><td>Verwachtte een kerklegaat dat mogelijk werd ingetrokken</td></tr>
+                    <tr><td>Marie Vandenbussche</td><td>Huishoudster en kokkin sinds 15 november 1919</td></tr>
+                    <tr><td>Victor</td><td>Butler, verantwoordelijk voor bediening</td></tr>
                   </tbody>
                 </table>
               </div>
-              <p>“Spoorloos” betekende bij Achiel: uit het zicht van de gasten, niet zonder getuige. Voor Marie en Victor bewijst toegang geen schuld. Dit dossier maakt nog geen keuze tussen hen.</p>
             </article>
           </div>
         </section>
@@ -292,6 +310,7 @@
         weigering: "Dit dossierwoord is niet bekend bij de notaris.",
         naOpen: function (animatie) {
           T.tabs(document.getElementById("p3-tabs"));
+          T.onderzoekP3();
           if (animatie) document.getElementById("d3-kop").scrollIntoView({ behavior: T.reducedMotion ? "auto" : "smooth" });
         }
       });

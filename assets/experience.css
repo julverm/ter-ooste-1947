@@ -408,6 +408,112 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+.p3-werkblad > h2 { margin-top: 0; }
+.p3-voortgang {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1.5rem;
+  padding: .65rem 0;
+  border-block: 1px solid #99643d;
+  list-style: none;
+  color: var(--inkt-zacht);
+  font-size: .95rem;
+}
+.p3-voortgang [aria-current="step"] { color: var(--lak-donker); font-weight: 700; }
+.p3-station { margin-block: 1.75rem; }
+.p3-station > h3, .p3-vrijgave > h3 { margin-top: 0; }
+.p3-stroken { max-width: 39rem; overflow-x: auto; }
+.p3-stroken table {
+  margin: 0;
+  width: 100%;
+  min-width: 14rem;
+  table-layout: fixed;
+  background: #f7e4c4;
+  border: 1px solid #99643d;
+}
+.p3-stroken :is(th, td) { padding: .15rem 0; text-align: center; vertical-align: middle; border: 1px solid #99643d70; }
+.p3-stroken tr > :first-child { width: 2rem; background: #e6c698; }
+.p3-stroken thead th { background: #e6c698; color: var(--inkt); padding: .35rem 0; }
+.p3-stroken th small { display: block; font-size: .875rem; font-weight: 400; }
+.p3-stroken tbody tr { height: 45px; }
+.p3-stroken td:nth-child(odd) { background: #99643d12; }
+.p3-band {
+  display: inline-grid;
+  width: min(2.4rem, 100%);
+  min-height: 1.55rem;
+  place-items: center;
+  font: 1.1rem/1 "Segoe UI Symbol", "Apple Symbols", sans-serif;
+  color: var(--wijn);
+  background: var(--papier-donker);
+  border-block: 1px solid #99643d;
+}
+.p3-stroken td:has(.p3-bandknop) { padding: 0; }
+.p3-stroken td > .p3-band { vertical-align: middle; }
+.p3-stroken .p3-bandknop {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.p3-stroken .p3-bandknop:hover { background: #99643d28; }
+.p3-bandknop:focus-visible { outline-offset: -3px; }
+.p3-bandknop[aria-pressed="true"] .p3-band { background: transparent; position: relative; }
+.p3-bandknop[aria-pressed="true"] .p3-band::after {
+  content: "";
+  position: absolute;
+  inset-inline: 5%;
+  top: 50%;
+  border-top: 2px solid currentColor;
+  transform: rotate(-23deg);
+}
+.p3-notitie { font-size: .95rem; color: var(--inkt-zacht); }
+.p3-invoer { margin-top: 1.25rem; }
+.p3-invoer > div, .p3-sleutelactie { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .85rem; }
+.p3-invoer input { width: 12rem; max-width: 100%; }
+.p3-invoer .melding:not(:empty), #p3-sleutel-form .melding:not(:empty) { margin-top: .55rem; }
+.p3-vrijgave { margin-block: 1.75rem; padding: 1rem clamp(.8rem, 3vw, 1.5rem); background: #f7e4c4; border: 3px double #99643d; }
+.p3-vrijgave h3 small { font-size: .85rem; color: var(--inkt-zacht); white-space: nowrap; }
+.p3-slotprofiel { margin: 0 0 1.25rem; padding: .6rem .9rem; width: min(100%, 16rem); border: 1px solid #99643d; background: #f7e4c4; }
+.p3-slotprofiel figcaption { font-size: .95rem; font-weight: 700; }
+.p3-sleutelblad { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.25rem), 1fr)); gap: .5rem; }
+.p3-sleutelblad button {
+  position: relative;
+  display: grid;
+  align-content: center;
+  padding: .4rem;
+  background: #f7e4c4;
+  border-color: #99643d;
+  color: var(--inkt);
+  box-shadow: none;
+}
+.p3-sleutelblad button:hover { background: #fff2d7; color: var(--inkt); }
+.p3-sleutelblad button[aria-pressed="true"] { background: #fff2d7; border-color: var(--lak-donker); box-shadow: inset 0 0 0 2px var(--lak-donker); }
+.p3-sleutelblad button:disabled { opacity: 1; cursor: default; }
+.p3-sleutelblad button:disabled:not([aria-pressed="true"]) { background: #e6c698; }
+.p3-sleutelblad svg, .p3-slotprofiel svg { display: block; width: 100%; }
+.p3-metaal { fill: #b99053; stroke: #3a2518; stroke-width: 1.5; stroke-linejoin: round; }
+.p3-kopgat { fill: #f7e4c4; stroke: #3a2518; stroke-width: 1.5; }
+.p3-meetlijn { fill: none; stroke: #99643d; stroke-dasharray: 2 3; }
+.p3-maatstreep { fill: none; stroke: var(--inkt-zacht); }
+.p3-sleutelnaam { font-size: .95rem; }
+.p3-sleutelvink { display: none; position: absolute; top: .15rem; right: .3rem; color: var(--lak-donker); font-weight: 700; }
+.p3-sleutelblad [aria-pressed="true"] .p3-sleutelvink { display: block; }
+.p3-sleutelactie { margin-top: .9rem; }
+.p3-sleutelactie p { margin: 0; color: var(--inkt-zacht); }
+.p3-alibis > div { padding: .55rem 0; border-top: 1px solid #99643d70; }
+.p3-alibis dt { font-weight: 700; }
+.p3-alibis dd { margin: 0; }
+.p3-visueel-verborgen { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 460px) {
+  .p3-stroken tr > :first-child { width: 1.75rem; }
+  .p3-stroken th { font-size: .875rem; }
+  .p3-sleutelblad { grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr)); }
+  .p3-invoer input, .p3-invoer button, .p3-sleutelactie button { width: 100%; }
+}
 @media print {
   body { background: white; color: black; }
   main { width: 100%; border: 0; outline: 0; box-shadow: none; margin: 0; padding: 0; background: white; }

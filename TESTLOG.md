@@ -17,8 +17,8 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 | Regel B bij de L herstarten | OPEN DOSSIER NACHT BIJ DE NOTARIS | ✅ | Script-verificatie. |
 | Drie minuten vóór elf 's avonds | 22:57 | ➖ | Inhoudelijk; de P2-A-kop vermeldt de avond, tekst woordelijk. |
 | Monster B volgen | Picon in glas 7 van de baron | ➖ | P3-C-tabel woordelijk overgenomen. |
-| Eigen bitterstoffen picon beoordelen | Geen gifbewijs; geen extra puzzel | ➖ | P3-D woordelijk; geen toegevoegde puzzel. |
-| P3-D met P3-F combineren | Digitalis, voorraadcode L23 | ➖ | Tabellen woordelijk. |
+| Strookhoogte én symbool vergelijken | Alleen L23 opent P3-F en het sleutelregister | ✅ | M14, N08, P31 en onbekende code geweigerd; ` l23 ` aanvaard. A en C hebben geen extra banden. |
+| Sleutelprofielen lezen vanaf de kop | Alleen 01 + 03 geeft de alibi’s vrij | ✅ | Alle 4095 andere selecties geweigerd in Chromium; juiste combinatie opent P3-I en verplaatst de focus. |
 | Laatste schone en eerste bewaakte moment | Venster 23:02–23:06 | ➖ | P3-E woordelijk. |
 | Alleen P1–P3 gebruiken | Marie én Victor mogelijk | ➖ | Inhoudelijk canon. |
 | P4-code samenstellen | 6427 | ✅ | 6-4 (P1), 2 (23:02), 7 (glas 7) → kluis opent. |
@@ -31,7 +31,8 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 | Test | Verwacht | Resultaat | Opmerking |
 |---|---|---|---|
 | P2-regel A naast de kop lezen | Eenduidig avondtijdstip 22:57 | ✅ | Kop en regel staan samen in P2-D. |
-| P3-C vergelijken met P3-D/E | Bij uitschenken schoon; manipulatie later mogelijk | ✅ | Alle drie tabbladen bereikbaar na NACHT. |
+| P3-C vergelijken met P3-D/E | Bij uitschenken schoon; manipulatie later mogelijk | ✅ | Dossierstukken na NACHT; de link uit de vrijgegeven waarnemingen selecteert P3-E. |
+| Vrijgaves, markeringen en bediening | Eerst stroken, dan sleutels, dan alibi’s | ✅ | Playwright: schermen blijven verborgen tot hun stap; markering via Spatie; vrijgaves en markering blijven na herladen. Chromium-maten 320, 360, 390, 768 en 1280 px zonder pagina-overloop; bandknoppen minimaal 44 × 44 px. Screenshots mobiel en desktop; geen fysieke toesteltest. |
 | NACHT, nacht en omliggende spaties invoeren | Zelfde P3-documenten | ✅ | `DAG` → "Dit dossierwoord is niet bekend bij de notaris."; `  nacht ` → dossier open, `p3.open` bewaard; na herladen nog open. |
 | Audio vergelijken met transcript | Woordelijk dezelfde tekst | ✅ | Herschreven tekst (13 nov, circa 1 minuut). `audio\achiel.mp3` opnieuw gegenereerd uit exact de transcripttekst (tools\maak-audio.py; script, transcript en canon §4.10 automatisch vergeleken: identiek). Een latere eigen TTS-opname moet dezelfde tekst gebruiken. |
 | 6431 invoeren op `/akte-1` | P1-D/E verschijnen; 6413 weigert zonder hint | ✅ | 6413 → "De verzegeling blijft intact." (stukken blijven verborgen); 6431 → tabbladen P1-D en P1-E; `p1.open` bewaard. Drag-and-drop én pijlknoppen getest; focus blijft op de verplaatste kaart. |

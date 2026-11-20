@@ -9,7 +9,7 @@ index.html            Startpagina (uitgangssituatie S0, rollen, aktes)
 menu/index.html       Deelbare uitnodiging en uitvouwende menukaart (zonder spelinformatie)
 akte-1/index.html     Akte I  — Het ontregelde archief (P1)
 akte-2/index.html     Akte II — Het dagregister (P2, Vigenère-hulptabel)
-akte-3/index.html     Akte III — Dossier NACHT (P3, audio Achiel + transcript)
+akte-3/index.html     Akte III — Dossier NACHT (stroken, sleutelprofielen, audio + transcript)
 akte-4/index.html     Akte IV — De notariskist (P4, digitale kluis)
 hints/index.html      Acht verzegelde hints, te openen met hintcodes
 notaris/index.html    Hostpagina (wachtwoord): oplossingen, codes, draaiboek, reset
@@ -88,6 +88,8 @@ spelbestanden. Het herontwerp wijzigt geen verhaaltekst of puzzeloplossing.
 | `wachtwoordP3` | Dossierwoord Akte III | NACHT |
 | `codeKluis` | Kluiscombinatie Akte IV | 6427 |
 | `hintcodes` | Acht codes, één per hint (p1-1 … p4-2) | FOLIO-1/2, INKT-1/2, ETHER-1/2, LAK-1/2 |
+
+Na het dossierwoord opent in Akte III eerst het strookonderzoek. De juiste referentiecode geeft het apothekersregister en de sleutelvergelijking vrij; pas na de juiste sleutelselectie verschijnen de geverifieerde alibi’s. Markeringen, sleutelselectie en vrijgaven worden op hetzelfde toestel in `localStorage` bewaard.
 | `hostwachtwoord` | Wachtwoord voor `/notaris` | CALLEWAERT |
 | `boekKenmerk` | Vult `{{BOEK_KENMERK}}` in P2-A (regel 3) — **vóór de avond invullen!** | `[KENMERK VAN HET BOEK INVULLEN]` |
 | `audioAchiel` | Pad naar het audiofragment | `audio/achiel.mp3` |
