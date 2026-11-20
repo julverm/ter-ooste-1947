@@ -668,9 +668,6 @@
     var sleutelForm = $("p3-sleutel-form");
     var stofBekend = opslag.is("p3.stroken");
     var slotOpen = stofBekend && opslag.is("p3.sleutels");
-    var gemarkeerd = new Set((opslag.get("p3.markeringen") || "").split(",").filter(function (h) {
-      return Object.hasOwn(monsterB, h);
-    }));
     var selectie = new Set();
     var rest = Object.keys(monsterB).filter(function (h) { return monsterB[h] !== picon[h]; });
     var juisteStrook = referenties.find(function (ref) {
@@ -716,27 +713,9 @@
           var band = element("span", symbool);
           band.className = "p3-band";
           band.setAttribute("aria-hidden", "true");
-          var label = "Hoogte " + hoogte + ": " + namen[symbool];
-          if (!kolom[3]) {
-            var beschrijving = element("span", namen[symbool]);
-            beschrijving.className = "p3-visueel-verborgen";
-            cel.append(band, beschrijving);
-            return;
-          }
-          var h = String(hoogte);
-          var knop = element("button");
-          knop.type = "button";
-          knop.className = "p3-bandknop";
-          knop.setAttribute("aria-label", "Monster B, " + label.toLowerCase() + " doorstrepen");
-          knop.setAttribute("aria-pressed", String(gemarkeerd.has(h)));
-          knop.appendChild(band);
-          knop.addEventListener("click", function () {
-            if (gemarkeerd.has(h)) gemarkeerd.delete(h);
-            else gemarkeerd.add(h);
-            knop.setAttribute("aria-pressed", String(gemarkeerd.has(h)));
-            opslag.set("p3.markeringen", Array.from(gemarkeerd).join(","));
-          });
-          cel.appendChild(knop);
+          var beschrijving = element("span", namen[symbool]);
+          beschrijving.className = "p3-visueel-verborgen";
+          cel.append(band, beschrijving);
         });
       }
       tabelhouder.appendChild(tabel);
@@ -763,7 +742,7 @@
     }
 
     function gaNaar(vrijgave) {
-      var kop = vrijgave.querySelector("h3");
+      var kop = vrijgave.querySelector("h2");
       kop.tabIndex = -1;
       kop.focus();
     }
@@ -774,17 +753,11 @@
       $("p3-waarnemingen").hidden = !slotOpen;
       strookForm.hidden = stofBekend;
       $("p3-sleutelactie").hidden = slotOpen;
-      var eerste = $("p3-stap-stroken");
-      var tweede = $("p3-stap-sleutels");
-      eerste.textContent = stofBekend ? "1. Strookonderzoek — voltooid" : "1. Strookonderzoek";
-      tweede.textContent = slotOpen ? "2. Sleutelregister — voltooid" : stofBekend ? "2. Sleutelregister" : "2. Sleutelregister — verzegeld";
-      eerste.setAttribute("aria-current", stofBekend ? "false" : "step");
-      tweede.setAttribute("aria-current", stofBekend && !slotOpen ? "step" : "false");
     }
 
     stroken($("p3-monsters"), "Monsters en zuivere picon", [
       ["Zuivere", "picon", picon], ["A", "Fles", picon],
-      ["B", "Glas 7", monsterB, true], ["C", "Glas 2", picon]
+      ["B", "Glas 7", monsterB], ["C", "Glas 2", picon]
     ]);
     stroken($("p3-referenties"), "Gecodeerde referentiestroken", referenties);
     strookForm.addEventListener("submit", function (e) {
@@ -793,8 +766,8 @@
       var code = norm($("p3-strook-code").value);
       if (code !== juisteStrook) {
         meld(strookForm.querySelector(".melding"), referenties.some(function (ref) { return ref[0] === code; })
-          ? "Minstens één band komt niet overeen. Controleer hoogte, symbool en welke banden je hebt geschrapt."
-          : "Deze code staat niet op het referentieblad. Neem een code over van een van de vier stroken.");
+          ? "Deze strook past niet. Vergelijk hoogte en symbool opnieuw."
+          : "Kies een code van de referentiestroken.");
         $("p3-strook-code").select();
         return;
       }
@@ -847,7 +820,7 @@
       e.preventDefault();
       if (!stofBekend || slotOpen) return;
       if (selectie.size !== juisteSleutels.length || !juisteSleutels.every(function (i) { return selectie.has(i); })) {
-        meld(sleutelForm.querySelector(".melding"), selectie.size ? "Het slot blijft dicht. Controleer of alle gekozen profielen passen en of je alle passende sleutels hebt gekozen." : "Kies eerst de sleutels die op het slotprofiel passen.");
+        meld(sleutelForm.querySelector(".melding"), selectie.size ? "Niet de juiste combinatie. Lees opnieuw vanaf de kop." : "Kies eerst een of meer sleutels.");
         return;
       }
       slotOpen = true;
@@ -855,10 +828,6 @@
       sleutelknoppen.forEach(function (knop) { knop.disabled = true; });
       toonStatus();
       gaNaar($("p3-waarnemingen"));
-    });
-    $("p3-naar-tijdlijn").addEventListener("click", function () {
-      $("tab-e").click();
-      $("tab-e").focus();
     });
     telSleutels();
     toonStatus();

@@ -31,8 +31,8 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 | Test | Verwacht | Resultaat | Opmerking |
 |---|---|---|---|
 | P2-regel A naast de kop lezen | Eenduidig avondtijdstip 22:57 | ✅ | Kop en regel staan samen in P2-D. |
-| P3-C vergelijken met P3-D/E | Bij uitschenken schoon; manipulatie later mogelijk | ✅ | Dossierstukken na NACHT; de link uit de vrijgegeven waarnemingen selecteert P3-E. |
-| Vrijgaves, markeringen en bediening | Eerst stroken, dan sleutels, dan alibi’s | ✅ | Playwright: schermen blijven verborgen tot hun stap; markering via Spatie; vrijgaves en markering blijven na herladen. Chromium-maten 320, 360, 390, 768 en 1280 px zonder pagina-overloop; bandknoppen minimaal 44 × 44 px. Screenshots mobiel en desktop; geen fysieke toesteltest. |
+| Verkorte Akte III | Stroken, sleutels, alibi’s en tijdlijn; geen tabbladen, markeringen of audio | ✅ | Playwright: onjuist dossierwoord, foute strookcode en onvolledige sleutelselectie geweigerd. Vrijgaven en selectie blijven na herladen. |
+| Bediening van de sleutels | Toetsenbord en touch | ✅ | Spatie en Enter, tikbediening en focus op beide uitslagen. Geen pagina-overloop op 320, 360, 768 en 1280 px; sleutelknoppen minstens 44 px hoog. |
 | NACHT, nacht en omliggende spaties invoeren | Zelfde P3-documenten | ✅ | `DAG` → "Dit dossierwoord is niet bekend bij de notaris."; `  nacht ` → dossier open, `p3.open` bewaard; na herladen nog open. |
 | Audio vergelijken met transcript | Woordelijk dezelfde tekst | ✅ | Herschreven tekst (13 nov, circa 1 minuut). `audio\achiel.mp3` opnieuw gegenereerd uit exact de transcripttekst (tools\maak-audio.py; script, transcript en canon §4.10 automatisch vergeleken: identiek). Een latere eigen TTS-opname moet dezelfde tekst gebruiken. |
 | 6431 invoeren op `/akte-1` | P1-D/E verschijnen; 6413 weigert zonder hint | ✅ | 6413 → "De verzegeling blijft intact." (stukken blijven verborgen); 6431 → tabbladen P1-D en P1-E; `p1.open` bewaard. Drag-and-drop én pijlknoppen getest; focus blijft op de verplaatste kaart. |
@@ -50,7 +50,6 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 | Aktepoort: juiste code, hoofdletterongevoelig/getrimd | ✅ `  kasteel ` opent Akte I; `perkament`, `kandelaar`, `TESTAMENT` openen II–IV; ontgrendeling in localStorage. |
 | Vigenère-hulptabel | ✅ 148 invoervakjes; letter `l` wordt `L`, bewaard als `p2.vig-A.k.1`, na herladen aanwezig; geen automatische ontcijfering aanwezig. |
 | `{{BOEK_KENMERK}}` | ✅ P2-A toont `[KENMERK VAN HET BOEK INVULLEN]` uit `config.js`. |
-| Tabbladen toetsenbord | ✅ ArrowRight op P3-A verplaatst focus én selectie naar P3-B. |
 | Notarispagina | ✅ `NOTARIS` → "Dit kantoor blijft gesloten."; `callewaert` → alle secties (codes, hints+hintcodes, draaiboek, voorleesteksten, hostoplossingen P1–P4, onthulling, testen). Niet gelinkt vanaf spelerpagina's. |
 | "Alles resetten" | ✅ confirm-dialoog → localStorage leeg (0 sleutels `terooste1947.*`), pagina herlaadt vergrendeld. |
 | Consolefouten | ✅ 0 errors/warnings op alle 7 pagina's (http) en op `file://` (na toevoegen favicon). |

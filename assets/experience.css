@@ -408,20 +408,7 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
-.p3-werkblad > h2 { margin-top: 0; }
-.p3-voortgang {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .25rem 1.5rem;
-  padding: .65rem 0;
-  border-block: 1px solid #99643d;
-  list-style: none;
-  color: var(--inkt-zacht);
-  font-size: .95rem;
-}
-.p3-voortgang [aria-current="step"] { color: var(--lak-donker); font-weight: 700; }
-.p3-station { margin-block: 1.75rem; }
-.p3-station > h3, .p3-vrijgave > h3 { margin-top: 0; }
+.p3-werkblad > h2, .p3-station > h2, .p3-vrijgave > h2 { margin-top: 0; }
 .p3-stroken { max-width: 39rem; overflow-x: auto; }
 .p3-stroken table {
   margin: 0;
@@ -435,7 +422,7 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 .p3-stroken tr > :first-child { width: 2rem; background: #e6c698; }
 .p3-stroken thead th { background: #e6c698; color: var(--inkt); padding: .35rem 0; }
 .p3-stroken th small { display: block; font-size: .875rem; font-weight: 400; }
-.p3-stroken tbody tr { height: 45px; }
+.p3-stroken tbody tr { height: 2rem; }
 .p3-stroken td:nth-child(odd) { background: #99643d12; }
 .p3-band {
   display: inline-grid;
@@ -447,36 +434,12 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
   background: var(--papier-donker);
   border-block: 1px solid #99643d;
 }
-.p3-stroken td:has(.p3-bandknop) { padding: 0; }
 .p3-stroken td > .p3-band { vertical-align: middle; }
-.p3-stroken .p3-bandknop {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  min-height: 44px;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-}
-.p3-stroken .p3-bandknop:hover { background: #99643d28; }
-.p3-bandknop:focus-visible { outline-offset: -3px; }
-.p3-bandknop[aria-pressed="true"] .p3-band { background: transparent; position: relative; }
-.p3-bandknop[aria-pressed="true"] .p3-band::after {
-  content: "";
-  position: absolute;
-  inset-inline: 5%;
-  top: 50%;
-  border-top: 2px solid currentColor;
-  transform: rotate(-23deg);
-}
-.p3-notitie { font-size: .95rem; color: var(--inkt-zacht); }
 .p3-invoer { margin-top: 1.25rem; }
 .p3-invoer > div, .p3-sleutelactie { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .85rem; }
 .p3-invoer input { width: 12rem; max-width: 100%; }
 .p3-invoer .melding:not(:empty), #p3-sleutel-form .melding:not(:empty) { margin-top: .55rem; }
 .p3-vrijgave { margin-block: 1.75rem; padding: 1rem clamp(.8rem, 3vw, 1.5rem); background: #f7e4c4; border: 3px double #99643d; }
-.p3-vrijgave h3 small { font-size: .85rem; color: var(--inkt-zacht); white-space: nowrap; }
 .p3-slotprofiel { margin: 0 0 1.25rem; padding: .6rem .9rem; width: min(100%, 16rem); border: 1px solid #99643d; background: #f7e4c4; }
 .p3-slotprofiel figcaption { font-size: .95rem; font-weight: 700; }
 .p3-sleutelblad { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.25rem), 1fr)); gap: .5rem; }

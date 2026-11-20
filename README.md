@@ -9,14 +9,14 @@ index.html            Startpagina (uitgangssituatie S0, rollen, aktes)
 menu/index.html       Deelbare uitnodiging en uitvouwende menukaart (zonder spelinformatie)
 akte-1/index.html     Akte I  — Het ontregelde archief (P1)
 akte-2/index.html     Akte II — Het dagregister (P2, Vigenère-hulptabel)
-akte-3/index.html     Akte III — Dossier NACHT (stroken, sleutelprofielen, audio + transcript)
+akte-3/index.html     Akte III — Dossier NACHT (stroken, sleutelprofielen, alibi’s en tijdlijn)
 akte-4/index.html     Akte IV — De notariskist (P4, digitale kluis)
 hints/index.html      Acht verzegelde hints, te openen met hintcodes
 notaris/index.html    Hostpagina (wachtwoord): oplossingen, codes, draaiboek, reset
 config.js             ALLE codes en invulwaarden
 assets/               style.css, app.js, favicon.svg
 assets/experience.css Gedeelde bordeaux/perkamentstijl en mobiele spelbediening
-audio/achiel.mp3      Verhoor van Achiel (opname van het transcript op Akte III; vervangbaar door een eigen TTS-opname)
+audio/achiel.mp3      Archiefopname van het verhoor; niet meer geladen in Akte III
 tools/maak-audio.py   Gratis noodscript (edge-tts) om die opname opnieuw te genereren
 docs/                 Canon-documenten (alleen-lezen referentie)
 screenshots/          Testscreenshots
@@ -89,7 +89,7 @@ spelbestanden. Het herontwerp wijzigt geen verhaaltekst of puzzeloplossing.
 | `codeKluis` | Kluiscombinatie Akte IV | 6427 |
 | `hintcodes` | Acht codes, één per hint (p1-1 … p4-2) | FOLIO-1/2, INKT-1/2, ETHER-1/2, LAK-1/2 |
 
-Na het dossierwoord opent in Akte III eerst het strookonderzoek. De juiste referentiecode geeft het apothekersregister en de sleutelvergelijking vrij; pas na de juiste sleutelselectie verschijnen de geverifieerde alibi’s. Markeringen, sleutelselectie en vrijgaven worden op hetzelfde toestel in `localStorage` bewaard.
+Na het dossierwoord volgen de stroken en de sleutels. De juiste sleutelselectie geeft de alibi’s, de twee controletijden en het spoor van de afdruk vrij. Sleutelselectie en vrijgaven worden op hetzelfde toestel in `localStorage` bewaard.
 | `hostwachtwoord` | Wachtwoord voor `/notaris` | CALLEWAERT |
 | `boekKenmerk` | Vult `{{BOEK_KENMERK}}` in P2-A (regel 3) — **vóór de avond invullen!** | `[KENMERK VAN HET BOEK INVULLEN]` |
 | `audioAchiel` | Pad naar het audiofragment | `audio/achiel.mp3` |
@@ -100,7 +100,7 @@ Alle vergelijkingen zijn hoofdletterongevoelig; spaties vooraan/achteraan worden
 
 ## Audio opnieuw genereren of vervangen
 
-Het verhoor van Achiel (circa 1 minuut) mag met elke TTS-stem worden opgenomen, bij voorkeur een Vlaamse. Zet het resultaat als `audio\achiel.mp3` in de projectmap; de enige voorwaarde is dat de opname woordelijk gelijk is aan het transcript op Akte III. Wijzigt er een woord, pas dan ook het transcript in `akte-3\index.html` en `tools\maak-audio.py` aan.
+Het verhoor van Achiel zit niet meer in de spelroute. De opname en onderstaande instructies blijven als archief bewaard.
 
 Gratis noodoplossing: de tekst staat woordelijk in `tools\maak-audio.py`. Stemmen: `nl-BE-ArnaudNeural` (notaris) en `nl-NL-MaartenNeural` (Achiel).
 
