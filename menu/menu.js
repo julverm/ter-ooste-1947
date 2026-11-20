@@ -10,6 +10,18 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let finishTimer;
 
+  const naam = new URLSearchParams(window.location.search).get('naam');
+  if (naam?.trim()) {
+    const letters = Array.from(naam.normalize().trim().replace(/\s+/g, ' '));
+    const begroeting = `Welkom, ${letters.slice(0, 40).join('').trimEnd()}${letters.length > 40 ? '…' : ''}`;
+    const inscription = cover.querySelector('.cover-welcome');
+    const welcomeCopy = arrival.querySelector('#guest-welcome-copy');
+    inscription.querySelector('.guest-label').textContent = welcomeCopy.textContent = begroeting;
+    cover.querySelector('.cover-motto').hidden = true;
+    inscription.hidden = welcomeCopy.hidden = false;
+    cover.classList.add('has-guest');
+  }
+
   paper.hidden = true;
   arrival.hidden = false;
   cover.hidden = false;
@@ -19,6 +31,7 @@
   function finishOpening() {
     document.body.classList.remove('is-opening');
     cover.hidden = true;
+    cover.classList.add('has-opened');
   }
 
   function openMenu() {

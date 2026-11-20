@@ -18,24 +18,26 @@ FORM: Brief-pinned hinged folio, directly shaped without a concept roll. Mobile 
   <meta property="og:type" content="website">
   <title>Een avond vol geheimen — Kasteel Ter Ooste</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="menu.css">
-  <script src="menu.js" defer></script>
+  <link rel="stylesheet" href="menu.css?v=welkomstkaart">
+  <script src="menu.js?v=welkomstkaart" defer></script>
 </head>
 <body>
   <main>
     <section class="arrival" aria-label="De verzegelde uitnodiging" hidden>
       <h1>Kasteel Ter Ooste</h1>
       <p class="subtitle">Een avond vol geheimen</p>
+      <p class="accessible-copy" id="guest-welcome-copy" hidden></p>
     </section>
 
     <div class="folio">
       <div class="cover" aria-hidden="true" hidden>
-        <div class="door door-left"><div class="engraving"></div><span class="cover-rule"></span></div>
-        <div class="door door-right"><div class="engraving"></div><span class="cover-rule"></span></div>
+        <div class="door door-left"><div class="engraving"></div></div>
+        <div class="door door-right"><div class="engraving"></div></div>
         <div class="cover-inscription">
           <img class="crest" src="crest.webp" alt="" width="130" height="120">
-          <p>Een avond<br>vol geheimen</p>
-          <span>21 november 1947</span>
+          <p class="cover-motto">Een avond<br>vol geheimen</p>
+          <p class="cover-welcome" hidden><bdi class="guest-label"></bdi></p>
+          <span class="cover-date">21 november 1947</span>
         </div>
         <img class="seal" src="seal.webp" alt="" width="180" height="180">
       </div>
