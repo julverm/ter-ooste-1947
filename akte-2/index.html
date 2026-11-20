@@ -52,33 +52,37 @@
         <summary id="lees-kop">Lees de introductie<small>Het verhaal en de opdracht van deze akte</small></summary>
         <p>Een huishouden als dat van Kasteel Ter Ooste draait op gewoontes. Een glas verschijnt op het juiste ogenblik en een verzoek bereikt het personeel zonder dat de gasten merken hoe. Juist omdat zulke handelingen gewoon zijn, worden ze achteraf niet altijd nauwkeurig herinnerd.</p>
         <p>De eerste puzzel herstelde de volgorde van zes archiefmappen. De toegangscode gaf een testamentsnota en een dreigbrief vrij. Die stukken tonen motieven en verklaren de sluitbanden op de glazen; ze geven geen oorzaak of verdachte.</p>
-        <p>Een archiefbeheerder noteerde twee bijzonderheden in een gecodeerd dagregister. De aantekeningen hoeven geen bekentenis te zijn om belangrijk te worden. Een betrouwbaar tijdstip kan een latere reconstructie begrenzen; een dossiernaam kan aangeven waar verder gezocht moet worden.</p>
+        <p>Een archiefbeheerder noteerde één korte aanwijzing in een gecodeerd dagregister. Het tijdstip begrenst een latere reconstructie; een dossiernaam wijst waar verder gezocht moet worden.</p>
         <p>De sleutel is niet in een onbekende kamer verstopt. Het raadsel beschrijft één gewoon voorwerp in deze living. Niemand hoeft meubels te verplaatsen of laden te openen. Wie het doorheeft, staat op en neemt het; zodra het briefje gevonden is, leest iemand de sleutel hardop voor en blijft het briefje open op tafel liggen.</p>
         <p>De code-instructie legt de methode uit. Je hoeft geen specialist te zijn: werk zorgvuldig, vergelijk letters en controleer waar de sleutel opnieuw begint. Ook wie niet zelf elke letter berekent, kan de ontcijferde tekst beoordelen.</p>
-        <p><strong>Puzzelintro:</strong> volg de zoekaanwijzing in de living en ontcijfer beide regels met de Vigenère-uitleg. Noteer het tijdstip en het dossierwoord. Vraag daarna het genoemde dossier bij de notaris op.</p>
+        <p><strong>Puzzelintro:</strong> volg de zoekaanwijzing in de living en ontcijfer de ene regel met de Vigenère-uitleg. Noteer het tijdstip en het dossierwoord. Vraag daarna dat dossier bij de notaris op.</p>
       </details>
 
       <section class="vel" aria-labelledby="d2-kop">
         <h2 id="d2-kop">Dossier II — Het dagregister</h2>
-        <p>De archiefbeheerder versleutelde twee korte aantekeningen.</p>
-        <p>Vind de archiefsleutel met de zoekaanwijzing. Ontcijfer daarna beide regels volgens de exacte code-instructie.</p>
+        <p>De archiefbeheerder versleutelde één korte aantekening.</p>
+        <p>Vind de archiefsleutel met de zoekaanwijzing en ontcijfer de regel.</p>
         <p>Lever individueel in:</p>
         <ul>
           <li>het sleutelwoord;</li>
-          <li>beide ontcijferde teksten;</li>
-          <li>het tijdstip uit regel A;</li>
+          <li>de ontcijferde regel;</li>
+          <li>het tijdstip;</li>
           <li>de naam van het op te vragen dossier.</li>
         </ul>
-        <p>Het dossierwoord uit regel B opent dossier III (akte III) op de website.</p>
+        <p>Noteer de naam van het dossier. De notaris geeft de code voor Akte III.</p>
       </section>
 
       <section class="vel" aria-labelledby="p2a-kop">
         <p class="meta">P2-A — Zoekaanwijzing</p>
         <h2 id="p2a-kop">Waar de sleutel wacht</h2>
-        <p>Ik heb een rug, maar geen botten.<br>
-        Ik heb bladen, maar geen takken.<br>
-        Ik sta in het gelid met mijn soortgenoten, <span id="boek-kenmerk"></span>.<br>
-        Sla mij open op het jaar van de baron: zijn laatste twee cijfers.</p>
+        <p>Mijn bladen brengen eten op tafel,<br>
+        maar zelf proef ik geen kruimel.<br>
+        Mijn naam telt twee woorden:<br>
+        het eerste geldt gisteren, vandaag en morgen;<br>
+        het tweede jaagt je naar de keuken.<br>
+        Bij mij gaat die trek dus nooit voorbij.<br>
+        Laat van het jaar van deze zaak de eeuw weg:<br>
+        op die bladzijde wacht wat je zoekt.</p>
         <p>Wat je daar vindt, lees je hardop voor, zodat iedereen de sleutel heeft.</p>
         <p>Verplaats geen meubels, kruip nergens onder en open geen andere voorwerpen of vertrekken.</p>
       </section>
@@ -86,49 +90,44 @@
       <section class="vel" aria-labelledby="p2c-kop">
         <p class="meta">P2-C — Code-instructie</p>
         <h2 id="p2c-kop">Vigenère</h2>
-        <p>Gebruik het alfabet A–Z met deze waarden:</p>
-<pre>A=0   B=1   C=2   D=3   E=4   F=5   G=6
-H=7   I=8   J=9   K=10  L=11  M=12  N=13
-O=14  P=15  Q=16  R=17  S=18  T=19  U=20
-V=21  W=22  X=23  Y=24  Z=25</pre>
+        <p>Gebruik de letterwaarden boven de gecodeerde regel.</p>
         <ul>
           <li>IJ zijn twee afzonderlijke letters.</li>
-          <li>Spaties blijven staan maar verbruiken geen sleutelletter.</li>
-          <li>Herhaal LINNEN onder de letters.</li>
+          <li>Spaties, cijfers en leestekens blijven staan en verbruiken geen sleutelletter.</li>
+          <li>Begin links met de eerste letter van het gevonden sleutelwoord en herhaal het onder de codeletters.</li>
           <li>Ontcijfer met <strong>codeletter min sleutelletter</strong>.</li>
           <li>Bij een negatieve uitkomst tel je 26 op.</li>
-          <li>Begin regel B opnieuw bij de L.</li>
         </ul>
         <p><strong>Controlevoorbeeld</strong></p>
-<pre>Code:      O  M
-Sleutel:   L  I
-Getallen: 14 12
-Min:      11  8
-Uitkomst:  3  4
-Tekst:     D  E</pre>
-        <p>Wie midden in een regel begint, telt eerst de voorafgaande letters. Spaties tellen niet mee.</p>
+<pre>Code:      F   B
+Sleutel:   C   D
+Getallen:  5   1
+Min:       2   3
+Uitkomst:  3  24
+Tekst:     D   Y</pre>
+        <p>Wie midden in de regel begint, telt eerst de voorafgaande letters.</p>
       </section>
 
       <section class="vel" aria-labelledby="p2d-kop">
         <p class="meta">P2-D — Gecodeerd dagregister</p>
-        <h2 id="p2d-kop">Twee aantekeningen</h2>
-        <p><strong>Regel A — avondwaarneming op zaterdag 15 november 1947</strong></p>
-<pre>OM CVGBYNYRW JLA BZ HETM ZVRHEMA ISBC MYS RBR DREDRRMYQ</pre>
-        <p><strong>Regel B — vervolgarchief</strong></p>
-<pre>ZXRA HBDAVRV ALKUG FVU LR ASGLZVF</pre>
+        <h2 id="p2d-kop">Eén aantekening</h2>
+        <p class="vig-alfabet" aria-label="Letterwaarden van A is 0 tot en met Z is 25">
+          <span>A=0</span><span>B=1</span><span>C=2</span><span>D=3</span><span>E=4</span><span>F=5</span><span>G=6</span>
+          <span>H=7</span><span>I=8</span><span>J=9</span><span>K=10</span><span>L=11</span><span>M=12</span><span>N=13</span>
+          <span>O=14</span><span>P=15</span><span>Q=16</span><span>R=17</span><span>S=18</span><span>T=19</span><span>U=20</span>
+          <span>V=21</span><span>W=22</span><span>X=23</span><span>Y=24</span><span>Z=25</span>
+        </p>
+        <p><strong>Avondwaarneming — zaterdag 15 november 1947</strong></p>
+<pre>OM CVGBYNYRW JLA BZ 22:57 ZRCHRTIYO; WCRR QZAFVIE YIPUX.</pre>
       </section>
 
       <section class="vel" aria-labelledby="hulp-kop">
         <h2 id="hulp-kop">Hulptabel (optioneel)</h2>
-        <p>Vul zelf onder iedere codeletter de sleutelletter en daaronder de ontcijferde letter in. De tabel rekent niets voor je uit; ze helpt alleen om netjes te werken. Je invoer wordt op dit toestel bewaard.</p>
+        <p>Vul onder iedere codeletter de sleutelletter en ontcijferde letter in. Cijfers en leestekens hebben geen invulvak. De tabel rekent niets uit; je invoer wordt op dit toestel bewaard.</p>
         <p class="vig-legenda">Rij 1 = codeletter · rij 2 = sleutelletter (rood) · rij 3 = ontcijferde letter</p>
-        <p class="vig-uitleg">Veeg horizontaal door iedere regel. De letters blijven naast elkaar staan, zodat de sleutel en de tekst netjes uitgelijnd blijven.</p>
-        <div id="vig-A" class="vig-regel" data-code="OM CVGBYNYRW JLA BZ HETM ZVRHEMA ISBC MYS RBR DREDRRMYQ">
-          <h3>Regel A</h3>
-          <div class="vig-woorden"></div>
-        </div>
-        <div id="vig-B" class="vig-regel" data-code="ZXRA HBDAVRV ALKUG FVU LR ASGLZVF">
-          <h3>Regel B</h3>
+        <p class="vig-uitleg">Veeg horizontaal door de regel. De letters blijven naast elkaar staan.</p>
+        <div id="vig-A" class="vig-regel" data-code="OM CVGBYNYRW JLA BZ 22:57 ZRCHRTIYO; WCRR QZAFVIE YIPUX.">
+          <h3>De regel</h3>
           <div class="vig-woorden"></div>
         </div>
         <button type="button" class="stil klein" id="vig-wis">Hulptabel leegmaken</button>
@@ -156,18 +155,29 @@ Tekst:     D  E</pre>
       var T = window.TerOoste;
       T.aktepoort(2);
 
-      document.getElementById("boek-kenmerk").textContent = T.CFG.boekKenmerk || "{{BOEK_KENMERK}}";
-
       /* Vigenère-hulptabel: alleen invoervelden, geen berekening */
       function bouw(regel) {
         var code = regel.dataset.code;
         var houder = regel.querySelector(".vig-woorden");
         var id = regel.id;
         var n = 0;
-        code.split(" ").forEach(function (woord, wi) {
+        code.split(" ").forEach(function (woord) {
           var w = document.createElement("div");
           w.className = "vig-woord";
           woord.split("").forEach(function (letter) {
+            if (!/[A-Z]/.test(letter)) {
+              var vast = document.createElement("div");
+              vast.className = "vig-letter vig-vast";
+              var teken = document.createElement("div");
+              teken.className = "c";
+              teken.textContent = letter;
+              teken.setAttribute("aria-hidden", "true");
+              vast.appendChild(teken);
+              vast.appendChild(document.createElement("span"));
+              vast.appendChild(document.createElement("span"));
+              w.appendChild(vast);
+              return;
+            }
             n += 1;
             var cel = document.createElement("div");
             cel.className = "vig-letter";

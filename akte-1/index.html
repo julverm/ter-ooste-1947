@@ -257,13 +257,22 @@
 
       /* Symbool-keuzelijsten */
       var SYMBOLEN = ["ANKER", "BEL", "KROON", "LANTAARN", "ROOS", "SLEUTEL"];
+      var JUISTE_SYMBOLEN = { A: "BEL", B: "KROON", C: "LANTAARN", D: "SLEUTEL", E: "ANKER", F: "ROOS" };
+      function werkSymboolBij(sel) {
+        var kaart = sel.closest(".mapkaart");
+        kaart.querySelector(".raadsel").hidden = sel.value === JUISTE_SYMBOLEN[kaart.dataset.kaart];
+      }
       document.querySelectorAll(".mapkaart select").forEach(function (sel) {
         SYMBOLEN.forEach(function (s) {
           var o = document.createElement("option"); o.value = s; o.textContent = s; sel.appendChild(o);
         });
         var bewaard = T.opslag.get("p1.sym." + sel.id);
         if (bewaard) sel.value = bewaard;
-        sel.addEventListener("change", function () { T.opslag.set("p1.sym." + sel.id, sel.value); });
+        werkSymboolBij(sel);
+        sel.addEventListener("change", function () {
+          T.opslag.set("p1.sym." + sel.id, sel.value);
+          werkSymboolBij(sel);
+        });
       });
 
       T.archiefRij(

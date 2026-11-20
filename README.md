@@ -41,6 +41,8 @@ Voortgang (ontgrendelde aktes, kluis, hints) wordt per toestel in `localStorage`
 ## Uitnodiging en menukaart
 
 Open lokaal `http://localhost:8000/menu/` of dubbelklik op `menu\index.html`.
+Voeg voor een persoonlijke begroeting op de gesloten kaart `?naam=` toe aan de link,
+bijvoorbeeld `menu/?naam=Alex%20en%20Sam`. Zonder ingevulde naam blijft de gewone cover zichtbaar.
 De aparte uitnodiging laadt geen spelconfiguratie en linkt niet naar de puzzels.
 Klik of tik ergens op het gesloten scherm om de kaart te openen. De knop blijft
 ook met het toetsenbord bedienbaar. De scharnieranimatie duurt ongeveer 1,65 seconden;
@@ -53,11 +55,15 @@ De gepubliceerde uitnodiging staat op
 De datum op de aangeleverde kaart blijft **21 november 1947**, zoals bevestigd;
 de bestaande spelcanon van 15 november 1947 verandert niet.
 
+## Voorbereiding Akte II
+
+Leg het sleutelbriefje tussen bladzijden 46 en 47 van het kookboek *Altijd honger* in de boekenkast. Laat het briefje na de vondst op tafel liggen zodat iedereen het sleutelwoord kan gebruiken.
+
 ## Spelbediening
 
 De spelpagina's gebruiken dezelfde bordeaux, gouden en perkamenten materialen als
-de uitnodiging. De startpagina geeft direct toegang tot het eerste dossier en de
-spelregels. De introductie van iedere akte is openklapbaar; een wegwijzer springt
+de uitnodiging. De startpagina geeft direct toegang tot het eerste dossier.
+Waar beschikbaar is de introductie openklapbaar; een wegwijzer springt
 naar de vrijgegeven onderdelen zonder verzegelde stukken te verklappen.
 
 Puzzel I heeft altijd zes posities van links naar rechts. Pak een kaart vast
@@ -66,13 +72,16 @@ vinger, een gemarkeerde plek toont de bestemming en de andere kaarten schuiven
 opzij. De zwevende kaart blijft aan de schermrand in beeld. Op mobiel blijft
 verticaal scrollen over de kaart mogelijk. Tik op
 Links/Rechts of gebruik de pijltjestoetsen wanneer de sleepgreep focus heeft;
-de positieknoppen bovenaan brengen je direct naar een kaart. De kaartvolgorde
-en zelf gekozen symbolen blijven op het toestel bewaard. Slepen naar de rand
+de positieknoppen bovenaan brengen je direct naar een kaart.
+Op smalle schermen schuift de bovenste positierij horizontaal, met volledige
+symboolwoorden en de actieve positie in beeld.
+De kaartvolgorde en zelf gekozen symbolen blijven op het toestel bewaard. Slepen naar de rand
 schuift de rij mee; Escape of een geannuleerde sleepactie herstelt de vorige
 volgorde. Reduced motion behoudt de directe sleepfeedback zonder schuifanimaties.
-
-De Vigenere-hulptabel houdt de letters horizontaal uitgelijnd in afzonderlijk
-scrollbare regels. Invoervakken, tabs en kluiswielen hebben ruime aanraakvlakken.
+De enkele Vigenere-regel houdt de letters horizontaal uitgelijnd in een
+afzonderlijk scrollbare hulptabel. Letterwaarden staan direct boven de code in
+een mobiel aanpasbaar raster. Invoervakken, tabs en kluiswielen hebben ruime
+aanraakvlakken.
 De vier P1-cijfervakken ondersteunen het plakken van de volledige code.
 
 `assets\style.css` blijft de functionele basis; `assets\experience.css` wordt
@@ -85,13 +94,11 @@ spelbestanden. Het herontwerp wijzigt geen verhaaltekst of puzzeloplossing.
 |---|---|---|
 | `aktecodes` | Woord dat de notaris voorleest om een akte te ontgrendelen | KASTEEL, PERKAMENT, KANDELAAR, TESTAMENT |
 | `codeP1` | Toegangscode Dossier I (niet wijzigen zonder canon) | 6431 |
-| `wachtwoordP3` | Dossierwoord Akte III | NACHT |
 | `codeKluis` | Kluiscombinatie Akte IV | 6427 |
 | `hintcodes` | Acht codes, één per hint (p1-1 … p4-2) | FOLIO-1/2, INKT-1/2, ETHER-1/2, LAK-1/2 |
 
-Na het dossierwoord volgen de stroken en de sleutels. De juiste sleutelselectie geeft de alibi’s, de twee controletijden en het spoor van de afdruk vrij. Sleutelselectie en vrijgaven worden op hetzelfde toestel in `localStorage` bewaard.
+De aktecode opent direct de inleiding en de stroken. NACHT is alleen de dossiernaam. Vergelijk beide glazen: ontleed de samengestelde symbolen, schrap picon en lak op gelijke hoogte en kies het glas met een onbekende rest én de passende referentie. De juiste sleutelselectie geeft de alibi’s, de twee controletijden en het spoor van de afdruk vrij. Sleutelselectie en vrijgaven worden op hetzelfde toestel in `localStorage` bewaard.
 | `hostwachtwoord` | Wachtwoord voor `/notaris` | CALLEWAERT |
-| `boekKenmerk` | Vult `{{BOEK_KENMERK}}` in P2-A (regel 3) — **vóór de avond invullen!** | `[KENMERK VAN HET BOEK INVULLEN]` |
 | `audioAchiel` | Pad naar het audiofragment | `audio/achiel.mp3` |
 
 Alle vergelijkingen zijn hoofdletterongevoelig; spaties vooraan/achteraan worden genegeerd. De codes staan in platte tekst (het is een spel) maar worden nergens in de speler-UI getoond; de volledige lijst staat op `/notaris`.

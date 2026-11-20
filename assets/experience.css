@@ -313,15 +313,15 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 /* The six positions remain one left-to-right track at every viewport width. */
 .archief-pagina { --max: 88rem; }
 .archief-richting { display: flex; justify-content: space-between; gap: 1rem; margin: 1rem 0 .5rem; color: var(--lak-donker); font-size: .9rem; }
-.archief-overzicht { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .4rem; padding: 0; list-style: none; margin: .75rem 0; }
+.archief-overzicht { display: grid; grid-template-columns: repeat(6, minmax(max-content, 1fr)); gap: min(.4rem, 4px); padding: .25rem; list-style: none; margin: .75rem 0; overflow-x: auto; overscroll-behavior-x: contain; }
 .archief-overzicht li { min-width: 0; }
-.archief-overzicht button { display: block; width: 100%; min-height: 48px; padding: .5rem .2rem; background: #fff8e34d; color: var(--lak-donker); border-color: #9b7339; font-size: .95rem; }
+.archief-overzicht button { display: block; width: 100%; height: 100%; min-width: 6.5rem; min-height: 48px; padding: .5rem .6rem; background: #fff8e34d; color: var(--lak-donker); border-color: #9b7339; font-size: .95rem; }
 .archief-overzicht button:hover { background: #fff8e3b3; color: var(--lak-donker); }
 .archief-overzicht button[aria-current="true"] { background: var(--lak-donker); color: #fff2d7; border-color: var(--lak-donker); }
-.archief-overzicht button small { display: block; font-size: .75rem; }
+.archief-overzicht button small { display: block; font-size: .85rem; white-space: nowrap; }
 .archief-bekeken { color: var(--inkt-zacht); font-size: .9rem; margin: .5rem 0; }
 .mapkaarten {
-  display: grid; grid-auto-flow: column; grid-auto-columns: min(74%, 20rem);
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(min(100%, 12rem), min(74%, 20rem));
   position: relative;
   gap: 1rem; padding: .5rem .25rem 1rem; margin: .5rem 0 0;
   overflow-x: auto; overscroll-behavior-x: contain;
@@ -329,7 +329,7 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
   scrollbar-width: auto;
 }
 .mapkaart {
-  display: flex; flex-direction: column;
+  display: flex; flex-direction: column; align-items: stretch;
   min-width: 0; height: 100%;
   position: relative; padding: 1rem; margin: 0;
   background: #fff8e3b3; border: 3px double #99643d;
@@ -337,16 +337,18 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
   cursor: grab; scroll-snap-align: start;
   touch-action: pan-y pinch-zoom; user-select: none; -webkit-user-select: none;
 }
-.mapkaart > div:not(.positie):not(.knoppen) { flex: 1; }
+.mapkaart > div:not(.positie):not(.knoppen) { flex: 1; display: flex; flex-direction: column; }
 .mapkaart .positie { font-size: .9rem; color: var(--inkt-zacht); margin: .65rem 0; font-weight: 400; }
 .mapkaart .kop { display: block; }
 .mapkaart .kop .naam { font-size: 1.15rem; font-weight: 400; }
 .mapkaart .kop .folio { display: block; font-size: 1rem; margin-top: .25rem; color: var(--lak-donker); }
 .mapkaart .raadsel { margin: 1rem 0; font-size: 1rem; line-height: 1.55; }
+.mapkaart .symbool { margin-top: auto; }
 .mapkaart .symbool label { display: block; margin: .75rem 0 .25rem; font-size: .9rem; }
 .mapkaart .symbool select { display: block; width: 100%; max-width: none; min-height: 48px; font-size: 1rem; }
-.mapkaart .knoppen { display: flex; flex-direction: row; justify-content: space-between; gap: .5rem; margin-top: 1rem; }
-.mapkaart .knoppen button { flex: 1; min-width: 0; min-height: 44px; padding: .55rem .3rem; font-size: .9rem; }
+.mapkaart .knoppen { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: .5rem; margin-top: 1rem; }
+.mapkaart .knoppen button { flex: 1 1 4.5em; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; min-height: 44px; padding: .55rem .3rem; font-size: .9rem; }
+.mapkaart .knoppen button span { display: block; white-space: nowrap; }
 .mapkaart .sleepgreep { min-height: 44px; padding: .5rem; font-size: .9rem; text-align: left; cursor: grab; touch-action: none; background: #9b733914; color: var(--lak-donker); border: 1px solid #9b733980; box-shadow: none; }
 .mapkaart .sleepgreep:active { cursor: grabbing; }
 .mapkaart :is(input, select, textarea, label, a, button:not(.sleepgreep)) { touch-action: manipulation; user-select: text; -webkit-user-select: text; cursor: auto; }
@@ -363,12 +365,13 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 .vig-woorden { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 1rem; padding: .25rem .25rem 1rem; max-width: 100%; }
 .vig-woord { flex: none; gap: .25rem; }
 .vig-letter { width: 2.75rem; gap: .35rem; }
+.vig-letter.vig-vast { width: .9rem; }
 .vig-letter .c { font-size: 1.1rem; min-height: 2rem; font-variant-numeric: tabular-nums; }
 .vig-letter input { width: 2.75rem; max-width: 2.75rem; min-height: 44px; padding: .4rem 0; font-size: 1rem; }
 .vig-legenda { font-size: .9rem; }
 .vig-uitleg { font-size: .95rem; }
 @media (min-width: 1280px) {
-  .mapkaarten { grid-auto-columns: minmax(0, 1fr); gap: .75rem; }
+  .mapkaarten { grid-auto-columns: minmax(11rem, 1fr); gap: .75rem; }
   .mapkaart { padding: .85rem; }
 }
 @media (max-width: 760px) {
@@ -409,34 +412,44 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
 .p3-werkblad > h2, .p3-station > h2, .p3-vrijgave > h2 { margin-top: 0; }
-.p3-stroken { max-width: 39rem; overflow-x: auto; }
+.p3-vergelijking { display: grid; gap: .75rem; align-items: start; max-width: 39rem; }
+.p3-combinatietabel { width: auto; margin: 0; border: 1px solid #99643d; background: #fff8e3; }
+.p3-combinatietabel caption { text-align: left; font-weight: 700; }
+.p3-combinatietabel td { padding: .2rem .65rem; }
+.p3-vergelijkregel { display: grid; grid-template-columns: repeat(5, 1.25rem); place-items: center; line-height: 1; }
+.p3-symbool { display: block; width: 1rem; height: 1rem; fill: var(--wijn); }
+@media (min-width: 38rem) {
+  .p3-vergelijking { grid-template-columns: auto minmax(0, 1fr); }
+}
+.p3-stroken { max-width: 39rem; }
 .p3-stroken table {
   margin: 0;
   width: 100%;
-  min-width: 14rem;
   table-layout: fixed;
   background: #f7e4c4;
   border: 1px solid #99643d;
 }
-.p3-stroken :is(th, td) { padding: .15rem 0; text-align: center; vertical-align: middle; border: 1px solid #99643d70; }
+.p3-stroken :is(th, td) { padding: 0; text-align: center; vertical-align: middle; border: 0; }
 .p3-stroken tr > :first-child { width: 2rem; background: #e6c698; }
 .p3-stroken thead th { background: #e6c698; color: var(--inkt); padding: .35rem 0; }
 .p3-stroken th small { display: block; font-size: .875rem; font-weight: 400; }
-.p3-stroken tbody tr { height: 2rem; }
-.p3-stroken td:nth-child(odd) { background: #99643d12; }
+.p3-stroken tbody tr { height: 1.375rem; }
+.p3-stroken tbody td { line-height: 1; }
+.p3-stroken tbody th { font-size: .875rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.p3-stroken .p3-papierstrook { background: #fff8e3; border-inline: 1px solid #99643d70; border-bottom: 1px solid #99643d35; }
 .p3-band {
-  display: inline-grid;
+  display: grid;
   width: min(2.4rem, 100%);
-  min-height: 1.55rem;
+  min-height: 1rem;
+  margin-inline: auto;
   place-items: center;
-  font: 1.1rem/1 "Segoe UI Symbol", "Apple Symbols", sans-serif;
-  color: var(--wijn);
   background: var(--papier-donker);
   border-block: 1px solid #99643d;
 }
-.p3-stroken td > .p3-band { vertical-align: middle; }
 .p3-invoer { margin-top: 1.25rem; }
 .p3-invoer > div, .p3-sleutelactie { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .85rem; }
+.p3-invoer > div { align-items: end; }
+.p3-invoer label { display: block; }
 .p3-invoer input { width: 12rem; max-width: 100%; }
 .p3-invoer .melding:not(:empty), #p3-sleutel-form .melding:not(:empty) { margin-top: .55rem; }
 .p3-vrijgave { margin-block: 1.75rem; padding: 1rem clamp(.8rem, 3vw, 1.5rem); background: #f7e4c4; border: 3px double #99643d; }
@@ -473,9 +486,9 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 .p3-visueel-verborgen { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @media (max-width: 460px) {
   .p3-stroken tr > :first-child { width: 1.75rem; }
-  .p3-stroken th { font-size: .875rem; }
+  .p3-stroken th, .p3-stroken th small { font-size: .875rem; }
   .p3-sleutelblad { grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr)); }
-  .p3-invoer input, .p3-invoer button, .p3-sleutelactie button { width: 100%; }
+  .p3-invoer > div > span, .p3-invoer select, .p3-invoer input, .p3-invoer button, .p3-sleutelactie button { width: 100%; }
 }
 @media print {
   body { background: white; color: black; }

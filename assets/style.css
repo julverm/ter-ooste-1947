@@ -396,9 +396,27 @@ button[disabled] { opacity: 0.45; cursor: not-allowed; }
 
 /* Vigenère-hulptabel */
 .vig-regel { margin: 1em 0 1.5em; }
+.vig-alfabet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(2.65rem, 1fr));
+  gap: 0.25rem;
+  margin: 0.5em 0 1em;
+  max-width: 70ch;
+}
+.vig-alfabet span {
+  padding: 0.2em 0.1em;
+  border: 1px solid var(--koper);
+  font-family: var(--font-type);
+  font-size: 1rem;
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+}
 .vig-woorden { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; }
 .vig-woord { display: flex; gap: 0.15rem; }
 .vig-letter { display: grid; grid-template-rows: auto auto auto; gap: 0.15rem; width: 1.7rem; }
+.vig-letter.vig-vast { width: 0.9rem; }
+.vig-vast .c { border-bottom-color: transparent; }
 .vig-letter .c {
   font-family: var(--font-type); font-weight: 700; text-align: center; font-size: 1.05rem;
   border-bottom: 1px solid var(--inkt-zacht);

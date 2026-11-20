@@ -17,7 +17,6 @@ window.TER_OOSTE_CONFIG = {
   /* Puzzelcodes (canon: moorddiner-puzzelontwerp.md). Wijzig deze NIET
      zonder de bijbehorende documenten aan te passen (zie §7.1 daar). */
   codeP1: "6431",        // Dossier I  — opent P1-D en P1-E
-  wachtwoordP3: "NACHT", // Dossier III — dossierwoord uit regel B van P2
   codeKluis: "6427",     // Dossier IV — digitale kluis
 
   /* Hintcodes voor /hints: per puzzel hint 1 en hint 2. */
@@ -34,10 +33,6 @@ window.TER_OOSTE_CONFIG = {
 
   /* Wachtwoord voor de hostpagina /notaris. Niet met spelers delen. */
   hostwachtwoord: "CALLEWAERT",
-
-  /* P2-A, regel 3: één onderscheidend kenmerk van het gekozen boek,
-     zonder titel. Bv. "met de rode rug en gouden letters". */
-  boekKenmerk: "[KENMERK VAN HET BOEK INVULLEN]",
 
   /* Pad naar het audiofragment (relatief t.o.v. de map van de site). */
   audioAchiel: "audio/achiel.mp3"

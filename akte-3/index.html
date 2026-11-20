@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#360f19">
   <meta name="robots" content="noindex,nofollow">
-  <title>Akte III — Wat bereikte glas 7? · Ter Ooste 1947</title>
+  <title>Akte III — Het drankonderzoek · Ter Ooste 1947</title>
   <link rel="stylesheet" href="../assets/style.css">
   <link rel="stylesheet" href="../assets/experience.css">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
@@ -29,7 +29,7 @@
 
   <main id="inhoud">
     <header class="pagina-kop">
-      <h1>Wat bereikte glas 7?</h1>
+      <h1>Het drankonderzoek</h1>
       <p class="kopregel">Akte III</p>
     </header>
 
@@ -44,29 +44,32 @@
     </section>
 
     <div id="akte-inhoud" class="verborgen">
-      <section class="vel poort" id="p3-poort" aria-labelledby="p3g-kop">
-        <h2 id="p3g-kop">Open het dossier</h2>
-        <form id="p3-form">
-          <label for="p3-woord">Dossierwoord uit Akte II</label>
-          <input id="p3-woord" class="code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
-          <button type="submit">Open het dossier</button>
-          <p class="melding" role="status"></p>
-        </form>
-      </section>
-
-      <div id="p3-dossier" class="verborgen">
-        <p id="p3-inleiding" tabindex="-1">Laat op de avond vroeg de baron om een glas pure picon. Ook een andere aanwezige koos die drank. Onderzoek wat er in het glas van de baron terechtkwam en wie toegang had tot de voorraadkast.</p>
+      <div id="p3-dossier">
+        <p id="p3-inleiding">Laat op de avond vroegen de baron en een andere aanwezige om pure picon. De notaris liet beide glazen onderzoeken.</p>
         <section class="vel p3-werkblad" id="p3-werkblad" aria-labelledby="p3-werk-kop">
           <h2 id="p3-werk-kop">1. Vergelijk de stroken</h2>
-          <p>Negeer banden met dezelfde <strong>hoogte én hetzelfde symbool</strong> als in zuivere picon. Welke referentie heeft precies de banden die in monster B overblijven?</p>
-          <div class="p3-stroken" id="p3-monsters"></div>
+          <p>Vergelijk beide glazen. Splits samengestelde vlekken met de tabel en schrap alleen de delen die op dezelfde hoogte ook in zuivere picon of lak D staan. In welk glas blijft iets onbekends over, en welke referentie past?</p>
+          <div class="p3-vergelijking">
+            <div id="p3-combinaties"></div>
+            <div class="p3-stroken" id="p3-monsters"></div>
+          </div>
           <h3>Referentiestroken</h3>
           <div class="p3-stroken" id="p3-referenties"></div>
           <form class="p3-invoer" id="p3-strook-form">
-            <label for="p3-strook-code">Referentiecode</label>
             <div>
-              <input id="p3-strook-code" class="code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
-              <button type="submit">Controleer de code</button>
+              <span>
+                <label for="p3-monster">Glas</label>
+                <select id="p3-monster" required>
+                  <option value="">Kies een glas</option>
+                  <option value="B">B · Glas 7</option>
+                  <option value="C">C · Glas 2</option>
+                </select>
+              </span>
+              <span>
+                <label for="p3-strook-code">Referentiecode</label>
+                <input id="p3-strook-code" class="code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
+              </span>
+              <button type="submit">Controleer je antwoord</button>
             </div>
             <p class="melding" role="status"></p>
           </form>
@@ -74,7 +77,7 @@
 
         <section class="p3-vrijgave" id="p3-register" aria-labelledby="p3-register-kop" hidden>
           <h2 id="p3-register-kop">Uitslag: digitalis in glas 7</h2>
-          <p>L23 is een digitalispreparaat uit de afgesloten voorraadkast. Het zat in het glas van de baron, niet in het flesmonster of in glas 2.</p>
+          <p>L23 is een digitalispreparaat uit de afgesloten voorraadkast. Het zat in het glas van de baron, niet in glas 2.</p>
         </section>
 
         <section class="vel p3-station" id="p3-sleutels" aria-labelledby="p3-sleutels-kop" hidden>
@@ -116,23 +119,8 @@
   <script>
     (function () {
       var T = window.TerOoste;
+      document.addEventListener("akte-open", T.onderzoekP3, { once: true });
       T.aktepoort(3);
-      T.codepoort({
-        formId: "p3-form",
-        doelId: "p3-dossier",
-        verbergId: "p3-poort",
-        code: T.CFG.wachtwoordP3,
-        opslag: "p3.open",
-        weigering: "Onjuist dossierwoord.",
-        naOpen: function (animatie) {
-          T.onderzoekP3();
-          if (animatie) {
-            var inleiding = document.getElementById("p3-inleiding");
-            inleiding.focus({ preventScroll: true });
-            inleiding.scrollIntoView();
-          }
-        }
-      });
     })();
   </script>
 </body>

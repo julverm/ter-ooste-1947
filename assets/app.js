@@ -183,7 +183,7 @@
     };
   }
 
-  /* Codepoort binnen een akte (P1-code, NACHT, host) */
+  /* Codepoort voor de P1-code en de hostpagina */
   function codepoort(opties) {
     var form = document.getElementById(opties.formId);
     var doel = document.getElementById(opties.doelId);
@@ -340,9 +340,9 @@
   var HINTS = [
     { id: "p1-1", puzzel: "Dossier I", nr: 1, tekst: ["Maak eerst twee vaste blokjes: ANKER–ROOS en BEL–SLEUTEL. ‘Precies twee mappen ertussen’ betekent een verschil van drie posities."] },
     { id: "p1-2", puzzel: "Dossier I", nr: 2, tekst: ["Test het ANKER op 2, 3, 4 en 5. Op 3 raakt de KROON geblokkeerd; op 4 past de BEL niet; op 5 botsen KROON en LANTAARN met regel 6."] },
-    { id: "p2-1", puzzel: "Dossier II", nr: 1, tekst: ["Kijk naar de boekenkast. 1947 is meer dan een jaartal: het is ook een bladzijde."], alternatief: "Wie het briefje al heeft, krijgt in de plaats: “De sleutel heeft zes letters. Spaties onderbreken de herhaling niet.”" },
-    { id: "p2-2", puzzel: "Dossier II", nr: 2, tekst: ["De eerste twee woorden van regel A worden DE PICONFLES. Controleer daarmee de uitlijning."] },
-    { id: "p3-1", puzzel: "Dossier III", nr: 1, tekst: ["Schrap eerst in monster B alles wat ook in zuivere picon staat. Vergelijk daarna hoogte én symbool."] },
+    { id: "p2-1", puzzel: "Dossier II", nr: 1, tekst: ["Zoek een kookboek in de boekenkast. ‘Gisteren, vandaag en morgen’ en ‘trek’ wijzen elk naar één woord in de titel."], alternatief: "Wie het briefje al heeft, krijgt in de plaats: “De sleutel heeft zes letters. Spaties onderbreken de herhaling niet.”" },
+    { id: "p2-2", puzzel: "Dossier II", nr: 2, tekst: ["Open het kookboek Altijd honger op bladzijde 47."], alternatief: "Wie het briefje al heeft, kan de uitlijning controleren: de eerste twee woorden worden DE PICONFLES." },
+    { id: "p3-1", puzzel: "Dossier III", nr: 1, tekst: ["Splits de samengestelde symbolen in beide glazen. Schrap alleen de delen die op die hoogte ook in zuivere picon of lak D staan. Vergelijk alleen de overblijvende vlekken met de referenties."] },
     { id: "p3-2", puzzel: "Dossier III", nr: 2, tekst: ["Lees elke sleutel vanaf de kop, ook als de foto omgedraaid is. Er passen twee sleutels, van twee verschillende personen."] },
     { id: "p4-1", puzzel: "Dossier IV", nr: 1, tekst: ["Het begin van de kistcode komt uit de eerder gevonden toegangscode, niet uit de foliocijfers van willekeurige losse kaarten."] },
     { id: "p4-2", puzzel: "Dossier IV", nr: 2, tekst: ["De toegangscode was 6431. Gebruik alleen de eerste twee cijfers; voor de overige cijfers heb je de controleminuut en het glasnummer nodig."] }
@@ -368,7 +368,14 @@
         });
       }
       overzicht.querySelectorAll("button").forEach(function (knop, i) {
-        if (i === gekozen) knop.setAttribute("aria-current", "true");
+        if (i === gekozen) {
+          knop.setAttribute("aria-current", "true");
+          var rail = overzicht.getBoundingClientRect();
+          var r = knop.getBoundingClientRect();
+          var delta = r.left < rail.left + 4 ? r.left - rail.left - 4 :
+            r.right > rail.right - 4 ? r.right - rail.right + 4 : 0;
+          if (delta) overzicht.scrollTo({ left: overzicht.scrollLeft + delta, behavior: "auto" });
+        }
         else knop.removeAttribute("aria-current");
       });
       var tekst = gekozen < 0 ? "Alle zes kaarten in beeld" : "In beeld: positie " + (gekozen + 1) + " van 6 · mapkaart " + items[gekozen].dataset.kaart;
@@ -394,10 +401,10 @@
         var knop = document.createElement("button");
         knop.type = "button";
         knop.textContent = i + 1;
-        var naam = document.createElement("small");
-        naam.textContent = "Map " + li.dataset.kaart;
-        knop.appendChild(naam);
         var symbool = li.querySelector("select").value;
+        var naam = document.createElement("small");
+        naam.textContent = symbool || "Map " + li.dataset.kaart;
+        knop.appendChild(naam);
         knop.setAttribute("aria-label", "Ga naar positie " + (i + 1) + ", mapkaart " + li.dataset.kaart + (symbool ? ", " + symbool : ""));
         knop.addEventListener("click", function () {
           zichtbaar(li);
@@ -429,8 +436,14 @@
       li.draggable = false;
       var links = li.querySelector("[data-omhoog]");
       var rechts = li.querySelector("[data-omlaag]");
-      links.textContent = "← Links";
-      rechts.textContent = "Rechts →";
+      [links, rechts].forEach(function (knop, i) {
+        var tekst = document.createElement("span");
+        tekst.textContent = i === 0 ? "Links" : "Rechts";
+        var pijl = document.createElement("span");
+        pijl.textContent = i === 0 ? "←" : "→";
+        pijl.setAttribute("aria-hidden", "true");
+        knop.replaceChildren(tekst, pijl);
+      });
       links.setAttribute("aria-label", "Mapkaart " + li.dataset.kaart + " naar links");
       rechts.setAttribute("aria-label", "Mapkaart " + li.dataset.kaart + " naar rechts");
       var greep = document.createElement("button");
@@ -645,13 +658,24 @@
   document.addEventListener("dossier-open", wegwijzer);
 
   function onderzoekP3() {
-    var picon = { 2: "●", 5: "▲", 7: "■" };
-    var monsterB = { 1: "◆", 2: "●", 4: "★", 5: "▲", 6: "◆", 7: "■" };
+    var combinaties = {
+      vijfhoek: ["●", "◆"],
+      zandloper: ["✚", "★"],
+      zeshoek: ["▲", "★"],
+      maan: ["▲", "◆"],
+      klaver: ["●", "★"]
+    };
+    var picon = ["Picon", "Zuiver", { 2: "●", 5: "▲", 7: "■" }];
+    var lak = ["D", "Lak", { 3: "✚", 5: "◆" }];
+    var monsterB = ["B", "Glas 7", { 1: "◆", 2: "vijfhoek", 3: "zandloper", 5: "zeshoek", 7: "■" }];
+    var glas2 = ["C", "Glas 2", { 2: "●", 5: "maan", 7: "■" }];
+    var monsters = [monsterB, glas2];
     var referenties = [
-      ["M14", "", { 1: "◆", 5: "▲", 6: "◆" }],
-      ["N08", "", { 3: "◆", 4: "★", 6: "◆" }],
-      ["L23", "", { 1: "◆", 4: "★", 6: "◆" }],
-      ["P31", "", { 1: "◆", 4: "✚", 6: "◆" }]
+      ["K17", "", { 1: "◆", 2: "◆", 3: "✚", 5: "★" }, "Kijk in strook D welk deel van een samengestelde vlek van de lak komt."],
+      ["N08", "", { 1: "◆", 3: "★" }, "Een samengestelde vlek bevat twee stoffen. Schrap alleen het deel dat ook in zuivere picon staat."],
+      ["L23", "", { 1: "◆", 2: "◆", 3: "★", 5: "★" }],
+      ["P31", "", { 1: "◆", 2: "◆", 3: "★", 5: "◆" }, "Eén symbool klopt niet."],
+      ["M14", "", { 1: "◆", 2: "◆", 4: "★", 5: "★" }, "Eén hoogte klopt niet."]
     ];
     var profiel = "31423";
     var sleutels = [
@@ -662,17 +686,37 @@
       ["Cyriel", "21423"], ["Cyriel", "43211"],
       ["Deman", "31323", true], ["Deman", "24134"]
     ];
-    var namen = { "●": "cirkel", "▲": "driehoek", "■": "vierkant", "◆": "ruit", "★": "ster", "✚": "kruis" };
+    var namen = {
+      "●": "cirkel", "▲": "driehoek", "■": "vierkant", "◆": "ruit", "★": "ster", "✚": "kruis",
+      vijfhoek: "vijfhoek", zandloper: "zandloper", zeshoek: "zeshoek", maan: "halve maan", klaver: "klaver"
+    };
+    var vormen = {
+      "●": "M10 2a8 8 0 1 1 0 16a8 8 0 1 1 0-16Z",
+      "▲": "M10 2 19 18H1Z", "■": "M3 3h14v14H3Z", "◆": "M10 1l9 9-9 9-9-9Z",
+      "★": "M10 1l2.7 5.7 6.3.8-4.6 4.5 1.1 6.3-5.5-3-5.5 3 1.1-6.3L1 7.5l6.3-.8Z",
+      "✚": "M7 2h6v5h5v6h-5v5H7v-5H2V7h5Z",
+      vijfhoek: "M10 1l9 7-3.5 10h-11L1 8Z",
+      zandloper: "M3 2h14c0 4-2 6-5 8 3 2 5 4 5 8H3c0-4 2-6 5-8-3-2-5-4-5-8Z",
+      zeshoek: "M5 2h10l4.5 8-4.5 8H5L.5 10Z",
+      maan: "M14.5 2a8.6 8.6 0 1 0 3.2 13A8.3 8.3 0 0 1 14.5 2Z",
+      klaver: "M10 6a4 4 0 1 1 7 3 4 4 0 1 1-5.5 5.5l.5 4h-4l.5-4A4 4 0 1 1 3 9a4 4 0 1 1 7-3Z"
+    };
     var $ = function (id) { return document.getElementById(id); };
     var strookForm = $("p3-strook-form");
     var sleutelForm = $("p3-sleutel-form");
     var stofBekend = opslag.is("p3.stroken");
     var slotOpen = stofBekend && opslag.is("p3.sleutels");
     var selectie = new Set();
-    var rest = Object.keys(monsterB).filter(function (h) { return monsterB[h] !== picon[h]; });
-    var juisteStrook = referenties.find(function (ref) {
-      return Object.keys(ref[2]).length === rest.length && rest.every(function (h) { return ref[2][h] === monsterB[h]; });
-    })[0];
+    function restvlekken(strook) {
+      return Object.keys(strook[2]).flatMap(function (hoogte) {
+        var teken = strook[2][hoogte];
+        return (combinaties[teken] || [teken]).filter(function (deel) {
+          return deel !== picon[2][hoogte] && deel !== lak[2][hoogte];
+        }).map(function (deel) {
+          return [hoogte, deel];
+        });
+      });
+    }
     var juisteSleutels = sleutels.map(function (sleutel, i) {
       var vanafKop = sleutel[2] ? sleutel[1].split("").reverse().join("") : sleutel[1];
       return vanafKop === profiel ? i : -1;
@@ -682,6 +726,33 @@
       var el = document.createElement(tag);
       if (tekst) el.textContent = tekst;
       return el;
+    }
+
+    function symbool(teken) {
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.classList.add("p3-symbool");
+      svg.setAttribute("viewBox", "0 0 20 20");
+      svg.setAttribute("role", "img");
+      svg.setAttribute("aria-label", namen[teken]);
+      var vorm = document.createElementNS(svg.namespaceURI, "path");
+      vorm.setAttribute("d", vormen[teken]);
+      svg.appendChild(vorm);
+      return svg;
+    }
+
+    function combinatietabel() {
+      var tabel = element("table");
+      tabel.className = "p3-combinatietabel";
+      tabel.createCaption().textContent = "Combinatietabel";
+      var rijen = tabel.createTBody();
+      Object.keys(combinaties).forEach(function (teken) {
+        var delen = combinaties[teken];
+        var regel = element("span");
+        regel.className = "p3-vergelijkregel";
+        regel.append(symbool(delen[0]), element("span", "+"), symbool(delen[1]), element("span", "="), symbool(teken));
+        rijen.insertRow().insertCell().appendChild(regel);
+      });
+      $("p3-combinaties").appendChild(tabel);
     }
 
     function stroken(tabelhouder, titel, kolommen) {
@@ -701,21 +772,20 @@
         kop.appendChild(th);
       });
       var rijen = tabel.createTBody();
-      for (var hoogte = 8; hoogte >= 1; hoogte--) {
+      for (var hoogte = 8; hoogte >= 0; hoogte--) {
         var rij = rijen.insertRow();
         var maat = element("th", String(hoogte));
         maat.scope = "row";
         rij.appendChild(maat);
         kolommen.forEach(function (kolom) {
           var cel = rij.insertCell();
-          var symbool = kolom[2][hoogte];
-          if (!symbool) return;
-          var band = element("span", symbool);
+          cel.className = "p3-papierstrook";
+          var teken = kolom[2][hoogte];
+          if (!teken) return;
+          var band = element("span");
           band.className = "p3-band";
-          band.setAttribute("aria-hidden", "true");
-          var beschrijving = element("span", namen[symbool]);
-          beschrijving.className = "p3-visueel-verborgen";
-          cel.append(band, beschrijving);
+          band.appendChild(symbool(teken));
+          cel.appendChild(band);
         });
       }
       tabelhouder.appendChild(tabel);
@@ -755,19 +825,26 @@
       $("p3-sleutelactie").hidden = slotOpen;
     }
 
-    stroken($("p3-monsters"), "Monsters en zuivere picon", [
-      ["Zuivere", "picon", picon], ["A", "Fles", picon],
-      ["B", "Glas 7", monsterB], ["C", "Glas 2", picon]
-    ]);
+    combinatietabel();
+    stroken($("p3-monsters"), "Glazen en controles", [picon, lak].concat(monsters));
     stroken($("p3-referenties"), "Gecodeerde referentiestroken", referenties);
     strookForm.addEventListener("submit", function (e) {
       e.preventDefault();
       if (stofBekend) return;
+      var monsterVeld = $("p3-monster");
+      var monster = monsters.find(function (strook) { return strook[0] === monsterVeld.value; });
+      var rest = monster ? restvlekken(monster) : [];
+      if (!rest.length) {
+        meld(strookForm.querySelector(".melding"), "In dit glas blijft niets onbekends over. Vergelijk de twee glazen opnieuw.");
+        monsterVeld.focus();
+        return;
+      }
       var code = norm($("p3-strook-code").value);
-      if (code !== juisteStrook) {
-        meld(strookForm.querySelector(".melding"), referenties.some(function (ref) { return ref[0] === code; })
-          ? "Deze strook past niet. Vergelijk hoogte en symbool opnieuw."
-          : "Kies een code van de referentiestroken.");
+      var ref = referenties.find(function (strook) { return strook[0] === code; });
+      if (!ref || Object.keys(ref[2]).length !== rest.length || !rest.every(function (band) {
+        return ref[2][band[0]] === band[1];
+      })) {
+        meld(strookForm.querySelector(".melding"), ref && ref[3] || "Kies een passende code van de referentiestroken.");
         $("p3-strook-code").select();
         return;
       }
