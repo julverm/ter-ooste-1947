@@ -55,6 +55,7 @@
       </section>
 
       <div id="p3-dossier" class="verborgen">
+        <p id="p3-inleiding" tabindex="-1">Laat op de avond vroeg de baron om een glas pure picon. Ook een andere aanwezige koos die drank. Onderzoek wat er in het glas van de baron terechtkwam en wie toegang had tot de voorraadkast.</p>
         <section class="vel p3-werkblad" id="p3-werkblad" aria-labelledby="p3-werk-kop">
           <h2 id="p3-werk-kop">1. Vergelijk de stroken</h2>
           <p>Negeer banden met dezelfde <strong>hoogte én hetzelfde symbool</strong> als in zuivere picon. Welke referentie heeft precies de banden die in monster B overblijven?</p>
@@ -125,7 +126,11 @@
         weigering: "Onjuist dossierwoord.",
         naOpen: function (animatie) {
           T.onderzoekP3();
-          if (animatie) document.getElementById("p3-werk-kop").scrollIntoView();
+          if (animatie) {
+            var inleiding = document.getElementById("p3-inleiding");
+            inleiding.focus({ preventScroll: true });
+            inleiding.scrollIntoView();
+          }
         }
       });
     })();
