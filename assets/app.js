@@ -343,7 +343,7 @@
     { id: "p2-1", puzzel: "Dossier II", nr: 1, tekst: ["Zoek een kookboek in de boekenkast. ‘Gisteren, vandaag en morgen’ en ‘trek’ wijzen elk naar één woord in de titel."], alternatief: "Wie het briefje al heeft, krijgt in de plaats: “De sleutel heeft zes letters. Spaties onderbreken de herhaling niet.”" },
     { id: "p2-2", puzzel: "Dossier II", nr: 2, tekst: ["Open het kookboek Altijd honger op bladzijde 47."], alternatief: "Wie het briefje al heeft, kan de uitlijning controleren: de eerste twee woorden worden DE PICONFLES." },
     { id: "p3-1", puzzel: "Dossier III", nr: 1, tekst: ["Splits de samengestelde symbolen in beide glazen. Schrap alleen de delen die op die hoogte ook in zuivere picon of lak D staan. Vergelijk alleen de overblijvende vlekken met de referenties."] },
-    { id: "p3-2", puzzel: "Dossier III", nr: 2, tekst: ["Lees elke sleutel vanaf de kop, ook als de foto omgedraaid is. Er passen twee sleutels, van twee verschillende personen."] },
+    { id: "p3-2", puzzel: "Dossier III", nr: 2, tekst: ["Keer bij een wasafdruk de volgorde om én trek elke diepte af van 5. Trek op een bestelkaart elke maat af van 5 en keer de rij alleen om als ze bij de punt begint. Er passen twee sleutels."] },
     { id: "p4-1", puzzel: "Dossier IV", nr: 1, tekst: ["Het begin van de kistcode komt uit de eerder gevonden toegangscode, niet uit de foliocijfers van willekeurige losse kaarten."] },
     { id: "p4-2", puzzel: "Dossier IV", nr: 2, tekst: ["De toegangscode was 6431. Gebruik alleen de eerste twee cijfers; voor de overige cijfers heb je de controleminuut en het glasnummer nodig."] }
   ];
@@ -679,13 +679,14 @@
     ];
     var profiel = "31423";
     var sleutels = [
-      ["Marie", "31423"], ["Marie", "22141"],
-      ["Victor", "32413", true], ["Victor", "13324"],
-      ["Achiel", "32413"], ["Achiel", "44213", true],
-      ["Gaston", "31422"], ["Gaston", "11332", true],
-      ["Cyriel", "21423"], ["Cyriel", "43211"],
-      ["Deman", "31323", true], ["Deman", "24134"]
+      ["Marie", "was", "23142"], ["Marie", "was", "24132"],
+      ["Victor", "kaart", "23142", true], ["Victor", "was", "32413"],
+      ["Achiel", "tekening", "32412"], ["Achiel", "kaart", "24132", true],
+      ["Gaston", "tekening", "31422"], ["Gaston", "kaart", "11332"],
+      ["Cyriel", "tekening", "21423"], ["Cyriel", "was", "43211"],
+      ["Deman", "tekening", "31323", true], ["Deman", "kaart", "24134"]
     ];
+    var sleutelvormen = { tekening: "Tekening", was: "Wasafdruk", kaart: "Bijbestelling" };
     var namen = {
       "●": "cirkel", "▲": "driehoek", "■": "vierkant", "◆": "ruit", "★": "ster", "✚": "kruis",
       vijfhoek: "vijfhoek", zandloper: "zandloper", zeshoek: "zeshoek", maan: "halve maan", klaver: "klaver"
@@ -717,9 +718,11 @@
         });
       });
     }
-    var juisteSleutels = sleutels.map(function (sleutel, i) {
-      var vanafKop = sleutel[2] ? sleutel[1].split("").reverse().join("") : sleutel[1];
-      return vanafKop === profiel ? i : -1;
+    var juisteSleutels = sleutels.map(function ([, vorm, waarden, omgekeerd], i) {
+      var hoogtes = waarden.split("");
+      if (vorm !== "tekening") hoogtes = hoogtes.map(function (maat) { return 5 - Number(maat); });
+      if (vorm === "was" || omgekeerd) hoogtes.reverse();
+      return hoogtes.join("") === profiel ? i : -1;
     }).filter(function (i) { return i !== -1; });
 
     function element(tag, tekst) {
@@ -811,6 +814,19 @@
       return svg;
     }
 
+    function wasafdruk(dieptes) {
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 202 68");
+      svg.setAttribute("aria-hidden", "true");
+      var holtes = dieptes.split("").map(function (diepte, i) {
+        return "V" + (21 + 7 * Number(diepte)) + "H" + (18 + 26 * (i + 1));
+      }).join("");
+      svg.innerHTML = '<rect class="p3-was" x="3" y="5" width="196" height="55" rx="8"/>' +
+        '<path class="p3-washolte" d="M18 21' + holtes + 'V26H174V15H18Z"/>' +
+        '<circle class="p3-washolte" cx="174" cy="21" r="13"/><circle class="p3-was" cx="174" cy="21" r="5"/>';
+      return svg;
+    }
+
     function gaNaar(vrijgave) {
       var kop = vrijgave.querySelector("h2");
       kop.tabIndex = -1;
@@ -855,9 +871,6 @@
     });
 
     $("p3-slotprofiel").appendChild(sleuteltekening(profiel, false));
-    var profielTekst = element("span", "Van links naar rechts: tandhoogtes " + profiel.split("").join(", ") + ".");
-    profielTekst.className = "p3-visueel-verborgen";
-    $("p3-slotprofiel").appendChild(profielTekst);
     if (slotOpen) juisteSleutels.forEach(function (i) { selectie.add(i); });
     else (opslag.get("p3.selectie") || "").split(",").forEach(function (i) {
       if (/^(?:[0-9]|1[01])$/.test(i)) selectie.add(Number(i));
@@ -867,21 +880,42 @@
       $("p3-sleutelteller").textContent = selectie.size === 1 ? "1 sleutel gekozen" : selectie.size + " sleutels gekozen";
     }
 
-    var sleutelknoppen = sleutels.map(function (sleutel, i) {
+    var sleutelknoppen = sleutels.map(function ([eigenaar, vorm, waarden, omgekeerd], i) {
       var nummer = String(i + 1).padStart(2, "0");
       var knop = element("button");
-      var naam = element("span", nummer + " · " + sleutel[0]);
+      var naam = element("span", nummer + " · " + eigenaar);
       naam.className = "p3-sleutelnaam";
-      var beschrijving = element("span", "Kop " + (sleutel[2] ? "rechts" : "links") +
-        ". Tandhoogtes van links naar rechts: " + sleutel[1].split("").join(", ") + ".");
-      beschrijving.className = "p3-visueel-verborgen";
+      var label = element("span", sleutelvormen[vorm]);
+      label.className = "p3-sleutelvorm";
+      var maten = waarden.split("");
+      var richting;
+      var spoor;
+      if (vorm === "tekening") {
+        spoor = sleuteltekening(waarden, omgekeerd);
+        richting = element("span", "Kop " + (omgekeerd ? "rechts" : "links") +
+          ". Tandhoogtes van links naar rechts: " + maten.join(", ") + ".");
+        richting.className = "p3-visueel-verborgen";
+      } else {
+        spoor = vorm === "was" ? wasafdruk(waarden) : null;
+        richting = element("span", vorm === "was" ? "Dieptes · links → rechts" :
+          "Maten · vanaf " + (omgekeerd ? "punt" : "kop"));
+        richting.className = "p3-sleutelrichting";
+      }
       knop.type = "button";
       knop.disabled = slotOpen;
       knop.setAttribute("aria-pressed", String(selectie.has(i)));
       var vink = element("span", "✓");
       vink.className = "p3-sleutelvink";
       vink.setAttribute("aria-hidden", "true");
-      knop.append(sleuteltekening(sleutel[1], sleutel[2]), naam, beschrijving, vink);
+      knop.append(naam, label);
+      if (spoor) knop.appendChild(spoor);
+      knop.appendChild(richting);
+      if (vorm !== "tekening") {
+        var rij = element("span", maten.join(" · "));
+        rij.className = "p3-sleutelmaten";
+        knop.appendChild(rij);
+      }
+      knop.appendChild(vink);
       knop.addEventListener("click", function () {
         if (selectie.has(i)) selectie.delete(i);
         else selectie.add(i);
@@ -897,7 +931,7 @@
       e.preventDefault();
       if (!stofBekend || slotOpen) return;
       if (selectie.size !== juisteSleutels.length || !juisteSleutels.every(function (i) { return selectie.has(i); })) {
-        meld(sleutelForm.querySelector(".melding"), selectie.size ? "Niet de juiste combinatie. Lees opnieuw vanaf de kop." : "Kies eerst een of meer sleutels.");
+        meld(sleutelForm.querySelector(".melding"), selectie.size ? "Niet de juiste combinatie. Controleer vorm en leesrichting." : "Kies eerst een of meer sleutels.");
         return;
       }
       slotOpen = true;

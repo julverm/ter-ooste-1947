@@ -17,7 +17,7 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 | Beide glazen vergelijken | Alleen B houdt onbekende vlekken over | ✅ | De tabel toont alleen picon, lak D en de twee glazen. De halve maan in C wordt volledig verklaard door picon en lak; B houdt 1◆, 2◆, 3★, 5★ over. |
 | Glas en referentie indienen | Alleen B + L23 geeft de uitslag en sleutels vrij | ✅ | Playwright in Edge: alle 12 paren (B/C × vijf referenties plus onbekende code) getest. Geen overloop op 320, 360, 768 en 1280 px; de vrijgave blijft bewaard na herladen. |
 | Weergave en voortgang van de stroken | Gelijke schaal 0–8, toegankelijke symbolen en geen pagina-overloop | ✅ | Playwright in Edge: 11 unieke SVG-vormen met consistente toegankelijke namen, gelijke rijhoogtes en geen pagina-overloop op 320, 360, 768 en 1280 px. De sleutelkeuze en uitslagen blijven na herladen; 01 + 03 opent de alibi’s met het toetsenbord. |
-| Sleutelprofielen lezen vanaf de kop | Alleen 01 + 03 geeft de alibi’s vrij | ✅ | Alle 4095 andere selecties geweigerd in Chromium; juiste combinatie opent P3-I en verplaatst de focus. |
+| Gemengde sleutelprofielen | Alleen 01 + 03 geeft de alibi’s vrij | ✅ | Wasafdrukken gespiegeld en omgerekend; bestelkaarten omgerekend en zo nodig omgekeerd. Elke lokvogel vangt precies één bedoelde denkfout. Playwright weigerde alle 4095 andere selecties; de juiste combinatie opent P3-I en verplaatst de focus. |
 | Laatste schone en eerste bewaakte moment | Venster 23:02–23:06 | ➖ | P3-E woordelijk. |
 | Alleen P1–P3 gebruiken | Marie én Victor mogelijk | ➖ | Inhoudelijk canon. |
 | P4-code samenstellen | 6427 | ✅ | 6-4 (P1), 2 (23:02), 7 (glas 7) → kluis opent. |
