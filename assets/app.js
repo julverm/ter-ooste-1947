@@ -741,14 +741,22 @@
     function combinatietabel() {
       var tabel = element("table");
       tabel.className = "p3-combinatietabel";
-      tabel.createCaption().textContent = "Combinatietabel";
+      tabel.setAttribute("aria-labelledby", "p3-combinaties-kop");
+      var kop = tabel.createTHead().insertRow();
+      ["Onderdelen", "Glasvlek"].forEach(function (titel) {
+        var th = element("th", titel);
+        th.scope = "col";
+        kop.appendChild(th);
+      });
       var rijen = tabel.createTBody();
       Object.keys(combinaties).forEach(function (teken) {
         var delen = combinaties[teken];
         var regel = element("span");
         regel.className = "p3-vergelijkregel";
-        regel.append(symbool(delen[0]), element("span", "+"), symbool(delen[1]), element("span", "="), symbool(teken));
-        rijen.insertRow().insertCell().appendChild(regel);
+        regel.append(symbool(delen[0]), element("span", "+"), symbool(delen[1]));
+        var rij = rijen.insertRow();
+        rij.insertCell().appendChild(regel);
+        rij.insertCell().appendChild(symbool(teken));
       });
       $("p3-combinaties").appendChild(tabel);
     }
@@ -759,15 +767,21 @@
       caption.className = "p3-visueel-verborgen";
       caption.textContent = titel;
       var kop = tabel.createTHead().insertRow();
+      var rijkop = element("th", "Rij");
+      rijkop.scope = "col";
+      kop.appendChild(rijkop);
       kolommen.forEach(function (kolom) {
-        var th = element("th", kolom[0].replace("Strychnine", "Strych\u00adnine").replace("Aconitine", "Aconi\u00adtine"));
+        var th = element("th", kolom[0].replace(/^(Strych|Aconi|Atro|Digi)(?=.)/, "$1\u00ad"));
         th.scope = "col";
         if (kolom[1]) th.appendChild(element("small", kolom[1]));
         kop.appendChild(th);
       });
       var rijen = tabel.createTBody();
-      [7, 5, 4, 3, 2, 1].forEach(function (hoogte) {
+      [7, 5, 4, 3, 2, 1].forEach(function (hoogte, index) {
         var rij = rijen.insertRow();
+        var rijnummer = element("th", String(index + 1));
+        rijnummer.scope = "row";
+        rij.appendChild(rijnummer);
         kolommen.forEach(function (kolom) {
           var cel = rij.insertCell();
           cel.className = "p3-papierstrook";
@@ -831,8 +845,9 @@
     }
 
     combinatietabel();
-    stroken($("p3-monsters"), "Glazen en controlestroken", [picon, lak].concat(monsters));
+    stroken($("p3-basis"), "Bekende basis: fles en lak", [picon, lak]);
     stroken($("p3-referenties"), "Referentiestroken van vergiften", referenties);
+    stroken($("p3-monsters"), "Te onderzoeken glazen", monsters);
     var vergifVeld = $("p3-vergif");
     referenties.forEach(function (strook) {
       vergifVeld.add(new Option(strook[0], strook[0]));

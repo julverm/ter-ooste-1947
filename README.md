@@ -100,6 +100,8 @@ spelbestanden. Het herontwerp wijzigt geen verhaaltekst of puzzeloplossing.
 | `hintcodes` | Acht codes, één per hint (p1-1 … p4-2) | FOLIO-1/2, INKT-1/2, ETHER-1/2, LAK-1/2 |
 
 De aktecode opent direct de inleiding en de stroken. NACHT is alleen de dossiernaam. Bepaal welk glas vergiftigd werd: ontleed de samengestelde symbolen, schrap per rij de delen uit de fles- en lakstrook en kies het glas én het vergif waarvan de referentiestrook exact overeenkomt met de rest. Vergelijk daarna zes gespiegelde wasafdrukken zonder dieptegetallen met het slotprofiel. Een voorbeeld met twee tanden toont hoe je het negatief leest: van kop naar punt, met diep tegenover kort. De notarisnotitie koppelt elke afdruk aan één eigenaar. De juiste selectie én koppeling geven de alibi’s en tijdlijn vrij. Beide antwoorden en de vrijgaven worden lokaal bewaard.
+
+De fles en lak, vijf vergiften en twee glazen staan in aparte tabellen met dezelfde rijnummers (1–6), gevolgd door de hulptabel voor samengestelde glasvlekken. Schrap een bekend onderdeel alleen als het op die rij daadwerkelijk in de glasvlek zit.
 | `hostwachtwoord` | Wachtwoord voor `/notaris` | CALLEWAERT |
 | `audioAchiel` | Pad naar het audiofragment | `audio/achiel.mp3` |
 

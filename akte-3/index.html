@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Akte III — Het drankonderzoek · Ter Ooste 1947</title>
   <link rel="stylesheet" href="../assets/style.css">
-  <link rel="stylesheet" href="../assets/experience.css?v=negatieve-afdruk">
+  <link rel="stylesheet" href="../assets/experience.css?v=stroken-layout">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 </head>
 <body>
@@ -48,20 +48,35 @@
         <p id="p3-inleiding">Laat op de avond vroegen de baron en een andere aanwezige om pure picon. De notaris liet beide glazen onderzoeken.</p>
         <section class="vel p3-werkblad" id="p3-werkblad" aria-labelledby="p3-werk-kop">
           <h2 id="p3-werk-kop">1. Welk glas werd vergiftigd?</h2>
-          <p>Welk vergif verklaart, samen met de fles- en lakstrook, de vlekken in glas 7 of glas 2? Splits samengestelde vlekken met de combinatietabel, streep per rij de bekende delen weg en vergelijk wat overblijft met de vergifstroken.</p>
-          <h3>Glazen en controlestroken</h3>
-          <div class="p3-vergelijking">
-            <div id="p3-combinaties"></div>
-            <div class="p3-stroken" id="p3-monsters"></div>
-          </div>
-          <section class="p3-vergiften" aria-labelledby="p3-vergiften-kop">
-            <h3 id="p3-vergiften-kop">Vergiften</h3>
+          <p>Gebruik fles en lak om de bekende delen te herkennen. Welk vergif verklaart wat daarna in een glas overblijft?</p>
+          <section class="p3-onderzoeksgroep" aria-labelledby="p3-basis-kop">
+            <h3 id="p3-basis-kop">Bekende basis: fles en lak</h3>
+            <p>Deze stroken tonen de bekende onderdelen. De glazen die je onderzoekt staan apart hieronder.</p>
+            <div class="p3-stroken" id="p3-basis"></div>
+            <div class="p3-dezelfde-rij">
+              <h4>Fles en lak hebben op dezelfde rij een vlek. Wat nu?</h4>
+              <p>Splits eerst de <strong>vlek in het glas</strong> met de hulptabel. Schrap daarna de delen die op diezelfde rij ook in fles of lak staan, <strong>maar alleen als ze in de glasvlek zitten</strong>. Zitten beide bekende delen erin, dan schrap je beide. Zit er maar één in, dan schrap je alleen dat deel. Je telt fles en lak niet automatisch samen.</p>
+            </div>
+          </section>
+          <section class="p3-onderzoeksgroep p3-vergiften" aria-labelledby="p3-vergiften-kop">
+            <h3 id="p3-vergiften-kop">Mogelijke toevoeging: een vergif</h3>
+            <p>Vergelijk de extra vlekken met deze vijf vergifstroken.</p>
             <div class="p3-stroken" id="p3-referenties"></div>
+          </section>
+          <section class="p3-onderzoeksgroep p3-glazen" aria-labelledby="p3-glazen-kop">
+            <h3 id="p3-glazen-kop">Te onderzoeken glazen</h3>
+            <p>Dit zijn de gemeten vlekken. Welk glas houdt na het schrappen van de bekende delen een vergif over?</p>
+            <div class="p3-stroken" id="p3-monsters"></div>
+          </section>
+          <section class="p3-onderzoeksgroep" aria-labelledby="p3-combinaties-kop">
+            <h3 id="p3-combinaties-kop">Hulptabel: samengestelde vlekken</h3>
+            <p>Rechts staat de vlek die je ziet; links staan de twee onderdelen waaruit die bestaat.</p>
+            <div id="p3-combinaties"></div>
           </section>
           <form class="p3-invoer" id="p3-strook-form">
             <div>
               <span>
-                <label for="p3-monster">Glas</label>
+                <label for="p3-monster">Vergiftigd glas</label>
                 <select id="p3-monster" required>
                   <option value="">Kies een glas</option>
                   <option value="B">Glas 7</option>
@@ -150,7 +165,7 @@
   <footer class="site-voet">Alle personen en gebeurtenissen zijn fictief.</footer>
 
   <script src="../config.js"></script>
-  <script src="../assets/app.js?v=vergifstroken"></script>
+  <script src="../assets/app.js?v=stroken-layout"></script>
   <script>
     (function () {
       var T = window.TerOoste;
