@@ -251,6 +251,14 @@ button[disabled] { opacity: 0.45; cursor: not-allowed; }
 }
 .melding.ok { color: #2f5d2a; }
 
+.p2-antwoord { margin: 1rem 0; max-width: 40rem; }
+.p2-antwoord > div { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; }
+.p2-antwoord input { flex: 1 1 14rem; }
+.p2-antwoord button { flex: 0 1 auto; }
+.p2-notarisnoot { margin-top: 1.5rem; padding: 1rem; border: 3px double #99643d; background: #fff8e34d; }
+.p2-notarisnoot h3 { margin-top: 0; }
+.p2-notarisnoot p:last-child { margin-bottom: 0; }
+
 .verborgen { display: none !important; }
 .visueel-verborgen {
   position: absolute !important;
@@ -572,6 +580,7 @@ button[disabled] { opacity: 0.45; cursor: not-allowed; }
   body { font-size: 1rem; }
   h1 { font-size: 1.5rem; }
   .vel { padding: 1rem 0.9rem 1.2rem; }
+  .p2-antwoord input, .p2-antwoord button { flex-basis: 100%; width: 100%; max-width: none; }
   .mapkaart { grid-template-columns: 1.8rem 1fr auto; padding: 0.7rem; }
   .mapkaart .knoppen button { padding: 0.3em 0.5em; }
   .wielen { gap: 0.35rem; }

@@ -466,6 +466,9 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 .p3-invoer label { display: block; }
 .p3-invoer .melding:not(:empty), #p3-sleutel-form .melding:not(:empty) { margin-top: .55rem; }
 .p3-vrijgave { margin-block: 1.75rem; padding: 1rem clamp(.8rem, 3vw, 1.5rem); background: #f7e4c4; border: 3px double #99643d; }
+.p3-dieptekaart { width: min(100%, 24rem); margin-block: .75rem; }
+.p3-dieptekaart :is(th, td) { padding: .35rem .4rem; }
+.p3-dieptekaart td { text-align: center; font-variant-numeric: tabular-nums; }
 .p3-afdrukvoorbeeld { margin: 0 0 1rem; width: min(100%, 24rem); border-block: 1px solid #99643d; padding-block: .6rem; }
 .p3-afdrukvoorbeeld figcaption { font-style: italic; }
 .p3-afdrukvoorbeeld > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }

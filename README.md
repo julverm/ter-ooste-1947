@@ -57,7 +57,7 @@ de bestaande spelcanon van 15 november 1947 verandert niet.
 
 ## Voorbereiding Akte II
 
-Leg het sleutelbriefje tussen bladzijden 46 en 47 van het kookboek *Altijd honger* in de boekenkast. Laat het briefje na de vondst op tafel liggen zodat iedereen het sleutelwoord kan gebruiken.
+Leg het sleutelbriefje tussen bladzijden 46 en 47 van het kookboek *Altijd honger* in de boekenkast. Laat het briefje na de vondst op tafel liggen zodat iedereen het sleutelwoord kan gebruiken. Akte II gebruikt LINNEN om de korte regel `OM IYEFZWTFX` te ontcijferen. Alleen `DE VLASOOGST` geeft het krantenknipsel P2-E vrij; die vrijgave wordt op het toestel bewaard.
 
 ## Spelbediening
 
@@ -80,10 +80,10 @@ symboolwoorden en de actieve positie in beeld.
 De kaartvolgorde en zelf gekozen symbolen blijven op het toestel bewaard. Slepen naar de rand
 schuift de rij mee; Escape of een geannuleerde sleepactie herstelt de vorige
 volgorde. Reduced motion behoudt de directe sleepfeedback zonder schuifanimaties.
-De enkele Vigenere-regel houdt de letters horizontaal uitgelijnd in een
-afzonderlijk scrollbare hulptabel. Letterwaarden staan direct boven de code in
-een mobiel aanpasbaar raster. Invoervakken, tabs en kluiswielen hebben ruime
-aanraakvlakken.
+De enkele Vigenère-regel houdt de letters horizontaal uitgelijnd in een
+afzonderlijk scrollbare hulptabel. Letterwaarden staan in die hulptabel direct
+boven de invulregel, in een mobiel aanpasbaar raster. De ontcijferde regel geeft
+P2-E vrij. Invoervakken, tabs en kluiswielen hebben ruime aanraakvlakken.
 De vier P1-cijfervakken ondersteunen het plakken van de volledige code.
 
 `assets\style.css` blijft de functionele basis; `assets\experience.css` wordt

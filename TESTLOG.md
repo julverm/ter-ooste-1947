@@ -11,9 +11,9 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 |---|---|---|---|
 | P1 ordeningsregels volledig oplossen | Eén volgorde en toegangscode 6431 | ✅ | Volgorde LANTAARN, ANKER, ROOS, BEL, SLEUTEL, KROON (kaarten C, E, F, A, D, B) ingesteld via pijlknoppen; foliocijfers op positie 2→3→5→6 geven 6431. |
 | P1-D/E lezen | Motieven Gaston/Deman, 1943-dreiging, sluitbanden; geen doodsoorzaak/alibi/dader | ✅ | Tekst woordelijk uit §2; geen extra inhoud. |
-| Nieuwe P2-regel met LINNEN ontcijferen | `DE PICONFLES WAS OM 22:57 VERZEGELD; OPEN DOSSIER NACHT.` | ✅ | Terugontcijferd met sleutelherhaling over alleen A–Z; levert tijdstip en dossierwoord in één regel. |
-| Nieuwe P2-regel terugversleutelen | `OM CVGBYNYRW JLA BZ 22:57 ZRCHRTIYO; WCRR QZAFVIE YIPUX.` | ✅ | Terugversleuteling identiek aan P2-D en de hulptabelcode. |
-| Letters van de nieuwe regel tellen | 41 | ✅ | 41 letterposities; cijfers en leestekens hebben geen invoerveld. |
+| Nieuwe P2-regel met LINNEN ontcijferen | `DE VLASOOGST` | ✅ | `OM IYEFZWTFX` met sleutelherhaling over alleen A–Z ontcijferd. |
+| Nieuwe P2-regel terugversleutelen | `OM IYEFZWTFX` | ✅ | Terugversleuteling identiek aan P2-D en de hulptabelcode. |
+| P2-E antwoord invoeren | `DE VLASOOGST` geeft krantenknipsel vrij | ✅ | Opnieuw getest in Edge op 320 en 1280 px: hoofdletterongevoelig; spaties en leestekens genegeerd; fout antwoord geweigerd; vrijgave blijft na herladen bewaard; geen horizontale overloop. |
 | Beide glazen vergelijken | Alleen B houdt onbekende vlekken over | ✅ | De tabel toont alleen picon, lak D en de twee glazen. De halve maan in C wordt volledig verklaard door picon en lak; B houdt 1◆, 2◆, 3★, 5★ over. |
 | Glas en vergif kiezen | Alleen glas 7 + Digitalis geeft de uitslag en wasafdrukken vrij | ✅ | Playwright in Edge: alle tien combinaties getest op 320 en 1280 px. Geen horizontale overloop, vrijgave bewaard na herladen en juiste wasafdrukken geven de alibi’s vrij. |
 | Weergave en voortgang van de stroken | Gelijke schaal 0–8, toegankelijke symbolen en geen pagina-overloop | ✅ | Playwright in Edge: 11 unieke SVG-vormen met consistente toegankelijke namen, gelijke rijhoogtes en geen pagina-overloop op 320, 360, 768 en 1280 px. |
@@ -29,7 +29,7 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 
 | Test | Verwacht | Resultaat | Opmerking |
 |---|---|---|---|
-| P2-regel naast de kop lezen | Eenduidig avondtijdstip 22:57 | ✅ | Kop en regel staan samen in P2-D. |
+| P2-regel en P2-E-vrijgave | Antwoord geeft krantenknipsel vrij | ✅ | Opnieuw getest in Edge op 320 en 1280 px; P2-E begint verborgen, fout antwoord wordt geweigerd, `de vlasoogst` en `DEVLASOOGST` worden geaccepteerd, vrijgave blijft na herladen staan; 22 hulpcellen en geen horizontale overloop. |
 | Verkorte Akte III | Stroken, sleutels, alibi’s en tijdlijn; geen tabbladen, markeringen of audio | ✅ | Playwright: fout strookantwoord en onvolledige sleutelselectie geweigerd. Vrijgaven en selectie blijven na herladen. |
 | Bediening van de sleutels | Toetsenbord en touch | ✅ | Spatie en Enter, tikbediening en focus op beide uitslagen. Geen pagina-overloop op 320, 360, 768 en 1280 px; sleutelknoppen minstens 44 px hoog. |
 | Akte III met één toegangsstap | Aktecode opent direct inleiding en stroken | ✅ | Playwright met lege opslag: `NACHT` geweigerd als aktecode, ` kandelaar ` opent direct zonder dossierformulier. Na herladen blijven nieuwe en bestaande vrijgaven bewaard; de oude dossiervlag alleen opent de akte niet. |
@@ -47,7 +47,7 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 |---|---|
 | Aktepoort: foute code | ✅ `ZEGEL` op `/akte-1` → "De notaris herkent deze aktecode niet.", inhoud blijft verborgen. |
 | Aktepoort: juiste code, hoofdletterongevoelig/getrimd | ✅ `  kasteel ` opent Akte I; `perkament`, `kandelaar`, `TESTAMENT` openen II–IV; ontgrendeling in localStorage. |
-| Vigenère-hulptabel | ✅ Code-inspectie: 41 letters × 2 invoervelden = 82; cijfers/leestekens worden overgeslagen; bestaande hoofdletterconversie en opslag blijven behouden; geen automatische ontcijfering. |
+| Vigenère-hulptabel | ✅ Code-inspectie: 11 letters × 2 invoervelden = 22; cijfertekst `OM IYEFZWTFX`; bestaande hoofdletterconversie en invoeropslag blijven behouden; geen automatische ontcijfering. |
 | Boekraadsel en hints | ✅ P2-A toont het nieuwe titel- en paginaraadsel zonder titel of sleutelwoord prijs te geven. `INKT-1` stuurt naar het kookboek en de titelclues; `INKT-2` noemt *Altijd honger*, bladzijde 47. De notaris ziet waar het briefje moet liggen. |
 | Notarispagina | ✅ `NOTARIS` → "Dit kantoor blijft gesloten."; `callewaert` → alle secties (codes, hints+hintcodes, draaiboek, voorleesteksten, hostoplossingen P1–P4, onthulling, testen). Niet gelinkt vanaf spelerpagina's. |
 | "Alles resetten" | ✅ confirm-dialoog → localStorage leeg (0 sleutels `terooste1947.*`), pagina herlaadt vergrendeld. |
@@ -57,7 +57,7 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 ## Browsercontrole vóór publicatie
 
 - Startpagina: knop naar Akte I werkt; de spelregels staan niet meer op de startpagina. Akte I weigert een verkeerd aktewoord; een juist symbool verbergt het kaart­raadsel en blijft na herladen bewaard. De juiste dossiercode geeft de stukken vrij.
-- Akte II: 82 invoervelden in `#vig-A`; een ingevulde letter wordt hoofdletter en blijft na herladen bewaard. De twee boekhints en de voorbereiding op de notarispagina zijn gecontroleerd.
+- Akte II: 22 invoervelden in `#vig-A`; een ingevulde letter wordt hoofdletter en blijft na herladen bewaard. P2-E begint verborgen, weigert een fout antwoord, opent voor beide schrijfwijzen van `DE VLASOOGST` en blijft na herladen vrijgegeven. De twee boekhints en de voorbereiding op de notarispagina zijn gecontroleerd.
 - Akte III: `#p3-werkblad` verschijnt direct na het aktewoord. De vier afleiders, een onbekende code en glas 2 met de juiste referentie geven geen vrijgave. De juiste combinatie opent de sleutelproef; een onvolledige selectie wordt geweigerd. De alibi’s blijven na de juiste sleutelkeuze en herladen zichtbaar.
 - Akte IV: verkeerde kluiscode houdt de inhoud dicht; de juiste code opent het tabblad met Victors alibi. De gewone en gepersonaliseerde menukaart openen en sluiten via het toetsenbord.
 - Geen horizontale overloop van de pagina op 320, 360, 768 en 1280 px in Aktes I–III en de menukaart. De Vigenère-regel blijft intern horizontaal scrollbaar.
