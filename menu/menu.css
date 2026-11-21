@@ -67,7 +67,6 @@ body:not(.is-open) .folio { height: clamp(19rem, 46vw, 24rem); }
 .cover-inscription { position: absolute; inset: 0; text-align: center; color: var(--ink); transition: opacity .3s ease, transform .6s var(--ease); }
 .crest { height: 3.5rem; width: auto; margin-top: .8rem; mix-blend-mode: multiply; }
 .cover-inscription p { position: absolute; top: 63%; left: 0; right: 0; margin: 0; font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.05; font-style: italic; }
-.cover-date { position: absolute; top: 86%; left: 0; right: 0; font-size: .875rem; }
 .seal { position: absolute; top: 39%; left: 50%; width: 5.25rem; height: 5.25rem; transform: translateX(-50%) rotate(-8deg); filter: drop-shadow(3px 5px 3px #34100966); transition: transform .45s var(--ease), opacity .3s ease; }
 .has-guest .seal { top: 28%; width: 4rem; height: 4rem; }
 .cover-inscription .cover-welcome {
