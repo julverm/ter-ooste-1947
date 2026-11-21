@@ -222,7 +222,6 @@
               <li>De tuinman Cyriel Degryse komt in geen enkele beschikking voor; de baron weigerde daarover te spreken.</li>
             </ol>
             <p>De baron verzocht de inhoud geheim te houden tot na zijn dood. De barones werd niet ingelicht.</p>
-            <p><em>Opmerking van de notaris:</em> een gewijzigd testament verklaart wie voordeel of nadeel heeft. Het bewijst niet wie daarvan wist, noch wie gelegenheid had.</p>
           </article>
         </div>
 
@@ -238,7 +237,7 @@
             <h3>Verklaring van de notaris</h3>
             <p>De baron toonde mij deze brief op 28 oktober en vroeg mij bij het diner van 15 november aanwezig te zijn. Op zijn verzoek werd afgesproken dat zijn drank die avond onder mijn toezicht zou worden uitgeschonken en dat de glazen een sluitband zouden krijgen — een maatregel die op het kasteel nooit eerder werd toegepast.</p>
             <p>De baron wilde niet zeggen op welke gebeurtenis uit 1943 de brief doelde. Hij zei alleen: "Er zijn mensen die denken dat de oorlog nog niet gedaan is."</p>
-            <p>Het handschrift kon met niemand van het huishouden of de gasten worden vergeleken. De brief bewijst dat iemand de baron bedreigde; hij bewijst niet dat de schrijver ook de dader is.</p>
+            <p>Het handschrift kon met niemand van het huishouden of de gasten worden vergeleken. De brief bewijst dat iemand de baron bedreigde.</p>
           </article>
         </div>
       </section>
@@ -258,9 +257,31 @@
       /* Symbool-keuzelijsten */
       var SYMBOLEN = ["ANKER", "BEL", "KROON", "LANTAARN", "ROOS", "SLEUTEL"];
       var JUISTE_SYMBOLEN = { A: "BEL", B: "KROON", C: "LANTAARN", D: "SLEUTEL", E: "ANKER", F: "ROOS" };
+      var mapkaarten = document.getElementById("mapkaarten");
       function werkSymboolBij(sel) {
         var kaart = sel.closest(".mapkaart");
-        kaart.querySelector(".raadsel").hidden = sel.value === JUISTE_SYMBOLEN[kaart.dataset.kaart];
+        var juist = sel.value === JUISTE_SYMBOLEN[kaart.dataset.kaart];
+        var feedback = kaart.querySelector(".symbool-feedback");
+        if (!feedback) {
+          feedback = document.createElement("span");
+          feedback.className = "symbool-feedback";
+          feedback.setAttribute("role", "status");
+          feedback.setAttribute("aria-live", "polite");
+          kaart.querySelector(".symbool").appendChild(feedback);
+        }
+        feedback.textContent = juist ? "Juist." : "";
+        feedback.hidden = !juist;
+        kaart.classList.toggle("symbool-juist", juist);
+      }
+      function werkPuzzelBij() {
+        var opgelost = Array.prototype.every.call(mapkaarten.querySelectorAll("select"), function (sel) {
+          var kaart = sel.closest(".mapkaart");
+          return sel.value === JUISTE_SYMBOLEN[kaart.dataset.kaart];
+        });
+        mapkaarten.classList.toggle("volledig-opgelost", opgelost);
+        mapkaarten.querySelectorAll(".raadsel").forEach(function (raadsel) {
+          raadsel.hidden = opgelost;
+        });
       }
       document.querySelectorAll(".mapkaart select").forEach(function (sel) {
         SYMBOLEN.forEach(function (s) {
@@ -272,11 +293,13 @@
         sel.addEventListener("change", function () {
           T.opslag.set("p1.sym." + sel.id, sel.value);
           werkSymboolBij(sel);
+          werkPuzzelBij();
         });
       });
+      werkPuzzelBij();
 
       T.archiefRij(
-        document.getElementById("mapkaarten"),
+        mapkaarten,
         document.getElementById("volgorde-status"),
         document.getElementById("archief-overzicht")
       );

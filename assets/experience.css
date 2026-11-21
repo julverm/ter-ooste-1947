@@ -519,3 +519,15 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
   .pagina-kop .kasteel, .wegwijzer, .springlink, .archief-overzicht { display: none; }
   .mapkaarten { grid-auto-columns: minmax(0, 1fr); overflow: visible; }
 }
+.mapkaart .symbool-feedback { display: block; margin-top: .35rem; color: #315528; font-weight: 700; }
+.mapkaart .symbool-feedback[hidden] { display: none; }
+.mapkaart.symbool-juist .symbool select { border-color: var(--lak-donker); }
+.mapkaarten.volledig-opgelost { grid-auto-columns: minmax(9rem, 12rem); gap: .5rem; }
+.mapkaarten.volledig-opgelost .mapkaart { padding: .6rem; }
+.mapkaarten.volledig-opgelost .positie { margin: .3rem 0; }
+.mapkaarten.volledig-opgelost .kop .naam { font-size: 1rem; }
+.mapkaarten.volledig-opgelost .kop .folio { margin-top: .15rem; font-size: .85rem; }
+.mapkaarten.volledig-opgelost .symbool label { margin: .45rem 0 .2rem; }
+@media print {
+  .mapkaarten.volledig-opgelost { grid-auto-columns: minmax(0, 1fr); }
+}
