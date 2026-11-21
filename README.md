@@ -17,6 +17,7 @@ config.js             ALLE codes en invulwaarden
 assets/               style.css, app.js, favicon.svg
 assets/experience.css Gedeelde bordeaux/perkamentstijl en mobiele spelbediening
 audio/achiel.mp3      Archiefopname van het verhoor; niet meer geladen in Akte III
+video/inleiding-ter-ooste.mp4  Inleidende film op de startpagina
 tools/maak-audio.py   Gratis noodscript (edge-tts) om die opname opnieuw te genereren
 docs/                 Canon-documenten (alleen-lezen referentie)
 screenshots/          Testscreenshots
@@ -62,6 +63,8 @@ Leg het sleutelbriefje tussen bladzijden 46 en 47 van het kookboek *Altijd honge
 
 De spelpagina's gebruiken dezelfde bordeaux, gouden en perkamenten materialen als
 de uitnodiging. De startpagina geeft direct toegang tot het eerste dossier.
+De inleidende film op de startpagina wordt alleen afgespeeld wanneer de bezoeker
+de videobediening gebruikt.
 Waar beschikbaar is de introductie openklapbaar; een wegwijzer springt
 naar de vrijgegeven onderdelen zonder verzegelde stukken te verklappen.
 

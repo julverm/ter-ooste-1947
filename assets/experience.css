@@ -146,6 +146,15 @@ main > section, #akte-inhoud > section, #p3-dossier > section { margin-top: 2rem
 .vel .meta { font-size: .875rem; letter-spacing: .03em; margin-bottom: .5rem; color: var(--lak-donker); }
 .vel .blokletters { font-family: "Courier New", Courier, monospace; }
 .vel > .meta + h2 { margin-top: 0; }
+.inleiding-film {
+  display: block;
+  width: 100%;
+  max-width: 48rem;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #360f19;
+  border: 1px solid #99643d;
+}
 .poort.vel { border: 0; padding: 1rem 0 1.75rem; max-width: 36rem; margin: 1.5rem auto; }
 .poort h2 { margin: .25rem 0 .75rem; }
 .poort p { margin: .75rem auto; }
