@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Akte III — Het drankonderzoek · Ter Ooste 1947</title>
   <link rel="stylesheet" href="../assets/style.css">
-  <link rel="stylesheet" href="../assets/experience.css?v=wasafdrukken">
+  <link rel="stylesheet" href="../assets/experience.css?v=vergifstroken">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 </head>
 <body>
@@ -47,27 +47,32 @@
       <div id="p3-dossier">
         <p id="p3-inleiding">Laat op de avond vroegen de baron en een andere aanwezige om pure picon. De notaris liet beide glazen onderzoeken.</p>
         <section class="vel p3-werkblad" id="p3-werkblad" aria-labelledby="p3-werk-kop">
-          <h2 id="p3-werk-kop">1. Vergelijk de stroken</h2>
-          <p>Vergelijk beide glazen. Splits samengestelde vlekken met de tabel en schrap alleen de delen die op dezelfde hoogte ook in zuivere picon of lak D staan. In welk glas blijft iets onbekends over, en welke referentie past?</p>
+          <h2 id="p3-werk-kop">1. Welk glas werd vergiftigd?</h2>
+          <p>Welk vergif verklaart, samen met de fles- en lakstrook, de vlekken in glas 7 of glas 2? Splits samengestelde vlekken met de combinatietabel, streep per rij de bekende delen weg en vergelijk wat overblijft met de vergifstroken.</p>
+          <h3>Glazen en controlestroken</h3>
           <div class="p3-vergelijking">
             <div id="p3-combinaties"></div>
             <div class="p3-stroken" id="p3-monsters"></div>
           </div>
-          <h3>Referentiestroken</h3>
-          <div class="p3-stroken" id="p3-referenties"></div>
+          <section class="p3-vergiften" aria-labelledby="p3-vergiften-kop">
+            <h3 id="p3-vergiften-kop">Vergiften</h3>
+            <div class="p3-stroken" id="p3-referenties"></div>
+          </section>
           <form class="p3-invoer" id="p3-strook-form">
             <div>
               <span>
                 <label for="p3-monster">Glas</label>
                 <select id="p3-monster" required>
                   <option value="">Kies een glas</option>
-                  <option value="B">B · Glas 7</option>
-                  <option value="C">C · Glas 2</option>
+                  <option value="B">Glas 7</option>
+                  <option value="C">Glas 2</option>
                 </select>
               </span>
               <span>
-                <label for="p3-strook-code">Referentiecode</label>
-                <input id="p3-strook-code" class="code" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required>
+                <label for="p3-vergif">Vergif</label>
+                <select id="p3-vergif" required>
+                  <option value="">Kies een vergif</option>
+                </select>
               </span>
               <button type="submit">Controleer je antwoord</button>
             </div>
@@ -77,7 +82,7 @@
 
         <section class="p3-vrijgave" id="p3-register" aria-labelledby="p3-register-kop" hidden>
           <h2 id="p3-register-kop">Uitslag: digitalis in glas 7</h2>
-          <p>L23 is een digitalispreparaat uit de afgesloten voorraadkast. Het zat in het glas van de baron, niet in glas 2.</p>
+          <p>Het digitalispreparaat uit de afgesloten voorraadkast zat in het glas van de baron, niet in glas 2.</p>
         </section>
 
         <section class="vel p3-station" id="p3-sleutels" aria-labelledby="p3-sleutels-kop" hidden>
@@ -120,7 +125,7 @@
   <footer class="site-voet">Alle personen en gebeurtenissen zijn fictief.</footer>
 
   <script src="../config.js"></script>
-  <script src="../assets/app.js?v=wasafdrukken"></script>
+  <script src="../assets/app.js?v=vergifstroken"></script>
   <script>
     (function () {
       var T = window.TerOoste;

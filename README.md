@@ -99,7 +99,7 @@ spelbestanden. Het herontwerp wijzigt geen verhaaltekst of puzzeloplossing.
 | `codeKluis` | Kluiscombinatie Akte IV | 6427 |
 | `hintcodes` | Acht codes, één per hint (p1-1 … p4-2) | FOLIO-1/2, INKT-1/2, ETHER-1/2, LAK-1/2 |
 
-De aktecode opent direct de inleiding en de stroken. NACHT is alleen de dossiernaam. Vergelijk beide glazen: ontleed de samengestelde symbolen, schrap picon en lak op gelijke hoogte en kies het glas met een onbekende rest én de passende referentie. Vergelijk daarna zes gespiegelde wasafdrukken zonder dieptegetallen met het slotprofiel. De notarisnotitie koppelt elke afdruk aan één eigenaar. De juiste selectie én koppeling geven de alibi’s en tijdlijn vrij. Beide antwoorden en de vrijgaven worden lokaal bewaard.
+De aktecode opent direct de inleiding en de stroken. NACHT is alleen de dossiernaam. Bepaal welk glas vergiftigd werd: ontleed de samengestelde symbolen, schrap per rij de delen uit de fles- en lakstrook en kies het glas én het vergif waarvan de referentiestrook exact overeenkomt met de rest. Vergelijk daarna zes gespiegelde wasafdrukken zonder dieptegetallen met het slotprofiel. De notarisnotitie koppelt elke afdruk aan één eigenaar. De juiste selectie én koppeling geven de alibi’s en tijdlijn vrij. Beide antwoorden en de vrijgaven worden lokaal bewaard.
 | `hostwachtwoord` | Wachtwoord voor `/notaris` | CALLEWAERT |
 | `audioAchiel` | Pad naar het audiofragment | `audio/achiel.mp3` |
 

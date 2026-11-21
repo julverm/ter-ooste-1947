@@ -439,12 +439,13 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
   border: 1px solid #99643d;
 }
 .p3-stroken :is(th, td) { padding: 0; text-align: center; vertical-align: middle; border: 0; }
-.p3-stroken tr > :first-child { width: 2rem; background: #e6c698; }
 .p3-stroken thead th { background: #e6c698; color: var(--inkt); padding: .35rem 0; }
 .p3-stroken th small { display: block; font-size: .875rem; font-weight: 400; }
 .p3-stroken tbody tr { height: 1.375rem; }
 .p3-stroken tbody td { line-height: 1; }
-.p3-stroken tbody th { font-size: .875rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.p3-vergiften { max-width: 39rem; margin-top: 1.25rem; padding-top: .75rem; border-top: 1px solid #99643d; }
+.p3-vergiften h3 { margin-top: 0; }
+.p3-vergiften thead th { background: var(--wijn); color: #fff8e3; font-size: clamp(.6875rem, 2.5vw, .95rem); overflow-wrap: anywhere; }
 .p3-stroken .p3-papierstrook { background: #fff8e3; border-inline: 1px solid #99643d70; border-bottom: 1px solid #99643d35; }
 .p3-band {
   display: grid;
@@ -459,7 +460,6 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 .p3-invoer > div, .p3-sleutelactie { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .85rem; }
 .p3-invoer > div { align-items: end; }
 .p3-invoer label { display: block; }
-.p3-invoer input { width: 12rem; max-width: 100%; }
 .p3-invoer .melding:not(:empty), #p3-sleutel-form .melding:not(:empty) { margin-top: .55rem; }
 .p3-vrijgave { margin-block: 1.75rem; padding: 1rem clamp(.8rem, 3vw, 1.5rem); background: #f7e4c4; border: 3px double #99643d; }
 .p3-slotprofiel { margin: 0 0 1.25rem; padding: .6rem .9rem; width: min(100%, 16rem); border: 1px solid #99643d; background: #f7e4c4; }
@@ -500,10 +500,9 @@ th { background: #9b73391a; font-weight: 700; font-size: .9rem; }
 .p3-alibis dd { margin: 0; }
 .p3-visueel-verborgen { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @media (max-width: 460px) {
-  .p3-stroken tr > :first-child { width: 1.75rem; }
   .p3-stroken th, .p3-stroken th small { font-size: .875rem; }
   .p3-sleutelblad { grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr)); }
-  .p3-invoer > div > span, .p3-invoer select, .p3-invoer input, .p3-invoer button, .p3-sleutelactie button { width: 100%; }
+  .p3-invoer > div > span, .p3-invoer select, .p3-invoer button, .p3-sleutelactie button { width: 100%; }
 }
 @media print {
   body { background: white; color: black; }

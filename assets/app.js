@@ -342,7 +342,7 @@
     { id: "p1-2", puzzel: "Dossier I", nr: 2, tekst: ["Test het ANKER op 2, 3, 4 en 5. Op 3 raakt de KROON geblokkeerd; op 4 past de BEL niet; op 5 botsen KROON en LANTAARN met regel 6."] },
     { id: "p2-1", puzzel: "Dossier II", nr: 1, tekst: ["Zoek een kookboek in de boekenkast. ‘Gisteren, vandaag en morgen’ en ‘trek’ wijzen elk naar één woord in de titel."], alternatief: "Wie het briefje al heeft, krijgt in de plaats: “De sleutel heeft zes letters. Spaties onderbreken de herhaling niet.”" },
     { id: "p2-2", puzzel: "Dossier II", nr: 2, tekst: ["Open het kookboek Altijd honger op bladzijde 47."], alternatief: "Wie het briefje al heeft, kan de uitlijning controleren: de eerste twee woorden worden DE PICONFLES." },
-    { id: "p3-1", puzzel: "Dossier III", nr: 1, tekst: ["Splits de samengestelde symbolen in beide glazen. Schrap alleen de delen die op die hoogte ook in zuivere picon of lak D staan. Vergelijk alleen de overblijvende vlekken met de referenties."] },
+    { id: "p3-1", puzzel: "Dossier III", nr: 1, tekst: ["Werk terug vanuit elk glas: splits samengestelde vlekken en streep per rij alleen weg wat ook op de fles- of lakstrook staat. Welk vergif komt exact overeen met wat overblijft?"] },
     { id: "p3-2", puzzel: "Dossier III", nr: 2, tekst: ["Vergelijk de eerste tand links op het slotprofiel met de eerste holte naast de kop rechts in de afdruk. Diep en kort horen samen. Er passen twee afdrukken. Zet voor de eigenaars eerst de personen die direct na elkaar kwamen in één rij."] },
     { id: "p4-1", puzzel: "Dossier IV", nr: 1, tekst: ["Het begin van de kistcode komt uit de eerder gevonden toegangscode, niet uit de foliocijfers van willekeurige losse kaarten."] },
     { id: "p4-2", puzzel: "Dossier IV", nr: 2, tekst: ["De toegangscode was 6431. Gebruik alleen de eerste twee cijfers; voor de overige cijfers heb je de controleminuut en het glasnummer nodig."] }
@@ -665,17 +665,17 @@
       maan: ["▲", "◆"],
       klaver: ["●", "★"]
     };
-    var picon = ["Picon", "Zuiver", { 2: "●", 5: "▲", 7: "■" }];
-    var lak = ["D", "Lak", { 3: "✚", 5: "◆" }];
-    var monsterB = ["B", "Glas 7", { 1: "◆", 2: "vijfhoek", 3: "zandloper", 5: "zeshoek", 7: "■" }];
-    var glas2 = ["C", "Glas 2", { 2: "●", 5: "maan", 7: "■" }];
+    var picon = ["Fles", "Picon", { 2: "●", 5: "▲", 7: "■" }];
+    var lak = ["Lak", "", { 3: "✚", 5: "◆" }];
+    var monsterB = ["Glas 7", "", { 1: "◆", 2: "vijfhoek", 3: "zandloper", 5: "zeshoek", 7: "■" }];
+    var glas2 = ["Glas 2", "", { 2: "●", 5: "maan", 7: "■" }];
     var monsters = [monsterB, glas2];
     var referenties = [
-      ["K17", "", { 1: "◆", 2: "◆", 3: "✚", 5: "★" }, "Kijk in strook D welk deel van een samengestelde vlek van de lak komt."],
-      ["N08", "", { 1: "◆", 3: "★" }, "Een samengestelde vlek bevat twee stoffen. Schrap alleen het deel dat ook in zuivere picon staat."],
-      ["L23", "", { 1: "◆", 2: "◆", 3: "★", 5: "★" }],
-      ["P31", "", { 1: "◆", 2: "◆", 3: "★", 5: "◆" }, "Eén symbool klopt niet."],
-      ["M14", "", { 1: "◆", 2: "◆", 4: "★", 5: "★" }, "Eén hoogte klopt niet."]
+      ["Arseen", "", { 1: "◆", 2: "◆", 3: "✚", 5: "★" }, "Kijk op de lakstrook welk deel van de samengestelde vlek van de lak komt."],
+      ["Atropine", "", { 1: "◆", 3: "★" }, "Een samengestelde vlek bevat twee stoffen. Schrap alleen het deel dat ook op de fles- of lakstrook staat."],
+      ["Digitalis", "", { 1: "◆", 2: "◆", 3: "★", 5: "★" }],
+      ["Strychnine", "", { 1: "◆", 2: "◆", 3: "★", 5: "◆" }, "Eén symbool klopt niet."],
+      ["Aconitine", "", { 1: "◆", 2: "◆", 4: "★", 5: "★" }, "Eén vlek staat op de verkeerde rij."]
     ];
     var profiel = "31423";
     var sleutels = [
@@ -759,22 +759,15 @@
       caption.className = "p3-visueel-verborgen";
       caption.textContent = titel;
       var kop = tabel.createTHead().insertRow();
-      var as = element("th", "Hoogte");
-      as.scope = "col";
-      as.innerHTML = '<abbr title="Hoogte">H</abbr>';
-      kop.appendChild(as);
       kolommen.forEach(function (kolom) {
-        var th = element("th", kolom[0]);
+        var th = element("th", kolom[0].replace("Strychnine", "Strych\u00adnine").replace("Aconitine", "Aconi\u00adtine"));
         th.scope = "col";
         if (kolom[1]) th.appendChild(element("small", kolom[1]));
         kop.appendChild(th);
       });
       var rijen = tabel.createTBody();
-      for (var hoogte = 8; hoogte >= 0; hoogte--) {
+      [7, 5, 4, 3, 2, 1].forEach(function (hoogte) {
         var rij = rijen.insertRow();
-        var maat = element("th", String(hoogte));
-        maat.scope = "row";
-        rij.appendChild(maat);
         kolommen.forEach(function (kolom) {
           var cel = rij.insertCell();
           cel.className = "p3-papierstrook";
@@ -785,7 +778,7 @@
           band.appendChild(symbool(teken));
           cel.appendChild(band);
         });
-      }
+      });
       tabelhouder.appendChild(tabel);
     }
 
@@ -838,26 +831,29 @@
     }
 
     combinatietabel();
-    stroken($("p3-monsters"), "Glazen en controles", [picon, lak].concat(monsters));
-    stroken($("p3-referenties"), "Gecodeerde referentiestroken", referenties);
+    stroken($("p3-monsters"), "Glazen en controlestroken", [picon, lak].concat(monsters));
+    stroken($("p3-referenties"), "Referentiestroken van vergiften", referenties);
+    var vergifVeld = $("p3-vergif");
+    referenties.forEach(function (strook) {
+      vergifVeld.add(new Option(strook[0], strook[0]));
+    });
     strookForm.addEventListener("submit", function (e) {
       e.preventDefault();
       if (stofBekend) return;
       var monsterVeld = $("p3-monster");
-      var monster = monsters.find(function (strook) { return strook[0] === monsterVeld.value; });
+      var monster = ({ B: monsterB, C: glas2 })[monsterVeld.value];
       var rest = monster ? restvlekken(monster) : [];
       if (!rest.length) {
         meld(strookForm.querySelector(".melding"), "In dit glas blijft niets onbekends over. Vergelijk de twee glazen opnieuw.");
         monsterVeld.focus();
         return;
       }
-      var code = norm($("p3-strook-code").value);
-      var ref = referenties.find(function (strook) { return strook[0] === code; });
+      var ref = referenties.find(function (strook) { return strook[0] === vergifVeld.value; });
       if (!ref || Object.keys(ref[2]).length !== rest.length || !rest.every(function (band) {
         return ref[2][band[0]] === band[1];
       })) {
-        meld(strookForm.querySelector(".melding"), ref && ref[3] || "Kies een passende code van de referentiestroken.");
-        $("p3-strook-code").select();
+        meld(strookForm.querySelector(".melding"), ref && ref[3] || "Kies het vergif waarvan alle vlekken overeenkomen.");
+        vergifVeld.focus();
         return;
       }
       stofBekend = true;

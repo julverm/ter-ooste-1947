@@ -15,7 +15,7 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 | Nieuwe P2-regel terugversleutelen | `OM CVGBYNYRW JLA BZ 22:57 ZRCHRTIYO; WCRR QZAFVIE YIPUX.` | ✅ | Terugversleuteling identiek aan P2-D en de hulptabelcode. |
 | Letters van de nieuwe regel tellen | 41 | ✅ | 41 letterposities; cijfers en leestekens hebben geen invoerveld. |
 | Beide glazen vergelijken | Alleen B houdt onbekende vlekken over | ✅ | De tabel toont alleen picon, lak D en de twee glazen. De halve maan in C wordt volledig verklaard door picon en lak; B houdt 1◆, 2◆, 3★, 5★ over. |
-| Glas en referentie indienen | Alleen B + L23 geeft de uitslag en sleutels vrij | ✅ | Playwright in Edge: alle 12 paren (B/C × vijf referenties plus onbekende code) getest. Geen overloop op 320, 360, 768 en 1280 px; de vrijgave blijft bewaard na herladen. |
+| Glas en vergif kiezen | Alleen glas 7 + Digitalis geeft de uitslag en wasafdrukken vrij | ✅ | Playwright in Edge: alle tien combinaties getest op 320 en 1280 px. Geen horizontale overloop, vrijgave bewaard na herladen en juiste wasafdrukken geven de alibi’s vrij. |
 | Weergave en voortgang van de stroken | Gelijke schaal 0–8, toegankelijke symbolen en geen pagina-overloop | ✅ | Playwright in Edge: 11 unieke SVG-vormen met consistente toegankelijke namen, gelijke rijhoogtes en geen pagina-overloop op 320, 360, 768 en 1280 px. |
 | Wasafdrukken en eigenaars | Alleen 02 + 04 met zes juiste koppelingen geeft de alibi’s vrij | ✅ | Van 720 eigenaarsvolgordes voldoet er precies één aan de notitie. Playwright weigerde de 63 verkeerde afdrukselecties en onvolledige, dubbele en verwisselde eigenaars. Opslag, toetsenbord, focus, toegankelijke omschrijvingen en 320–1280 px gecontroleerd. |
 | Laatste schone en eerste bewaakte moment | Venster 23:02–23:06 | ➖ | P3-E woordelijk. |
@@ -30,7 +30,7 @@ Legenda: ✅ geslaagd · ⚠️ geslaagd met opmerking · ❌ gefaald · ➖ nie
 | Test | Verwacht | Resultaat | Opmerking |
 |---|---|---|---|
 | P2-regel naast de kop lezen | Eenduidig avondtijdstip 22:57 | ✅ | Kop en regel staan samen in P2-D. |
-| Verkorte Akte III | Stroken, sleutels, alibi’s en tijdlijn; geen tabbladen, markeringen of audio | ✅ | Playwright: foute strookcode en onvolledige sleutelselectie geweigerd. Vrijgaven en selectie blijven na herladen. |
+| Verkorte Akte III | Stroken, sleutels, alibi’s en tijdlijn; geen tabbladen, markeringen of audio | ✅ | Playwright: fout strookantwoord en onvolledige sleutelselectie geweigerd. Vrijgaven en selectie blijven na herladen. |
 | Bediening van de sleutels | Toetsenbord en touch | ✅ | Spatie en Enter, tikbediening en focus op beide uitslagen. Geen pagina-overloop op 320, 360, 768 en 1280 px; sleutelknoppen minstens 44 px hoog. |
 | Akte III met één toegangsstap | Aktecode opent direct inleiding en stroken | ✅ | Playwright met lege opslag: `NACHT` geweigerd als aktecode, ` kandelaar ` opent direct zonder dossierformulier. Na herladen blijven nieuwe en bestaande vrijgaven bewaard; de oude dossiervlag alleen opent de akte niet. |
 | Audio vergelijken met transcript | Woordelijk dezelfde tekst | ✅ | Herschreven tekst (13 nov, circa 1 minuut). `audio\achiel.mp3` opnieuw gegenereerd uit exact de transcripttekst (tools\maak-audio.py; script, transcript en canon §4.10 automatisch vergeleken: identiek). Een latere eigen TTS-opname moet dezelfde tekst gebruiken. |
