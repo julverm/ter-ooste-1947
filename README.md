@@ -47,8 +47,7 @@ De aparte uitnodiging laadt geen spelconfiguratie en linkt niet naar de puzzels.
 Klik of tik ergens op het gesloten scherm om de kaart te openen. De knop blijft
 ook met het toetsenbord bedienbaar. De scharnieranimatie duurt ongeveer 1,65 seconden;
 bij reduced motion verschijnt de kaart direct.
-Zonder JavaScript is de volledige menutekst meteen leesbaar. De oorspronkelijke
-kaart blijft bereikbaar via de link onderaan.
+Zonder JavaScript is de volledige menutekst meteen leesbaar.
 
 De gepubliceerde uitnodiging staat op
 `https://julverm.github.io/ter-ooste-1947/menu/`. Nieuwe lokale wijzigingen zijn niet automatisch live.
